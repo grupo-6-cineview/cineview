@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cineview">
         <activity
-            android:name=".MainActivity"
+            android:name=".features.login.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".features.splash.SplashActivity"
+            android:exported="true" />
+        <activity
+            android:name=".features.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
