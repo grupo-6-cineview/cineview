@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".features.movie.CastFragment"
+    android:background="@color/black_light"
+    android:fillViewport="true">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCastFragItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:orientation="vertical"
+        tools:spanCount="3"
+        tools:listitem="@layout/cast_item"
+        tools:itemCount="9"
+        />
+
+</FrameLayout>

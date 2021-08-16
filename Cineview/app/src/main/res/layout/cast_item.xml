@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/margin_low"
+    android:paddingEnd="@dimen/margin_low"
+    android:paddingTop="@dimen/margin_medium"
+    android:paddingBottom="@dimen/margin_medium"
+    android:layout_gravity="center_horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/black_light">
+
+    <ImageView
+        android:id="@+id/ivCastItemImage"
+        android:layout_width="83dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:src="@drawable/actor_example"
+        />
+
+    <TextView
+        android:id="@+id/tvCastItemName"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        tools:text="Lewis Tan"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/tvCastItemCharacter"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        tools:text="(Cole Young)"
+        android:textColor="@color/white"
+        />
+
+</LinearLayout>
