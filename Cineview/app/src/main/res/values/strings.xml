@@ -8,4 +8,5 @@
     <string name="tab_item_2_movie_frag">Mais Detalhes</string>
     <string name="release_date_movie_frag">Data de Lançamento:</string>
     <string name="runtime_movie_frag">Duração do Filme:</string>
+    <string name="content_description_cast_member_image">Cast Member</string>
 </resources>
