@@ -53,4 +53,7 @@ dependencies {
 
     // Lottie Animations
     implementation "com.airbnb.android:lottie:4.0.0"
+
+    // Justified TextView Lib
+    implementation 'com.codesgood:justifiedtextview:1.1.0'
 }

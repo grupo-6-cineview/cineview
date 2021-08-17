@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.features.movie
+package com.github.grupo6cineview.cineview.features.movie.apresentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentCastBinding
+import com.github.grupo6cineview.cineview.features.movie.apresentation.adapter.CastAdapter
+import com.github.grupo6cineview.cineview.features.movie.data.model.CastModel
 
 class CastFragment : Fragment() {
 
@@ -22,6 +24,15 @@ class CastFragment : Fragment() {
 
         binding?.run {
             listOf(
+                CastModel(R.drawable.actor_example, "Lewis Tan", "(Cole Young)"),
+                CastModel(R.drawable.actor_example, "Lewis Tan", "(Cole Young)"),
+                CastModel(R.drawable.actor_example, "Lewis Tan", "(Cole Young)"),
+                CastModel(R.drawable.actor_example, "Lewis Tan", "(Cole Young)"),
+                CastModel(R.drawable.actor_example, "Lewis Tan", "(Cole Young)"),
+                CastModel(R.drawable.actor_example, "Lewis Tan", "(Cole Young)"),
+                CastModel(R.drawable.actor_example, "Lewis Tan", "(Cole Young)"),
+                CastModel(R.drawable.actor_example, "Lewis Tan", "(Cole Young)"),
+                CastModel(R.drawable.actor_example, "Lewis Tan", "(Cole Young)"),
                 CastModel(R.drawable.actor_example, "Lewis Tan", "(Cole Young)"),
                 CastModel(R.drawable.actor_example, "Lewis Tan", "(Cole Young)"),
                 CastModel(R.drawable.actor_example, "Lewis Tan", "(Cole Young)"),

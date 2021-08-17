@@ -1,8 +1,9 @@
-package com.github.grupo6cineview.cineview.features.movie
+package com.github.grupo6cineview.cineview.features.movie.apresentation.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.github.grupo6cineview.cineview.databinding.DetailsItemBinding
+import com.github.grupo6cineview.cineview.features.movie.data.model.DetailsModel
 
 class DetailsViewHolder(private val binding: DetailsItemBinding) : RecyclerView.ViewHolder(binding.root) {
 

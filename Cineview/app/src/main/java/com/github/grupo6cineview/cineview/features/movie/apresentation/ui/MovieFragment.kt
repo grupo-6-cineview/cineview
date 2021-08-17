@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.features.movie
+package com.github.grupo6cineview.cineview.features.movie.apresentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentMovieBinding
+import com.github.grupo6cineview.cineview.features.movie.apresentation.adapter.MoreContentAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
 

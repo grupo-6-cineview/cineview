@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
-    android:id="@+id/svBottomSheet"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".features.movie.MovieFragment"
+    tools:context=".features.movie.apresentation.ui.MovieFragment"
     android:fillViewport="true"
     android:background="@color/black_light">
 
@@ -14,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.imageview.ShapeableImageView
+        <ImageView
             android:id="@+id/ivMovieFragBackdrop"
             android:contentDescription="@string/content_description_movie_backdrop"
             android:layout_width="0dp"
@@ -23,8 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:adjustViewBounds="true"
-            tools:src="@drawable/mortal_kombat"
-            android:src="@drawable/mortal_kombat"
+            android:src="@drawable/mortal_kombat_example"
             />
 
         <TextView
@@ -38,7 +36,6 @@
             app:layout_constraintStart_toStartOf="@id/ivMovieFragBackdrop"
             app:layout_constraintEnd_toStartOf="@id/tvMovieFragRateCount"
             app:layout_constraintTop_toBottomOf="@id/ivMovieFragBackdrop"
-            tools:text="Mortal Kombat"
             android:text="Mortal Kombat"
             />
 
@@ -64,22 +61,19 @@
             app:layout_constraintEnd_toStartOf="@id/ivMovieFragStar"
             app:layout_constraintTop_toTopOf="@id/ivMovieFragStar"
             app:layout_constraintBottom_toBottomOf="@id/ivMovieFragStar"
-            tools:text="5.0"
             android:text="5.0"
             />
 
-        <TextView
+        <com.codesgood.views.JustifiedTextView
             android:id="@+id/tvMovieFragOverview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_default"
             android:textColor="@color/subtitle_1_color"
             android:textSize="@dimen/subtitle_1_size"
-            android:justificationMode="inter_word"
             app:layout_constraintStart_toStartOf="@id/tvMovieFragTitle"
             app:layout_constraintEnd_toEndOf="@id/ivMovieFragStar"
             app:layout_constraintTop_toBottomOf="@id/tvMovieFragTitle"
-            tools:text="O lutador de MMA Cole Young não conhece sua herança, nem sabe o motivo do Imperador da Exoterra ter enviado seu melhor guerreiro, Sub-Zero, para ir atrás dele. Temendo pela segurança de sua família, ele se une a outros heróis para proteger a Terra."
             android:text="O lutador de MMA Cole Young não conhece sua herança, nem sabe o motivo do Imperador da Exoterra ter enviado seu melhor guerreiro, Sub-Zero, para ir atrás dele. Temendo pela segurança de sua família, ele se une a outros heróis para proteger a Terra."
             />
 
@@ -154,7 +148,6 @@
             app:layout_constraintTop_toTopOf="@id/tvMovieFragReleaseText"
             app:layout_constraintBottom_toBottomOf="@id/tvMovieFragReleaseText"
             app:layout_constraintStart_toEndOf="@id/tvMovieFragReleaseText"
-            tools:text="07/04/2021"
             android:text="07/04/2021"
             android:textSize="@dimen/subtitle_2_size"
             android:textColor="@color/grey_dark"
@@ -180,7 +173,6 @@
             app:layout_constraintTop_toTopOf="@id/tvMovieFragRuntimeText"
             app:layout_constraintBottom_toBottomOf="@id/tvMovieFragRuntimeText"
             app:layout_constraintStart_toEndOf="@id/tvMovieFragRuntimeText"
-            tools:text="110min"
             android:text="110min"
             android:textSize="@dimen/subtitle_2_size"
             android:textColor="@color/grey_dark"
@@ -190,7 +182,7 @@
             android:id="@+id/tlMovieFragMoreInfo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_default"
+            android:layout_margin="@dimen/margin_default"
             app:layout_constraintStart_toStartOf="@id/ivMovieFragBackdrop"
             app:layout_constraintEnd_toEndOf="@id/ivMovieFragBackdrop"
             app:layout_constraintTop_toBottomOf="@id/tvMovieFragRuntimeText"
@@ -214,7 +206,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpMovieFragMoreContent"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="539dp"
             app:layout_constraintStart_toStartOf="@id/tlMovieFragMoreInfo"
             app:layout_constraintEnd_toEndOf="@id/tlMovieFragMoreInfo"
             app:layout_constraintTop_toBottomOf="@id/tlMovieFragMoreInfo"

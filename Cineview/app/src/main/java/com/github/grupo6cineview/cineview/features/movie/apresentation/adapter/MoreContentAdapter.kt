@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.features.movie
+package com.github.grupo6cineview.cineview.features.movie.apresentation.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
