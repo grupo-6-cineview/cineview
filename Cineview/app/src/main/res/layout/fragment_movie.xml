@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".features.movie.apresentation.ui.MovieFragment"
+    android:fillViewport="true"
+    android:background="@color/black_light">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivMovieFragBackdrop"
+            android:contentDescription="@string/content_description_movie_backdrop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:adjustViewBounds="true"
+            android:src="@drawable/mortal_kombat_example"
+            />
+
+        <TextView
+            android:id="@+id/tvMovieFragTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            android:textColor="@color/title_color"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/ivMovieFragBackdrop"
+            app:layout_constraintEnd_toStartOf="@id/tvMovieFragRateCount"
+            app:layout_constraintTop_toBottomOf="@id/ivMovieFragBackdrop"
+            android:text="Mortal Kombat"
+            />
+
+        <ImageView
+            android:id="@+id/ivMovieFragStar"
+            android:importantForAccessibility="no"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:src="@drawable/ic_baseline_star_rate"
+            app:layout_constraintEnd_toEndOf="@id/ivMovieFragBackdrop"
+            app:layout_constraintTop_toTopOf="@id/tvMovieFragTitle"
+            app:layout_constraintBottom_toBottomOf="@id/tvMovieFragTitle"
+            />
+
+        <TextView
+            android:id="@+id/tvMovieFragRateCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/subtitle_1_size"
+            app:layout_constraintEnd_toStartOf="@id/ivMovieFragStar"
+            app:layout_constraintTop_toTopOf="@id/ivMovieFragStar"
+            app:layout_constraintBottom_toBottomOf="@id/ivMovieFragStar"
+            android:text="5.0"
+            />
+
+        <com.codesgood.views.JustifiedTextView
+            android:id="@+id/tvMovieFragOverview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:textColor="@color/subtitle_1_color"
+            android:textSize="@dimen/subtitle_1_size"
+            app:layout_constraintStart_toStartOf="@id/tvMovieFragTitle"
+            app:layout_constraintEnd_toEndOf="@id/ivMovieFragStar"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieFragTitle"
+            android:text="O lutador de MMA Cole Young não conhece sua herança, nem sabe o motivo do Imperador da Exoterra ter enviado seu melhor guerreiro, Sub-Zero, para ir atrás dele. Temendo pela segurança de sua família, ele se une a outros heróis para proteger a Terra."
+            />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvMovieFragFavorite"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="@dimen/margin_default"
+            android:backgroundTint="@color/grey_dark"
+            app:cardCornerRadius="30dp"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieFragOverview"
+            app:layout_constraintStart_toStartOf="@id/tvMovieFragOverview"
+            app:layout_constraintEnd_toStartOf="@id/cvMovieFragShare">
+
+            <ImageView
+                android:importantForAccessibility="no"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/ic_baseline_favorite_disable"
+                app:tint="@color/grey_light"
+                android:layout_gravity="center"
+                />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvMovieFragShare"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/grey_dark"
+            app:cardCornerRadius="30dp"
+            app:layout_constraintTop_toTopOf="@id/cvMovieFragFavorite"
+            app:layout_constraintBottom_toBottomOf="@id/cvMovieFragFavorite"
+            app:layout_constraintStart_toEndOf="@id/cvMovieFragFavorite"
+            app:layout_constraintEnd_toEndOf="@id/tvMovieFragOverview">
+
+            <ImageView
+                android:importantForAccessibility="no"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginEnd="2dp"
+                android:src="@drawable/ic_baseline_share"
+                app:tint="@color/grey_light"
+                android:layout_gravity="center"
+                />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tvMovieFragReleaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            app:layout_constraintTop_toBottomOf="@id/cvMovieFragFavorite"
+            app:layout_constraintStart_toStartOf="@id/tvMovieFragOverview"
+            app:layout_constraintEnd_toStartOf="@id/tvMovieFragReleaseDate"
+            android:text="@string/release_date_movie_frag"
+            android:textSize="@dimen/subtitle_2_size"
+            android:textColor="@color/grey_dark"
+            />
+
+        <TextView
+            android:id="@+id/tvMovieFragReleaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            app:layout_constraintTop_toTopOf="@id/tvMovieFragReleaseText"
+            app:layout_constraintBottom_toBottomOf="@id/tvMovieFragReleaseText"
+            app:layout_constraintStart_toEndOf="@id/tvMovieFragReleaseText"
+            android:text="07/04/2021"
+            android:textSize="@dimen/subtitle_2_size"
+            android:textColor="@color/grey_dark"
+            />
+
+        <TextView
+            android:id="@+id/tvMovieFragRuntimeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieFragReleaseText"
+            app:layout_constraintStart_toStartOf="@id/tvMovieFragReleaseText"
+            app:layout_constraintEnd_toStartOf="@id/tvMovieFragRuntimeDuration"
+            android:text="@string/runtime_movie_frag"
+            android:textSize="@dimen/subtitle_2_size"
+            android:textColor="@color/grey_dark"
+            />
+
+        <TextView
+            android:id="@+id/tvMovieFragRuntimeDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            app:layout_constraintTop_toTopOf="@id/tvMovieFragRuntimeText"
+            app:layout_constraintBottom_toBottomOf="@id/tvMovieFragRuntimeText"
+            app:layout_constraintStart_toEndOf="@id/tvMovieFragRuntimeText"
+            android:text="110min"
+            android:textSize="@dimen/subtitle_2_size"
+            android:textColor="@color/grey_dark"
+            />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlMovieFragMoreInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            app:layout_constraintStart_toStartOf="@id/ivMovieFragBackdrop"
+            app:layout_constraintEnd_toEndOf="@id/ivMovieFragBackdrop"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieFragRuntimeText"
+            android:backgroundTint="@color/black_light"
+            app:tabTextColor="@color/grey_dark"
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorColor="@color/white">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpMovieFragMoreContent"
+            android:layout_width="0dp"
+            android:layout_height="539dp"
+            app:layout_constraintStart_toStartOf="@id/tlMovieFragMoreInfo"
+            app:layout_constraintEnd_toEndOf="@id/tlMovieFragMoreInfo"
+            app:layout_constraintTop_toBottomOf="@id/tlMovieFragMoreInfo"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

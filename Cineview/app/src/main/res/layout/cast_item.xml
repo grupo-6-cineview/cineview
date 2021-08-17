@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/margin_medium"
+    android:layout_gravity="center_horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/black_light">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="83dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="5dp"
+        android:backgroundTint="@android:color/transparent">
+
+        <ImageView
+            android:id="@+id/ivCastItemImage"
+            android:contentDescription="@string/content_description_cast_member_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/actor_example"
+            />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tvCastItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        tools:text="Lewis Tan"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/tvCastItemCharacter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        tools:text="(Cole Young)"
+        android:textColor="@color/white"
+        />
+
+</LinearLayout>
