@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.github.grupo6cineview.cineview.databinding.ActivitySplashBinding
-import com.github.grupo6cineview.cineview.features.extension.doInTheEnd
+import com.github.grupo6cineview.cineview.extension.doInTheEnd
 import com.github.grupo6cineview.cineview.features.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {

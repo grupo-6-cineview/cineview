@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.features.extension
+package com.github.grupo6cineview.cineview.extension
 
 import android.animation.Animator
 import android.view.View
