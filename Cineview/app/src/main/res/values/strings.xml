@@ -1,12 +1,22 @@
+<!-- TODO: Remove or change this placeholder text -->
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+<string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="app_name">Cineview</string>
-    <string name="content_description_movie_backdrop">Movie Backdrop</string>
-    <string name="tab_item_1_movie_frag">Elenco</string>
-    <string name="tab_item_2_movie_frag">Mais Detalhes</string>
-    <string name="release_date_movie_frag">Data de Lançamento:</string>
-    <string name="runtime_movie_frag">Duração do Filme:</string>
-    <string name="content_description_cast_member_image">Cast Member</string>
-</resources>
+<string name="app_name">Cineview</string>
+<string name="content_description_movie_backdrop">Movie Backdrop</string>
+<string name="tab_item_1_movie_frag">Elenco</string>
+<string name="tab_item_2_movie_frag">Mais Detalhes</string>
+<string name="release_date_movie_frag">Data de Lançamento:</string>
+<string name="runtime_movie_frag">Duração do Filme:</string>
+<string name="content_description_cast_member_image">Cast Member</string>
+<string name="usuario">Usuário</string>
+<string name="senha">Senha</string>
+<string name="esqueci_minha_senha">esqueci minha senha</string>
+<string name="entrar_com_facebook">Entrar com Facebook</string>
+<string name="entrar_com_google">Entrar com Google</string>
+<string name="n_o_tem_uma_conta_registre_se">Não tem uma conta?Registre-se.</string>
+<string name="nome_completo">Nome Completo</string>
+<string name="email">Email</string>
+<string name="confirme_sua_senha">Confirme sua senha</string>
+<string name="enviar">Enviar</string>
+    </resources>
