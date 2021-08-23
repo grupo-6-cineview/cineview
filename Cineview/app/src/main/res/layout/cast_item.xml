@@ -9,22 +9,15 @@
     android:orientation="vertical"
     android:background="@color/black_light">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="83dp"
-        android:layout_height="125dp"
-        android:layout_gravity="center"
-        app:cardCornerRadius="5dp"
-        android:backgroundTint="@android:color/transparent">
-
-        <ImageView
-            android:id="@+id/ivCastItemImage"
-            android:contentDescription="@string/content_description_cast_member_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/actor_example"
-            />
-
-    </com.google.android.material.card.MaterialCardView>
+    <ImageView
+        android:id="@+id/ivCastItemImage"
+        android:contentDescription="@string/content_description_cast_member_image"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_rounded"
+        tools:src="@drawable/actor_example"
+        />
 
     <TextView
         android:id="@+id/tvCastItemName"

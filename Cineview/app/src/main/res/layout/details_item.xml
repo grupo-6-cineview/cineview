@@ -15,7 +15,7 @@
         android:layout_marginTop="@dimen/margin_medium"
         android:layout_marginBottom="@dimen/margin_low"
         android:textColor="@color/white"
-        android:textSize="@dimen/subtitle_2_size"
+        android:textSize="@dimen/subtitle_3_size"
         android:textStyle="bold"
         tools:text="Gêneros"
         />
@@ -28,7 +28,7 @@
         android:layout_marginEnd="@dimen/margin_default"
         android:layout_marginBottom="@dimen/margin_medium"
         android:textColor="@color/grey_light"
-        android:textSize="@dimen/subtitle_3_size"
+        android:textSize="@dimen/subtitle_4_size"
         android:textStyle="bold"
         tools:text="Ação, Aventura, Ficção Científica"
         />

@@ -25,6 +25,7 @@ class MovieFragment : BottomSheetDialogFragment() {
 
             val adapter = MoreContentAdapter(this@MovieFragment, listOf(CastFragment(), DetailsFragment()))
             vpMovieFragMoreContent.adapter = adapter
+            vpMovieFragMoreContent.isSaveEnabled = false
 
             TabLayoutMediator(tlMovieFragMoreInfo, vpMovieFragMoreContent) { tab, position ->
 

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.grupo6cineview.cineview.databinding.CastItemBinding
-import com.github.grupo6cineview.cineview.features.movie.data.model.CastModel
+import com.github.grupo6cineview.cineview.features.movie.data.model.recyclerview.CastModel
 
 class CastAdapter(private val castList: List<CastModel>) : RecyclerView.Adapter<CastViewHolder>() {
 

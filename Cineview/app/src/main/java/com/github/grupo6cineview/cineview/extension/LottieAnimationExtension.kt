@@ -9,7 +9,6 @@ fun LottieAnimationView.doInTheEnd(action: () -> Unit) {
         override fun onAnimationStart(p0: Animator?) {}
 
         override fun onAnimationEnd(p0: Animator?) {
-            visibility = View.GONE
             action()
         }
 
