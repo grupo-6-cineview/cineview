@@ -12,7 +12,6 @@ import com.github.grupo6cineview.cineview.features.movie.apresentation.ui.MovieF
 class LoginTelaFragment : Fragment() {
 
     private var binding: FragmentLoginTelaBinding? = null
-    private val movie = MovieFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,17 +21,6 @@ class LoginTelaFragment : Fragment() {
         binding = FragmentLoginTelaBinding.inflate(inflater, container, false)
 
         return binding?.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // Teste feitos pelo Pedro - podem ser excluídas as linhas 31 a 35
-        binding?.run {
-            botaoEntrar.setOnClickListener {
-                movie.show(parentFragmentManager, "BOTTOM_SHEET")
-            }
-        }
     }
 
     override fun onDestroyView() {
