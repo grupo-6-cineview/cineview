@@ -3,6 +3,7 @@ package com.github.grupo6cineview.cineview.features.splash
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.github.grupo6cineview.cineview.databinding.ActivitySplashBinding
 import com.github.grupo6cineview.cineview.extension.doInTheEnd
 import com.github.grupo6cineview.cineview.features.login.LoginActivity
@@ -16,6 +17,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.laSplashActAnimation.doInTheEnd {
+            binding.laSplashActAnimation.visibility = View.GONE
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }

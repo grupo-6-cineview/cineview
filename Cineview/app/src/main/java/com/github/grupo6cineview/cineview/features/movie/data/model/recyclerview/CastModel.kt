@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.features.movie.data.model
+package com.github.grupo6cineview.cineview.features.movie.data.model.recyclerview
 
 import android.graphics.drawable.Drawable
 
