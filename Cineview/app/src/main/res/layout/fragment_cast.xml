@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".features.movie.apresentation.ui.CastFragment"
+    tools:context=".features.movie.presentation.ui.CastFragment"
     tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
     tools:orientation="vertical"
     tools:spanCount="3"
     tools:listitem="@layout/cast_item"
-    tools:itemCount="18" />
+    tools:itemCount="18"
+    />

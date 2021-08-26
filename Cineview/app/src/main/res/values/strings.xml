@@ -27,4 +27,9 @@
     <string name="confirme_sua_senha">Confirme sua senha</string>
     <string name="enviar">Enviar</string>
 
+    <string name="bottom_nav_item_home">Home</string>
+    <string name="bottom_nav_item_search">Buscar</string>
+    <string name="bottom_nav_item_favorite">Favoritos</string>
+    <string name="bottom_nav_item_account">Conta</string>
+
 </resources>
