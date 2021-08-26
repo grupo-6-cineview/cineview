@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.features.login
+package com.github.grupo6cineview.cineview.features
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
