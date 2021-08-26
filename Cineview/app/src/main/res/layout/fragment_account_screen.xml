@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".features.account_screen.AccountScreenActivity">
+    tools:context=".features.account.view.AccountScreenFragment">
 
     <ImageView
         android:id="@+id/imageLogo"
@@ -225,8 +225,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
         android:layout_marginTop="36dp"
-        android:background="@color/grey_dark"
+        android:background="@android:color/transparent"
         android:src="@drawable/ic_keyboard_arrow_right"
+        app:tint="@color/grey_light"
         app:layout_constraintStart_toEndOf="@+id/watchlist4"
         app:layout_constraintTop_toBottomOf="@+id/btEdit" />
 

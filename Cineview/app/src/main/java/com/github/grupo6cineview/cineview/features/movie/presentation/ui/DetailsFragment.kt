@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.features.movie.apresentation.ui
+package com.github.grupo6cineview.cineview.features.movie.presentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.grupo6cineview.cineview.databinding.FragmentDetailsBinding
-import com.github.grupo6cineview.cineview.features.movie.apresentation.adapter.DetailsAdapter
+import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.DetailsAdapter
 import com.github.grupo6cineview.cineview.features.movie.data.model.recyclerview.DetailsModel
 
 class DetailsFragment : Fragment() {

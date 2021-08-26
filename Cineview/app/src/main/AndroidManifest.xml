@@ -10,10 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cineview">
         <activity
-            android:name=".features.account_screen.AccountScreenActivity"
-            android:exported="true" />
-        <activity
-            android:name=".features.splash.SplashActivity"
+            android:name=".features.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +22,7 @@
             android:name=".features.login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".features.main.MainActivity"
+            android:name=".features.MainActivity"
             android:exported="true" />
     </application>
 

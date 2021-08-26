@@ -1,15 +1,14 @@
-package com.github.grupo6cineview.cineview.features.favorite.apresentation.ui
+package com.github.grupo6cineview.cineview.features.favorite.presentation.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentFavoriteBinding
-import com.github.grupo6cineview.cineview.features.favorite.apresentation.adapter.FavoriteAdapter
+import com.github.grupo6cineview.cineview.features.favorite.presentation.adapter.FavoriteAdapter
 import com.github.grupo6cineview.cineview.features.favorite.data.model.recyclerview.FavoriteModel
 
 class FavoriteFragment : Fragment() {

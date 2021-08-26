@@ -1,12 +1,11 @@
-package com.github.grupo6cineview.cineview.features.account_screen.view
+package com.github.grupo6cineview.cineview.features.account.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.grupo6cineview.cineview.R
-import com.github.grupo6cineview.cineview.databinding.ActivityAccountScreenBinding
+import com.github.grupo6cineview.cineview.databinding.FragmentAccountScreenBinding
 
 
 class AccountScreenFragment : Fragment() {
@@ -14,16 +13,21 @@ class AccountScreenFragment : Fragment() {
         fun newInstance() = AccountScreenFragment()
     }
 
-        private var binding : ActivityAccountScreenBinding? = null
+        private var binding : FragmentAccountScreenBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = ActivityAccountScreenBinding.inflate(inflater,container,false)
+        binding = FragmentAccountScreenBinding.inflate(inflater,container,false)
         return binding?.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        binding = null
+    }
 
 }

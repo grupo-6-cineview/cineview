@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.features.movie.apresentation.adapter
+package com.github.grupo6cineview.cineview.features.movie.presentation.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.github.grupo6cineview.cineview.databinding.CastItemBinding

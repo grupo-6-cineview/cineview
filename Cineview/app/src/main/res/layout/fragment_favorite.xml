@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.favorite.apresentation.ui.FavoriteFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".features.favorite.presentation.ui.FavoriteFragment"
     android:background="@color/black"
     tools:listitem="@layout/favorite_item"
     />

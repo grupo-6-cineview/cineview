@@ -1,6 +1,5 @@
-package com.github.grupo6cineview.cineview.features.favorite.apresentation.adapter
+package com.github.grupo6cineview.cineview.features.favorite.presentation.adapter
 
-import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.RecyclerView
 import com.github.grupo6cineview.cineview.databinding.FavoriteItemBinding
 import com.github.grupo6cineview.cineview.features.favorite.data.model.recyclerview.FavoriteModel

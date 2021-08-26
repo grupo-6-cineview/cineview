@@ -7,6 +7,7 @@
     <dimen name="subtitle_2_size">16sp</dimen>
     <dimen name="subtitle_3_size">14sp</dimen>
     <dimen name="subtitle_4_size">12sp</dimen>
+    <dimen name="subtitle_5_size">10sp</dimen>
 
     <dimen name="margin_default">16dp</dimen>
     <dimen name="margin_medium">8dp</dimen>

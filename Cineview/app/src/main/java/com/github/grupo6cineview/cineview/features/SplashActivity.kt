@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.features.splash
+package com.github.grupo6cineview.cineview.features
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

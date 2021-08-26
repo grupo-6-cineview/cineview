@@ -1,6 +1,5 @@
-package com.github.grupo6cineview.cineview.features.favorite.apresentation.adapter
+package com.github.grupo6cineview.cineview.features.favorite.presentation.adapter
 
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

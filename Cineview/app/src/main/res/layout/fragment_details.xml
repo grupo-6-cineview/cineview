@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".features.movie.apresentation.ui.DetailsFragment"
+    tools:context=".features.movie.presentation.ui.DetailsFragment"
     tools:listitem="@layout/details_item"
     tools:itemCount="5"
     />

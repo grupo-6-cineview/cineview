@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.grupo6cineview.cineview.databinding.FragmentLoginTelaBinding
-import com.github.grupo6cineview.cineview.features.movie.apresentation.ui.MovieFragment
+import com.github.grupo6cineview.cineview.features.movie.presentation.ui.MovieFragment
 
 
 class LoginTelaFragment : Fragment() {

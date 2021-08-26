@@ -1,8 +1,7 @@
-package com.github.grupo6cineview.cineview.features.movie.apresentation.adapter
+package com.github.grupo6cineview.cineview.features.movie.presentation.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class MoreContentAdapter(
     fragment: Fragment,
