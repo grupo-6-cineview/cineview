@@ -38,6 +38,8 @@ class MovieFragment : BottomSheetDialogFragment() {
 
         }
 
+        setContents()
+
         return binding?.root
     }
 
@@ -45,6 +47,28 @@ class MovieFragment : BottomSheetDialogFragment() {
         super.onDestroyView()
 
         binding = null
+    }
+
+    fun setContents() {
+        binding?.run {
+            backdropId?.let { ivMovieFragBackdrop.setImageResource(it) }
+            tvMovieFragTitle.text = title
+            tvMovieFragRateCount.text = rateCount
+            tvMovieFragOverview.text = overView
+            tvMovieFragReleaseDate.text = releaseDate
+            tvMovieFragRuntimeDuration.text = runtimeDuration
+        }
+    }
+
+    companion object {
+        val newInstance = MovieFragment()
+
+        var backdropId: Int? = null
+        var title: String? = null
+        var rateCount: String? = null
+        var overView: String? = null
+        var releaseDate: String? = null
+        var runtimeDuration: String? = null
     }
 
 }

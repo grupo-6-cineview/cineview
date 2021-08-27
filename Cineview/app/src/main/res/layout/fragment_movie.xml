@@ -22,7 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:adjustViewBounds="true"
-            android:src="@drawable/mortal_kombat_backdrop"
+            tools:src="@drawable/mortal_kombat_backdrop"
             />
 
         <TextView
@@ -36,7 +36,7 @@
             app:layout_constraintStart_toStartOf="@id/ivMovieFragBackdrop"
             app:layout_constraintEnd_toStartOf="@id/tvMovieFragRateCount"
             app:layout_constraintTop_toBottomOf="@id/ivMovieFragBackdrop"
-            android:text="Mortal Kombat"
+            tools:text="Mortal Kombat"
             />
 
         <ImageView
@@ -61,7 +61,7 @@
             app:layout_constraintEnd_toStartOf="@id/ivMovieFragStar"
             app:layout_constraintTop_toTopOf="@id/ivMovieFragStar"
             app:layout_constraintBottom_toBottomOf="@id/ivMovieFragStar"
-            android:text="5.0"
+            tools:text="5.0"
             />
 
         <com.codesgood.views.JustifiedTextView
@@ -74,7 +74,7 @@
             app:layout_constraintStart_toStartOf="@id/tvMovieFragTitle"
             app:layout_constraintEnd_toEndOf="@id/ivMovieFragStar"
             app:layout_constraintTop_toBottomOf="@id/tvMovieFragTitle"
-            android:text="O lutador de MMA Cole Young não conhece sua herança, nem sabe o motivo do Imperador da Exoterra ter enviado seu melhor guerreiro, Sub-Zero, para ir atrás dele. Temendo pela segurança de sua família, ele se une a outros heróis para proteger a Terra."
+            tools:text="O lutador de MMA Cole Young não conhece sua herança, nem sabe o motivo do Imperador da Exoterra ter enviado seu melhor guerreiro, Sub-Zero, para ir atrás dele. Temendo pela segurança de sua família, ele se une a outros heróis para proteger a Terra."
             />
 
         <com.google.android.material.card.MaterialCardView
@@ -150,7 +150,7 @@
             app:layout_constraintTop_toTopOf="@id/tvMovieFragReleaseText"
             app:layout_constraintBottom_toBottomOf="@id/tvMovieFragReleaseText"
             app:layout_constraintStart_toEndOf="@id/tvMovieFragReleaseText"
-            android:text="07/04/2021"
+            tools:text="07/04/2021"
             android:textSize="@dimen/subtitle_3_size"
             android:textColor="@color/grey_dark"
             />
@@ -175,7 +175,7 @@
             app:layout_constraintTop_toTopOf="@id/tvMovieFragRuntimeText"
             app:layout_constraintBottom_toBottomOf="@id/tvMovieFragRuntimeText"
             app:layout_constraintStart_toEndOf="@id/tvMovieFragRuntimeText"
-            android:text="110min"
+            tools:text="110min"
             android:textSize="@dimen/subtitle_3_size"
             android:textColor="@color/grey_dark"
             />
