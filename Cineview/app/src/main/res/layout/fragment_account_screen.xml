@@ -7,36 +7,18 @@
     android:background="@color/black"
     tools:context=".features.account.view.AccountScreenFragment">
 
-    <ImageView
-        android:id="@+id/imageLogo"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginVertical="5dp"
-        android:src="@drawable/logo_full"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <View
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/btEdit"
-        app:layout_constraintTop_toBottomOf="@+id/imageLogo"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-16dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/photoContainer"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:cardCornerRadius="50dp"
-        app:layout_constraintBottom_toTopOf="@id/btEdit"
+        app:layout_constraintBottom_toTopOf="@+id/watchlist"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.712"
         app:strokeColor="@color/white"
         app:strokeWidth="1dp">
 
@@ -48,11 +30,9 @@
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:src="@drawable/actor_example" />
+            tools:src="@drawable/faceicon4" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -61,196 +41,163 @@
         android:id="@+id/btEdit"
         android:layout_width="204dp"
         android:layout_height="39dp"
+        android:layout_marginBottom="32dp"
         android:background="@color/grey_dark"
         android:text="Edit Profiles"
+        app:layout_constraintBottom_toTopOf="@+id/btSettings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="247dp" />
+         />
 
     <TextView
         android:id="@+id/watchlist"
         android:layout_width="73dp"
         android:layout_height="21dp"
+        android:layout_marginBottom="20dp"
         android:text="Dono"
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/btEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photoContainer" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView"
-        android:layout_width="331dp"
-        android:layout_height="5dp"
-        android:layout_marginTop="76dp"
-        android:background="@android:color/darker_gray"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="0dp"
-        android:text=""
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btEdit" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView2"
-        android:layout_width="331dp"
-        android:layout_height="5dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        android:background="@android:color/darker_gray"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="0dp"
-        android:text=""
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView3"
-        android:layout_width="331dp"
-        android:layout_height="5dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        android:background="@android:color/darker_gray"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="0dp"
-        android:text=""
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView2" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView4"
-        android:layout_width="331dp"
-        android:layout_height="5dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        android:background="@android:color/darker_gray"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="0dp"
-        android:text=""
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView3" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/watchlist1"
-        android:layout_width="255dp"
-        android:layout_height="25dp"
+        android:id="@+id/version"
+        android:layout_width="204dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="264dp"
         android:text="Version : 1.23.1.4345"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView4"
-        app:layout_constraintVertical_bias="0.096" />
-
-
-    <TextView
-        android:id="@+id/watchlist4"
-        android:layout_width="179dp"
-        android:layout_height="26dp"
-        android:layout_marginBottom="20dp"
-        android:text="WatchList"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/watchlist5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/watchlist5"
-        android:layout_width="131dp"
-        android:layout_height="34dp"
-        android:layout_marginBottom="24dp"
+        android:id="@+id/btSettings"
+        android:layout_width="125dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="20dp"
         android:text="App Settings"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/watchlist6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintBottom_toTopOf="@+id/btAccount"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/watchlist6"
-        android:layout_width="123dp"
-        android:layout_height="29dp"
-        android:layout_marginBottom="24dp"
+        android:id="@+id/btAccount"
+        android:layout_width="92dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="16dp"
         android:text="Account"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/watchlist7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintBottom_toTopOf="@+id/btLogout"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/watchlist7"
-        android:layout_width="156dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="24dp"
+        android:id="@+id/btLogout"
+        android:layout_width="92dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="16dp"
         android:text="Logout"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/watchlist1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintBottom_toTopOf="@+id/version"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton5"
+        app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/grey_dark"
+        android:id="@+id/imageButton"
+        android:layout_width="40dp"
+        android:layout_height="38dp"
+        android:background="@android:color/transparent"
         android:src="@drawable/ic_keyboard_arrow_right"
-        app:layout_constraintStart_toEndOf="@+id/watchlist5"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+        app:layout_constraintBottom_toTopOf="@+id/line1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/grey_light"
+        tools:layout_editor_absoluteX="355dp"
+        tools:layout_editor_absoluteY="275dp" />
 
     <ImageButton
         android:id="@+id/imageButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="40dp"
+        android:layout_height="38dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_keyboard_arrow_right"
+        app:layout_constraintBottom_toTopOf="@+id/line2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/grey_light"
-        app:layout_constraintStart_toEndOf="@+id/watchlist4"
-        app:layout_constraintTop_toBottomOf="@+id/btEdit" />
+        tools:layout_editor_absoluteX="355dp"
+        tools:layout_editor_absoluteY="330dp" />
 
     <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/grey_dark"
+        android:id="@+id/imageButton5"
+        android:layout_width="40dp"
+        android:layout_height="38dp"
+        android:background="@android:color/transparent"
         android:src="@drawable/ic_keyboard_arrow_right"
-        app:layout_constraintStart_toEndOf="@+id/watchlist6"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+        app:layout_constraintBottom_toTopOf="@id/line3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/grey_light"
+        tools:layout_editor_absoluteX="355dp"
+        tools:layout_editor_absoluteY="387dp" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="28dp"
-        android:background="@color/grey_dark"
-        android:src="@drawable/ic_keyboard_arrow_right"
-        app:layout_constraintStart_toEndOf="@+id/watchlist7"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/line1"
+        android:layout_width="376dp"
+        android:layout_height="2dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginBottom="40dp"
+        android:background="@android:color/darker_gray"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="0dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/line2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/line2"
+        android:layout_width="376dp"
+        android:layout_height="2dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginBottom="36dp"
+        android:background="@android:color/darker_gray"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="0dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/line3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/line3"
+        android:layout_width="376dp"
+        android:layout_height="2dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/darker_gray"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="0dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/version"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
