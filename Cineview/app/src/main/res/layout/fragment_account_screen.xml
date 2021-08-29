@@ -154,11 +154,10 @@
         tools:layout_editor_absoluteX="355dp"
         tools:layout_editor_absoluteY="387dp" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <View
         android:id="@+id/line1"
         android:layout_width="376dp"
         android:layout_height="2dp"
-        android:layout_marginLeft="34dp"
         android:layout_marginBottom="40dp"
         android:background="@android:color/darker_gray"
         android:paddingHorizontal="10dp"
@@ -169,11 +168,10 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <View
         android:id="@+id/line2"
-        android:layout_width="376dp"
-        android:layout_height="2dp"
-        android:layout_marginLeft="34dp"
+        android:layout_width="354dp"
+        android:layout_height="1dp"
         android:layout_marginBottom="36dp"
         android:background="@android:color/darker_gray"
         android:paddingHorizontal="10dp"
@@ -184,11 +182,10 @@
         app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <View
         android:id="@+id/line3"
         android:layout_width="376dp"
         android:layout_height="2dp"
-        android:layout_marginLeft="34dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/darker_gray"
         android:paddingHorizontal="10dp"
