@@ -60,4 +60,7 @@ dependencies {
 
     // Justified TextView Lib
     implementation 'com.codesgood:justifiedtextview:1.1.0'
+
+    //Carousel
+    implementation 'com.synnapps:carouselview:0.1.5'
 }
