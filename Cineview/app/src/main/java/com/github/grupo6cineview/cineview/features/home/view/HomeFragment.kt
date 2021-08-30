@@ -54,12 +54,11 @@ class HomeFragment : BaseFragment() {
 
                 val imgs = mutableListOf<String>()
 
-                nowPlayingList.forEach {
+                for (i in 0..4) {
                     imgs.add(
-                        it.backdrop_path
+                        nowPlayingList[i].backdrop_path
                     )
                 }
-
 
                 binding?.carouselView?.setImageListener { position, imageView ->
 
