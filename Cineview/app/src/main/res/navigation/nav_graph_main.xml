@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.github.grupo6cineview.cineview.features.home.presentation.ui.HomeFragment"
+        android:name="com.github.grupo6cineview.cineview.features.home.view.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
