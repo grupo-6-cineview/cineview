@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.features.home
+package com.github.grupo6cineview.cineview.features.home.presentation.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
