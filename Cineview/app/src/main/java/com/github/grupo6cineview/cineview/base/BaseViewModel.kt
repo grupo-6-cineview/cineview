@@ -10,7 +10,7 @@ open class BaseViewModel : ViewModel() {
     lateinit var command: MutableLiveData<Command>
 
     suspend fun <T> T.callApi(
-        call: suspend ()-> ResponseApi,
+        call: suspend () -> ResponseApi,
         onSuccess: (Any?) -> Unit,
         onError: (() -> Unit?)? = null
     ) {
