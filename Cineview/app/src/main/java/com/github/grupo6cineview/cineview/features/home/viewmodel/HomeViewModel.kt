@@ -29,7 +29,7 @@ class HomeViewModel : BaseViewModel() {
     fun getNowPlayingMovies() {
         viewModelScope.launch {
             callApi(
-                { homeUseCase.getNowPlayingMovies() },
+                suspend { homeUseCase.getNowPlayingMovies() },
                 onSuccess = {
                     val result = it as? List<*>
                     _onSuccessNowPlaying.postValue(
@@ -42,5 +42,6 @@ class HomeViewModel : BaseViewModel() {
             )
         }
     }
+
 
 }

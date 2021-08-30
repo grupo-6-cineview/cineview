@@ -24,6 +24,7 @@ class HomeUseCase {
             is ResponseApi.Error -> {
                 responseApi
             }
+            else -> responseApi
         }
     }
 
