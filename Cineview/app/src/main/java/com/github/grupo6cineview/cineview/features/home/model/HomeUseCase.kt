@@ -15,8 +15,8 @@ class HomeUseCase {
             is ResponseApi.Success -> {
                 val data = responseApi.data as? NowPlaying
                 val result = data?.results?.map {
-                    it.backdrop_path = it.backdrop_path.getFullImageUrl()
-                    it.poster_path = it.poster_path.getFullImageUrl()
+                    it.backdrop_path = it.backdrop_path.getFullImageUrl(500)
+                    it.poster_path = it.poster_path.getFullImageUrl(500)
                     it
                 }
                 ResponseApi.Success(result)

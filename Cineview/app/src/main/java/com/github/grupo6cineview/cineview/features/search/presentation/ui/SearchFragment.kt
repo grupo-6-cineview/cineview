@@ -4,19 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentSearchBinding
 import com.github.grupo6cineview.cineview.extension.asDp
 import com.github.grupo6cineview.cineview.extension.getDrawable2
-import com.github.grupo6cineview.cineview.features.movie.presentation.ui.MovieFragment
-import com.github.grupo6cineview.cineview.features.search.data.model.recyclerview.MovieModel
-import com.github.grupo6cineview.cineview.features.search.presentation.adapter.MovieAdapter
+import com.github.grupo6cineview.cineview.features.search.adapter.SearchAdapter
+import com.github.grupo6cineview.cineview.features.search.presentation.viewmodel.SearchViewModel
 
 class SearchFragment : Fragment() {
 
     private var binding: FragmentSearchBinding? = null
+    private lateinit var viewModel: SearchViewModel
+
+    private val searchAdapter by lazy {
+        SearchAdapter {}
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,76 +31,7 @@ class SearchFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        listOf(
-            MovieModel(
-                R.drawable.mortal_kombat_poster,
-                "Mortal Kombat"
-            ),
-            MovieModel(
-                R.drawable.mortal_kombat_poster,
-                "Mortal Kombat"
-            ),
-            MovieModel(
-                R.drawable.mortal_kombat_poster,
-                "Mortal Kombat"
-            ),
-            MovieModel(
-                R.drawable.mortal_kombat_poster,
-                "Mortal Kombat"
-            ),
-            MovieModel(
-                R.drawable.mortal_kombat_poster,
-                "Mortal Kombat"
-            ),
-            MovieModel(
-                R.drawable.mortal_kombat_poster,
-                "Mortal Kombat"
-            ),
-            MovieModel(
-                R.drawable.mortal_kombat_poster,
-                "Velozes & Furiosos 9: A Saga Velozes & Furiosos"
-            ),
-            MovieModel(
-                R.drawable.mortal_kombat_poster,
-                "Mortal Kombat"
-            ),
-            MovieModel(
-                R.drawable.mortal_kombat_poster,
-                "Mortal Kombat"
-            ),
-            MovieModel(
-                R.drawable.mortal_kombat_poster,
-                "Mortal Kombat"
-            ),
-            MovieModel(
-                R.drawable.mortal_kombat_poster,
-                "Mortal Kombat"
-            ),
-            MovieModel(
-                R.drawable.mortal_kombat_poster,
-                "Mortal Kombat"
-            )
-        ).let { movieList ->
-            val adapter = MovieAdapter(movieList) {
-
-                with(MovieFragment) {
-                    backdropId = R.drawable.mortal_kombat_backdrop
-                    title = "Mortal Kombat"
-                    rateCount = "5.0"
-                    overView = "O lutador de MMA Cole Young não conhece sua herança, nem sabe o motivo do Imperador da Exoterra ter enviado seu melhor guerreiro, Sub-Zero, para ir atrás dele. Temendo pela segurança de sua família, ele se une a outros heróis para proteger a Terra."
-                    releaseDate = "07/04/2021"
-                    runtimeDuration = "110min"
-
-                    newInstance.show(parentFragmentManager, "BOTTOM_SHEET")
-                }
-
-            }
-
-            binding?.run {
-                rvSearchFragRecycler.layoutManager = GridLayoutManager(requireContext(), 3, GridLayoutManager.VERTICAL, false)
-                rvSearchFragRecycler.adapter = adapter
-            }
-        }
+        viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
 
         binding?.run {
 
@@ -122,9 +59,30 @@ class SearchFragment : Fragment() {
                 ilSearchFragSearchField.clearFocus()
             }
 
+            rvSearchFragRecycler.layoutManager = GridLayoutManager(requireContext(), 3, GridLayoutManager.VERTICAL, false)
+            rvSearchFragRecycler.adapter = searchAdapter
+
         }
 
         return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding?.run {
+            tietSearchFragSearchField.doOnTextChanged { _, _, before, count ->
+                viewModel.getSearchResult(tietSearchFragSearchField.text?.toString() ?: "")
+            }
+        }
+
+        setupObservables()
+    }
+
+    private fun setupObservables() {
+        viewModel.onSuccessSearch.observe(viewLifecycleOwner) { listResult ->
+            searchAdapter.submitList(listResult)
+        }
     }
 
     override fun onDestroyView() {

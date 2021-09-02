@@ -1,3 +1,3 @@
 package com.github.grupo6cineview.cineview.extensions
 
-fun String.getFullImageUrl() = "https://image.tmdb.org/t/p/w500$this"
+fun String.getFullImageUrl(width: Int) = "https://image.tmdb.org/t/p/w$width$this"

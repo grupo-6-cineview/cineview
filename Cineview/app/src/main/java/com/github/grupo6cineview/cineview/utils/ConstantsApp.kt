@@ -9,7 +9,9 @@ class ConstantsApp {
         const val QUERY_PARAM_LANGUAGE_VALUE = "pt-BR"
     }
 
-    object Home {
-        const val KEY_BUNDLE_MOVIE_ID = "movieId"
+    object Search {
+        const val FIRST_PAGE = 1
+        const val PAGE_SIZE = 20
     }
+
 }
