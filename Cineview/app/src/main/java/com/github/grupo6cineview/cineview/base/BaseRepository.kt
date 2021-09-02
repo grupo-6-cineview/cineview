@@ -9,7 +9,7 @@ open class BaseRepository {
 
     private suspend fun <T: Any> safeApiResult(call: suspend () -> Response<T>) : ResponseApi {
         try {
-            val response = call.invoke()
+            val response = call()
 
             return if(response.isSuccessful) {
                 ResponseApi.Success(response.body())

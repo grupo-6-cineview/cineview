@@ -36,10 +36,7 @@ object ApiService {
             .addInterceptor { chain ->
                 val url = chain.request().url.newBuilder()
                     .addQueryParameter(ConstantsApp.Api.API_TOKEN_KEY, ConstantsApp.Api.API_TOKEN)
-                    .addQueryParameter(
-                        ConstantsApp.Api.QUERY_PARAM_LANGUAGE_KEY,
-                        ConstantsApp.Api.QUERY_PARAM_LANGUAGE_VALUE
-                    )
+                    .addQueryParameter(ConstantsApp.Api.QUERY_PARAM_LANGUAGE_KEY, ConstantsApp.Api.QUERY_PARAM_LANGUAGE_VALUE)
                     .build()
                 val newRequest = chain.request().newBuilder().url(url).build()
                 chain.proceed(newRequest)

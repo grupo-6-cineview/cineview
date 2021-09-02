@@ -31,6 +31,8 @@
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/fragment_details.xml" value="0.36666666666666664" />
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/fragment_home.xml" value="0.2441123188405797" />
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/fragment_movie.xml" value="0.33" />
+        <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/fragment_search.xml" value="0.33" />
+        <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/movie_item.xml" value="0.75" />
         <entry key="app/src/main/res/layout/fragment_login_tela.xml" value="0.25" />
       </map>
     </option>

@@ -7,10 +7,9 @@
     android:clickable="true"
     android:focusable="true"
     android:layout_width="wrap_content"
-    android:layout_height="230dp"
+    android:layout_height="225dp"
     android:layout_gravity="center_horizontal"
     android:layout_margin="@dimen/margin_medium"
-    app:cardElevation="0dp"
     app:cardBackgroundColor="@color/black_light"
     app:cardCornerRadius="5dp"
     android:background="@color/black">
@@ -22,8 +21,9 @@
         <ImageView
             android:id="@+id/ivMovieItemPoster"
             android:layout_width="125dp"
-            android:layout_height="187.5dp"
-            android:src="@drawable/mortal_kombat_poster"
+            android:layout_height="175dp"
+            tools:src="@drawable/mortal_kombat_poster"
+            tools:scaleType="centerCrop"
             android:background="@drawable/bg_rounded"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
