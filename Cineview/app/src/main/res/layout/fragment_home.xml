@@ -40,7 +40,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="visible">
 
             <com.synnapps.carouselview.CarouselView
                 android:id="@+id/carousel_view"
@@ -158,6 +159,29 @@
                 tools:listitem="@layout/movie_item"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:orientation="horizontal"
+                />
+
+            <View
+                android:id="@+id/backgroundDialog"
+                android:layout_width="0dp"
+                android:layout_height="1000dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <ProgressBar
+                android:id="@+id/loadingCircularProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/red_dark"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/backgroundDialog"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.3"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

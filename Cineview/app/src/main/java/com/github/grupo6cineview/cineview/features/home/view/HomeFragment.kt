@@ -1,16 +1,18 @@
 package com.github.grupo6cineview.cineview.features.home.view
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.github.grupo6cineview.cineview.base.BaseFragment
 import com.github.grupo6cineview.cineview.databinding.FragmentHomeBinding
-import com.github.grupo6cineview.cineview.extensions.BaseFragment
 import com.github.grupo6cineview.cineview.extensions.Command
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp
 import com.github.grupo6cineview.cineview.features.home.adapter.HomeAdapter
@@ -25,7 +27,6 @@ class HomeFragment : BaseFragment() {
     private val adapterTMWeek by lazy { HomeAdapter {  } }
     private val adapterTTDay by lazy { HomeAdapter {  } }
     private val adapterTTWeek by lazy { HomeAdapter {  } }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,8 +60,6 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         activity?.let {
             viewModel = ViewModelProvider(it)[HomeViewModel::class.java]
 
@@ -79,7 +78,19 @@ class HomeFragment : BaseFragment() {
         }
 
     }
+
     private fun setupObservables() {
+        viewModel.customCommand.observe(viewLifecycleOwner) { isLoading ->
+            binding?.run {
+                if (isLoading) {
+                    backgroundDialog.visibility = View.VISIBLE
+                    loadingCircularProgressBar.visibility = View.VISIBLE
+                } else {
+                    backgroundDialog.visibility = View.GONE
+                    loadingCircularProgressBar.visibility = View.GONE
+                }
+            }
+        }
 
         viewModel.onSuccessNowPlaying.observe(viewLifecycleOwner, {
             it?.let { nowPlayingList ->
@@ -137,5 +148,7 @@ class HomeFragment : BaseFragment() {
 
         binding = null
     }
+
     override var command: MutableLiveData<Command> = MutableLiveData()
+
 }
