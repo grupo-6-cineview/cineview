@@ -32,13 +32,13 @@ class HomeViewModel : BaseViewModel() {
     val onSuccessTMDay: LiveData<List<SearchTrendingResult>> get() = _onSuccessTMDay
 
     private val _onSuccessTMWeek = MutableLiveData<List<SearchTrendingResult>>()
-    val onSuccessTMWeek: LiveData<List<SearchTrendingResult>> get() = _onSuccessTMDay
+    val onSuccessTMWeek: LiveData<List<SearchTrendingResult>> get() = _onSuccessTMWeek
 
     private val _onSuccessTTDay = MutableLiveData<List<SearchTrendingResult>>()
-    val onSuccessTTDay: LiveData<List<SearchTrendingResult>> get() = _onSuccessTMDay
+    val onSuccessTTDay: LiveData<List<SearchTrendingResult>> get() = _onSuccessTTDay
 
     private val _onSuccessTTWeek = MutableLiveData<List<SearchTrendingResult>>()
-    val onSuccessTTWeek: LiveData<List<SearchTrendingResult>> get() = _onSuccessTMDay
+    val onSuccessTTWeek: LiveData<List<SearchTrendingResult>> get() = _onSuccessTTWeek
 
     fun getNowPlayingMovies() {
         viewModelScope.launch {
@@ -64,16 +64,21 @@ class HomeViewModel : BaseViewModel() {
                     is ResponseApi.Success -> {
                         val resultList = respose.data as List<*>
 
-                        if (mediaType == ConstantsApp.Home.PATH_TRENDING_MOVIE && timeWindow == ConstantsApp.Home.PATH_TRENDING_DAY) {
-                            _onSuccessTMDay.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
-                        } else if (mediaType == ConstantsApp.Home.PATH_TRENDING_MOVIE && timeWindow == ConstantsApp.Home.PATH_TRENDING_WEEK) {
-                            _onSuccessTMWeek.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
-                        } else if (mediaType == ConstantsApp.Home.PATH_TRENDING_TV && timeWindow == ConstantsApp.Home.PATH_TRENDING_DAY) {
-                            _onSuccessTTDay.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
-                        } else {
-                            _onSuccessTTWeek.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
-                        }
+                        when (mediaType) {
+                            ConstantsApp.Home.PATH_TRENDING_MOVIE -> {
+                                when (timeWindow) {
+                                    ConstantsApp.Home.PATH_TRENDING_DAY -> _onSuccessTMDay.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
+                                    ConstantsApp.Home.PATH_TRENDING_WEEK -> _onSuccessTMWeek.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
+                                }
+                            }
 
+                            ConstantsApp.Home.PATH_TRENDING_TV -> {
+                                when (timeWindow) {
+                                    ConstantsApp.Home.PATH_TRENDING_DAY -> _onSuccessTTDay.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
+                                    ConstantsApp.Home.PATH_TRENDING_WEEK -> _onSuccessTTWeek.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
+                                }
+                            }
+                        }
                     }
                 }
             }
