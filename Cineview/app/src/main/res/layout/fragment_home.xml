@@ -1,51 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    android:fillViewport="true"
     tools:context=".features.login.LoginTelaFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/imageLogo"
+        android:layout_height="wrap_content"
+        android:background="@color/black">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/abFavFragTopAppBar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginVertical="5dp"
-            android:src="@drawable/logo_full"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"/>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/black"
+            app:contentInsetStart="0dp"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary">
 
-        <View
-            android:id="@+id/view"
+            <ImageView
+                android:id="@+id/imageLogo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_full" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
+            android:layout_height="match_parent">
 
-        <com.synnapps.carouselview.CarouselView
-            android:id="@+id/carousel_view"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_marginTop="64dp"
-            app:fillColor="#FFFFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:pageColor="#00000000"
-            app:radius="6dp"
-            app:slideInterval="3000"
-            app:strokeColor="#FF777777"
-            app:strokeWidth="1dp" />
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/carousel_view"
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                app:fillColor="#FFFFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:pageColor="#00000000"
+                app:radius="6dp"
+                app:slideInterval="3000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp" />
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvHomeFragTMDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@id/carousel_view"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/home_frag_trend_movie_day"
+                android:textSize="@dimen/title_1_size"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvHomeFragTMDay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_low"
+                app:layout_constraintTop_toBottomOf="@id/tvHomeFragTMDay"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/movie_item"
+                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:orientation="horizontal"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvHomeFragTMWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@id/rvHomeFragTMDay"
+                app:layout_constraintStart_toStartOf="@id/tvHomeFragTMDay"
+                android:text="@string/home_frag_trend_movie_week"
+                android:textSize="@dimen/title_1_size"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvHomeFragTMWeek"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_low"
+                app:layout_constraintTop_toBottomOf="@id/tvHomeFragTMWeek"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/movie_item"
+                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:orientation="horizontal"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvHomeFragTTDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@id/rvHomeFragTMWeek"
+                app:layout_constraintStart_toStartOf="@id/tvHomeFragTMDay"
+                android:text="@string/home_frag_trend_tv_day"
+                android:textSize="@dimen/title_1_size"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvHomeFragTTDay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_low"
+                app:layout_constraintTop_toBottomOf="@id/tvHomeFragTTDay"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/movie_item"
+                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:orientation="horizontal"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvHomeFragTTWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@id/rvHomeFragTTDay"
+                app:layout_constraintStart_toStartOf="@id/tvHomeFragTMDay"
+                android:text="@string/home_frag_trend_tv_day"
+                android:textSize="@dimen/title_1_size"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvHomeFragTTWeek"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_low"
+                app:layout_constraintTop_toBottomOf="@id/tvHomeFragTTWeek"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/movie_item"
+                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:orientation="horizontal"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
