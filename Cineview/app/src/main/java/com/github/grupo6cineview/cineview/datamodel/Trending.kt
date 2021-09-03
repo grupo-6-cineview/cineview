@@ -1,9 +1,8 @@
 package com.github.grupo6cineview.cineview.datamodel
 
-data class NowPlaying(
-    val dates: Dates,
+data class Trending(
     val page: Int,
-    val results: List<NowPlayngResult>,
+    val results: List<SearchTrendingResult>,
     val total_pages: Int,
     val total_results: Int
 )

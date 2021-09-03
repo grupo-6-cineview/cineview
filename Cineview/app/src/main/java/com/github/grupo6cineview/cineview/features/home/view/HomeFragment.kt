@@ -6,19 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentHomeBinding
-import com.github.grupo6cineview.cineview.datamodel.Result
 import com.github.grupo6cineview.cineview.extensions.BaseFragment
 import com.github.grupo6cineview.cineview.extensions.Command
-import com.github.grupo6cineview.cineview.extensions.getFullImageUrl
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp
+import com.github.grupo6cineview.cineview.features.home.adapter.HomeAdapter
 import com.github.grupo6cineview.cineview.features.home.viewmodel.HomeViewModel
 
 class HomeFragment : BaseFragment() {
 
     private var binding: FragmentHomeBinding? = null
     private lateinit var viewModel: HomeViewModel
+
+    private val adapterTMDay by lazy { HomeAdapter {  } }
+    private val adapterTMWeek by lazy { HomeAdapter {  } }
+    private val adapterTTDay by lazy { HomeAdapter {  } }
+    private val adapterTTWeek by lazy { HomeAdapter {  } }
 
 
     override fun onCreateView(
@@ -27,6 +33,25 @@ class HomeFragment : BaseFragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater,container,false)
+
+        binding?.run {
+
+            context?.let { contextNonNull ->
+                rvHomeFragTMDay.layoutManager = LinearLayoutManager(contextNonNull, RecyclerView.HORIZONTAL, false)
+                rvHomeFragTMDay.adapter = adapterTMDay
+
+                rvHomeFragTMWeek.layoutManager = LinearLayoutManager(contextNonNull, RecyclerView.HORIZONTAL, false)
+                rvHomeFragTMWeek.adapter = adapterTMWeek
+
+                rvHomeFragTTDay.layoutManager = LinearLayoutManager(contextNonNull, RecyclerView.HORIZONTAL, false)
+                rvHomeFragTTDay.adapter = adapterTTDay
+
+                rvHomeFragTTWeek.layoutManager = LinearLayoutManager(contextNonNull, RecyclerView.HORIZONTAL, false)
+                rvHomeFragTTWeek.adapter = adapterTTWeek
+            }
+
+        }
+
         return binding?.root
     }
 
@@ -43,6 +68,13 @@ class HomeFragment : BaseFragment() {
 
             viewModel.getNowPlayingMovies()
 
+            ConstantsApp.Home.run {
+                viewModel.getTrendingMovies(PATH_TRENDING_MOVIE, PATH_TRENDING_DAY)
+                viewModel.getTrendingMovies(PATH_TRENDING_MOVIE, PATH_TRENDING_WEEK)
+                viewModel.getTrendingMovies(PATH_TRENDING_TV, PATH_TRENDING_DAY)
+                viewModel.getTrendingMovies(PATH_TRENDING_TV, PATH_TRENDING_WEEK)
+            }
+
             setupObservables()
         }
 
@@ -55,9 +87,11 @@ class HomeFragment : BaseFragment() {
                 val imgs = mutableListOf<String>()
 
                 for (i in 0..4) {
-                    imgs.add(
-                        nowPlayingList[i].backdrop_path
-                    )
+                    nowPlayingList[i].backdrop_path?.let { backdrop ->
+                        imgs.add(
+                            backdrop
+                        )
+                    }
                 }
 
                 binding?.carouselView?.setImageListener { position, imageView ->
@@ -80,17 +114,21 @@ class HomeFragment : BaseFragment() {
 
         })
 
-        viewModel.onErrorNowPlaying.observe(viewLifecycleOwner, {
-            it
-        })
+        viewModel.onSuccessTMDay.observe(viewLifecycleOwner) { resultList ->
+            adapterTMDay.submitList(resultList)
+        }
 
-        viewModel.onCustomErrorNowPlaying.observe(viewLifecycleOwner, {
-            //abrir uma activity
-            //abrir um viewGroup
-            //mensagem via SnackBar
-        })
+        viewModel.onSuccessTMWeek.observe(viewLifecycleOwner) { resultList ->
+            adapterTMWeek.submitList(resultList)
+        }
 
+        viewModel.onSuccessTTDay.observe(viewLifecycleOwner) { resultList ->
+            adapterTTDay.submitList(resultList)
+        }
 
+        viewModel.onSuccessTTWeek.observe(viewLifecycleOwner) { resultList ->
+            adapterTTWeek.submitList(resultList)
+        }
 
     }
 

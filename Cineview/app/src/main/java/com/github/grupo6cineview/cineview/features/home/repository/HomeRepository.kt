@@ -13,5 +13,9 @@ class HomeRepository : BaseRepository() {
         }
     }
 
+    suspend fun getTrendingMovies(mediaType: String, timeWindow: String): ResponseApi =
+        safeApiCall {
+            ApiService.tmdbApi.getTrendingMoviesDay(mediaType, timeWindow)
+        }
 
 }

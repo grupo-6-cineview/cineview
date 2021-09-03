@@ -2,7 +2,7 @@ package com.github.grupo6cineview.cineview.features.search.domain
 
 import com.github.grupo6cineview.cineview.extensions.ResponseApi
 import com.github.grupo6cineview.cineview.extensions.getFullImageUrl
-import com.github.grupo6cineview.cineview.features.search.data.model.Search
+import com.github.grupo6cineview.cineview.datamodel.Search
 import com.github.grupo6cineview.cineview.features.search.data.repository.SearchRepositoy
 
 class SearchUseCase {

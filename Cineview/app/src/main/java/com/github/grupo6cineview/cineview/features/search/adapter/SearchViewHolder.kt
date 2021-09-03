@@ -4,11 +4,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.MovieItemBinding
-import com.github.grupo6cineview.cineview.features.search.data.model.SearchResult
+import com.github.grupo6cineview.cineview.datamodel.SearchTrendingResult
 
 class SearchViewHolder(val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(movie: SearchResult, onClick: () -> Unit) {
+    fun bind(movie: SearchTrendingResult, onClick: () -> Unit) {
         with(binding) {
 
             Glide.with(itemView.context)

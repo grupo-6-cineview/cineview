@@ -9,7 +9,15 @@ class ConstantsApp {
         const val QUERY_PARAM_LANGUAGE_VALUE = "pt-BR"
     }
 
-    object Search {
+    object Home {
+        const val PATH_TRENDING_DAY = "day"
+        const val PATH_TRENDING_WEEK = "week"
+
+        const val PATH_TRENDING_MOVIE = "movie"
+        const val PATH_TRENDING_TV = "tv"
+    }
+
+    object Paging {
         const val FIRST_PAGE = 1
         const val PAGE_SIZE = 20
     }

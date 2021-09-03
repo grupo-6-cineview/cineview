@@ -1,7 +1,8 @@
 package com.github.grupo6cineview.cineview.api
 
 import com.github.grupo6cineview.cineview.datamodel.NowPlaying
-import com.github.grupo6cineview.cineview.features.search.data.model.Search
+import com.github.grupo6cineview.cineview.datamodel.Search
+import com.github.grupo6cineview.cineview.datamodel.Trending
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -17,5 +18,11 @@ interface TMDBApi {
         @Query("query") search: String,
         @Query("page") page: Int
     ) : Response<Search>
+
+    @GET("trending/{media_type}/{time_window}")
+    suspend fun getTrendingMoviesDay(
+        @Path("media_type") mediaType: String,
+        @Path("time_window") timeWindow: String,
+    ) : Response<Trending>
 
 }

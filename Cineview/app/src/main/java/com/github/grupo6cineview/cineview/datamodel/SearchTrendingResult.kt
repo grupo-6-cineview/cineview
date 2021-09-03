@@ -1,9 +1,9 @@
-package com.github.grupo6cineview.cineview.features.search.data.model
+package com.github.grupo6cineview.cineview.datamodel
 
 import androidx.recyclerview.widget.DiffUtil
 import com.google.gson.annotations.SerializedName
 
-data class SearchResult(
+data class SearchTrendingResult(
     val id: Int?,
     @SerializedName("media_type")
     val mediaType: String?,
@@ -20,13 +20,13 @@ data class SearchResult(
 ) {
 
     companion object {
-        var DIFF_CALBACK: DiffUtil.ItemCallback<SearchResult> =
-            object : DiffUtil.ItemCallback<SearchResult>() {
-                override fun areItemsTheSame(oldItem: SearchResult, newItem: SearchResult): Boolean {
+        var DIFF_CALBACK_SEARCH_TRENDING: DiffUtil.ItemCallback<SearchTrendingResult> =
+            object : DiffUtil.ItemCallback<SearchTrendingResult>() {
+                override fun areItemsTheSame(oldItem: SearchTrendingResult, newItem: SearchTrendingResult): Boolean {
                     return oldItem.id == newItem.id
                 }
 
-                override fun areContentsTheSame(oldItem: SearchResult, newItem: SearchResult): Boolean {
+                override fun areContentsTheSame(oldItem: SearchTrendingResult, newItem: SearchTrendingResult): Boolean {
                     return oldItem.id == newItem.id
                 }
             }
