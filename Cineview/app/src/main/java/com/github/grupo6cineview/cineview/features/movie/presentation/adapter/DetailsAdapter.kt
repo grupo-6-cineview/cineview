@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.grupo6cineview.cineview.databinding.DetailsItemBinding
-import com.github.grupo6cineview.cineview.features.movie.data.model.recyclerview.DetailsModel
+import com.github.grupo6cineview.cineview.features.movie.data.model.DetailsModel
 
 class DetailsAdapter(private val detailsList: List<DetailsModel>) : RecyclerView.Adapter<DetailsViewHolder>() {
 

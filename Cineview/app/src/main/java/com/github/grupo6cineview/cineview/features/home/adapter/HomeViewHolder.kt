@@ -8,14 +8,14 @@ import com.github.grupo6cineview.cineview.datamodel.SearchTrendingResult
 
 class HomeViewHolder(private val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(movie: SearchTrendingResult?, onClick: () -> Unit) {
+    fun bind(movie: SearchTrendingResult?, onClick: (id: Int, mediaType: String) -> Unit) {
         movie?.let { movieNonNull ->
             with(binding) {
 
                 Glide.with(itemView.context)
                     .load(movieNonNull.posterPath)
                     .centerCrop()
-                    .placeholder(R.drawable.mortal_kombat_poster)
+                    .placeholder(R.drawable.no_image)
                     .into(ivMovieItemPoster)
 
                 ivMovieItemPoster.clipToOutline = true
@@ -27,7 +27,7 @@ class HomeViewHolder(private val binding: MovieItemBinding) : RecyclerView.ViewH
                 }
 
                 cvMovieItemMovie.setOnClickListener {
-                    onClick()
+                    onClick(movieNonNull.id, movieNonNull.mediaType)
 
                     cvMovieItemMovie.requestFocusFromTouch()
                 }

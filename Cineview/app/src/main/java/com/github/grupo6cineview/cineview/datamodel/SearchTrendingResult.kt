@@ -4,9 +4,9 @@ import androidx.recyclerview.widget.DiffUtil
 import com.google.gson.annotations.SerializedName
 
 data class SearchTrendingResult(
-    val id: Int?,
+    val id: Int,
     @SerializedName("media_type")
-    val mediaType: String?,
+    val mediaType: String,
     val name: String?,
     @SerializedName("original_name")
     val originalName: String?,

@@ -1,11 +1,9 @@
 package com.github.grupo6cineview.cineview.features.home.view
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,18 +13,81 @@ import com.github.grupo6cineview.cineview.base.BaseFragment
 import com.github.grupo6cineview.cineview.databinding.FragmentHomeBinding
 import com.github.grupo6cineview.cineview.extensions.Command
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_DAY
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_MOVIE
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_TV
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_WEEK
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.BUNDLE_KEY_ID
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.BUNDLE_KEY_MEDIA_TYPE
 import com.github.grupo6cineview.cineview.features.home.adapter.HomeAdapter
 import com.github.grupo6cineview.cineview.features.home.viewmodel.HomeViewModel
+import com.github.grupo6cineview.cineview.features.movie.presentation.ui.MovieFragment
 
 class HomeFragment : BaseFragment() {
 
     private var binding: FragmentHomeBinding? = null
     private lateinit var viewModel: HomeViewModel
+    private val movieFragment: MovieFragment get() = MovieFragment()
 
-    private val adapterTMDay by lazy { HomeAdapter {  } }
-    private val adapterTMWeek by lazy { HomeAdapter {  } }
-    private val adapterTTDay by lazy { HomeAdapter {  } }
-    private val adapterTTWeek by lazy { HomeAdapter {  } }
+    private val adapterTMDay by lazy {
+        HomeAdapter { id, mediaType ->
+            with(movieFragment) {
+                Bundle().run {
+                    putInt(BUNDLE_KEY_ID, id)
+                    putString(BUNDLE_KEY_MEDIA_TYPE, mediaType)
+
+                    arguments = this
+                }
+
+                show(this@HomeFragment.parentFragmentManager, "BOTTOM_SHEET_FRAG")
+            }
+        }
+    }
+
+    private val adapterTMWeek by lazy {
+        HomeAdapter { id, mediaType ->
+            with(movieFragment) {
+                Bundle().run {
+                    putInt(BUNDLE_KEY_ID, id)
+                    putString(BUNDLE_KEY_MEDIA_TYPE, mediaType)
+
+                    arguments = this
+                }
+
+                show(this@HomeFragment.parentFragmentManager, "BOTTOM_SHEET_FRAG")
+            }
+        }
+    }
+
+    private val adapterTTDay by lazy {
+        HomeAdapter { id, mediaType ->
+            with(movieFragment) {
+                Bundle().run {
+                    putInt(BUNDLE_KEY_ID, id)
+                    putString(BUNDLE_KEY_MEDIA_TYPE, mediaType)
+
+                    arguments = this
+                }
+
+                show(this@HomeFragment.parentFragmentManager, "BOTTOM_SHEET_FRAG")
+            }
+        }
+    }
+
+    private val adapterTTWeek by lazy {
+        HomeAdapter { id, mediaType ->
+            with(movieFragment) {
+                Bundle().run {
+                    putInt(BUNDLE_KEY_ID, id)
+                    putString(BUNDLE_KEY_MEDIA_TYPE, mediaType)
+
+                    arguments = this
+                }
+
+                show(this@HomeFragment.parentFragmentManager, "BOTTOM_SHEET_FRAG")
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

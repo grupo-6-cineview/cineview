@@ -5,7 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.github.grupo6cineview.cineview.datamodel.SearchTrendingResult
 import com.github.grupo6cineview.cineview.extensions.BaseViewModel
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_DAY
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_MOVIE
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_TV
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_WEEK
 import com.github.grupo6cineview.cineview.features.home.model.HomeUseCase
 import kotlinx.coroutines.launch
 
@@ -69,17 +72,17 @@ class HomeViewModel : BaseViewModel() {
                     val resultList = data as List<*>
 
                     when (mediaType) {
-                        ConstantsApp.Home.PATH_TRENDING_MOVIE -> {
+                        PATH_TRENDING_MOVIE -> {
                             when (timeWindow) {
-                                ConstantsApp.Home.PATH_TRENDING_DAY -> _onSuccessTMDay.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
-                                ConstantsApp.Home.PATH_TRENDING_WEEK -> _onSuccessTMWeek.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
+                                PATH_TRENDING_DAY -> _onSuccessTMDay.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
+                                PATH_TRENDING_WEEK -> _onSuccessTMWeek.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
                             }
                         }
 
-                        ConstantsApp.Home.PATH_TRENDING_TV -> {
+                        PATH_TRENDING_TV -> {
                             when (timeWindow) {
-                                ConstantsApp.Home.PATH_TRENDING_DAY -> _onSuccessTTDay.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
-                                ConstantsApp.Home.PATH_TRENDING_WEEK -> {
+                                PATH_TRENDING_DAY -> _onSuccessTTDay.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
+                                PATH_TRENDING_WEEK -> {
                                     _onSuccessTTWeek.postValue(resultList.filterIsInstance(SearchTrendingResult::class.java))
 
                                     _customCommand.postValue(false)

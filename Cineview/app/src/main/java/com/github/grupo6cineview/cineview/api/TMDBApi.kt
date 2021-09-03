@@ -3,6 +3,8 @@ package com.github.grupo6cineview.cineview.api
 import com.github.grupo6cineview.cineview.datamodel.NowPlaying
 import com.github.grupo6cineview.cineview.datamodel.Search
 import com.github.grupo6cineview.cineview.datamodel.Trending
+import com.github.grupo6cineview.cineview.features.movie.data.model.movie.MovieDetails
+import com.github.grupo6cineview.cineview.features.movie.data.model.tv.TvDetails
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -24,5 +26,15 @@ interface TMDBApi {
         @Path("media_type") mediaType: String,
         @Path("time_window") timeWindow: String,
     ) : Response<Trending>
+
+    @GET("tv/{tv_id}")
+    suspend fun getTvDetails(
+        @Path("tv_id") id: Int
+    ) : Response<TvDetails>
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieDetails(
+        @Path("movie_id") id: Int
+    ) : Response<MovieDetails>
 
 }

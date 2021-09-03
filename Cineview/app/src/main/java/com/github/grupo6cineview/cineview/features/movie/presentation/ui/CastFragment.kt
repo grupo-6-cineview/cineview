@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentCastBinding
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.CastAdapter
-import com.github.grupo6cineview.cineview.features.movie.data.model.recyclerview.CastModel
+import com.github.grupo6cineview.cineview.features.movie.data.model.CastModel
 
 class CastFragment : Fragment() {
 

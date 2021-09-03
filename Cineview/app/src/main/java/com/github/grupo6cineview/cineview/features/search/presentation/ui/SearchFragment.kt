@@ -12,6 +12,7 @@ import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentSearchBinding
 import com.github.grupo6cineview.cineview.extension.asDp
 import com.github.grupo6cineview.cineview.extension.getDrawable2
+import com.github.grupo6cineview.cineview.extension.hideKeyboard
 import com.github.grupo6cineview.cineview.features.search.adapter.SearchAdapter
 import com.github.grupo6cineview.cineview.features.search.presentation.viewmodel.SearchViewModel
 
@@ -57,6 +58,7 @@ class SearchFragment : Fragment() {
 
             ilSearchFragSearchField.setStartIconOnClickListener {
                 ilSearchFragSearchField.clearFocus()
+                context?.hideKeyboard(ilSearchFragSearchField)
             }
 
             rvSearchFragRecycler.layoutManager = GridLayoutManager(requireContext(), 3, GridLayoutManager.VERTICAL, false)

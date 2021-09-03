@@ -14,7 +14,7 @@ class SearchViewHolder(val binding: MovieItemBinding) : RecyclerView.ViewHolder(
             Glide.with(itemView.context)
                 .load(movie.posterPath)
                 .centerCrop()
-                .placeholder(R.drawable.mortal_kombat_poster)
+                .placeholder(R.drawable.no_image)
                 .into(ivMovieItemPoster)
 
             ivMovieItemPoster.clipToOutline = true

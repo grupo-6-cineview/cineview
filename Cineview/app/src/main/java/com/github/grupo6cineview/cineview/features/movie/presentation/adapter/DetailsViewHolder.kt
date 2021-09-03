@@ -3,7 +3,7 @@ package com.github.grupo6cineview.cineview.features.movie.presentation.adapter
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.github.grupo6cineview.cineview.databinding.DetailsItemBinding
-import com.github.grupo6cineview.cineview.features.movie.data.model.recyclerview.DetailsModel
+import com.github.grupo6cineview.cineview.features.movie.data.model.DetailsModel
 
 class DetailsViewHolder(private val binding: DetailsItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
