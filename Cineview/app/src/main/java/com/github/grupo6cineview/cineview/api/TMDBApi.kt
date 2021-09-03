@@ -1,10 +1,10 @@
 package com.github.grupo6cineview.cineview.api
 
-import com.github.grupo6cineview.cineview.datamodel.NowPlaying
-import com.github.grupo6cineview.cineview.datamodel.Search
-import com.github.grupo6cineview.cineview.datamodel.Trending
-import com.github.grupo6cineview.cineview.features.movie.data.model.movie.MovieDetails
-import com.github.grupo6cineview.cineview.features.movie.data.model.tv.TvDetails
+import com.github.grupo6cineview.cineview.features.home.data.model.NowPlaying
+import com.github.grupo6cineview.cineview.features.search.data.model.Search
+import com.github.grupo6cineview.cineview.features.home.data.model.Trending
+import com.github.grupo6cineview.cineview.features.movie.movie.data.model.movie.MovieDetails
+import com.github.grupo6cineview.cineview.features.movie.movie.data.model.tv.TvDetails
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

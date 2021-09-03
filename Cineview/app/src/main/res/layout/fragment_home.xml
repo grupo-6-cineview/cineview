@@ -142,7 +142,7 @@
                 android:layout_marginTop="@dimen/margin_default"
                 app:layout_constraintTop_toBottomOf="@id/rvHomeFragTTDay"
                 app:layout_constraintStart_toStartOf="@id/tvHomeFragTMDay"
-                android:text="@string/home_frag_trend_tv_day"
+                android:text="@string/home_frag_trend_tv_week"
                 android:textSize="@dimen/title_1_size"
                 android:textColor="@color/white"
                 android:textStyle="bold"

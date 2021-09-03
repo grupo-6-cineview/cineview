@@ -35,5 +35,6 @@
     <string name="home_frag_trend_movie_day">Top Filmes do Dia</string>
     <string name="home_frag_trend_movie_week">Top Filmes da Semana</string>
     <string name="home_frag_trend_tv_day">Top Séries do Dia</string>
+    <string name="home_frag_trend_tv_week">Top Séries da Semana</string>
 
 </resources>
