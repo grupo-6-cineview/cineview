@@ -13,6 +13,9 @@ import com.github.grupo6cineview.cineview.databinding.FragmentSearchBinding
 import com.github.grupo6cineview.cineview.extension.asDp
 import com.github.grupo6cineview.cineview.extension.getDrawable2
 import com.github.grupo6cineview.cineview.extension.hideKeyboard
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.BUNDLE_KEY_ID
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.BUNDLE_KEY_MEDIA_TYPE
+import com.github.grupo6cineview.cineview.features.movie.presentation.ui.MovieFragment
 import com.github.grupo6cineview.cineview.features.search.adapter.SearchAdapter
 import com.github.grupo6cineview.cineview.features.search.presentation.viewmodel.SearchViewModel
 
@@ -20,9 +23,21 @@ class SearchFragment : Fragment() {
 
     private var binding: FragmentSearchBinding? = null
     private lateinit var viewModel: SearchViewModel
+    private val movieFragment: MovieFragment get() = MovieFragment()
 
     private val searchAdapter by lazy {
-        SearchAdapter {}
+        SearchAdapter { id, mediaType ->
+            with(movieFragment) {
+                Bundle().run {
+                    putInt(BUNDLE_KEY_ID, id)
+                    putString(BUNDLE_KEY_MEDIA_TYPE, mediaType)
+
+                    arguments = this
+                }
+
+                show(this@SearchFragment.parentFragmentManager, "BOTTOM_SHEET_FRAG")
+            }
+        }
     }
 
     override fun onCreateView(

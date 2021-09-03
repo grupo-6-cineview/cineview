@@ -15,7 +15,7 @@ class HomeViewHolder(private val binding: MovieItemBinding) : RecyclerView.ViewH
                 Glide.with(itemView.context)
                     .load(movieNonNull.posterPath)
                     .centerCrop()
-                    .placeholder(R.drawable.no_image)
+                    .placeholder(R.drawable.no_poster_path)
                     .into(ivMovieItemPoster)
 
                 ivMovieItemPoster.clipToOutline = true

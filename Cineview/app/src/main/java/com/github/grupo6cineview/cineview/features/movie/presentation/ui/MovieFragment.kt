@@ -83,6 +83,7 @@ class MovieFragment : BottomSheetDialogFragment() {
                 context?.let { contextNonNull ->
                     Glide.with(contextNonNull)
                         .load(movieDetails.backdrop_path)
+                        .placeholder(R.drawable.no_backdrop_path)
                         .into(ivMovieFragBackdrop)
                 }
 
@@ -99,6 +100,7 @@ class MovieFragment : BottomSheetDialogFragment() {
                 context?.let { contextNonNull ->
                     Glide.with(contextNonNull)
                         .load(tvDetails.backdrop_path)
+                        .placeholder(R.drawable.no_backdrop_path)
                         .into(ivMovieFragBackdrop)
                 }
 

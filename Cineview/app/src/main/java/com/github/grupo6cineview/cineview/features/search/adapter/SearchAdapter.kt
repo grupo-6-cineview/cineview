@@ -7,7 +7,7 @@ import com.github.grupo6cineview.cineview.databinding.MovieItemBinding
 import com.github.grupo6cineview.cineview.datamodel.SearchTrendingResult
 
 class SearchAdapter(
-    private val onClick: () -> Unit
+    private val onClick: (id: Int, mediaType: String) -> Unit
 ) : ListAdapter<SearchTrendingResult, SearchViewHolder>(SearchTrendingResult.DIFF_CALBACK_SEARCH_TRENDING) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder =
