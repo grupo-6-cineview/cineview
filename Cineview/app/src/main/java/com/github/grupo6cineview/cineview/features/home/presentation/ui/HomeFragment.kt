@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -22,6 +23,8 @@ import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.BUNDLE_KE
 import com.github.grupo6cineview.cineview.features.home.presentation.adapter.HomeAdapter
 import com.github.grupo6cineview.cineview.features.home.presentation.viewmodel.HomeViewModel
 import com.github.grupo6cineview.cineview.features.movie.movie.presentation.ui.MovieFragment
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class HomeFragment : BaseFragment() {
 
@@ -128,11 +131,35 @@ class HomeFragment : BaseFragment() {
 
             viewModel.getNowPlayingMovies()
 
+            lifecycleScope.launch {
+                viewModel.getTrending(PATH_TRENDING_MOVIE, PATH_TRENDING_DAY).collectLatest { pagingData ->
+                    adapterTMDay.submitData(pagingData)
+                }
+            }
+
+            lifecycleScope.launch {
+                viewModel.getTrending(PATH_TRENDING_MOVIE, PATH_TRENDING_WEEK).collectLatest { pagingData ->
+                    adapterTMWeek.submitData(pagingData)
+                }
+            }
+
+            lifecycleScope.launch {
+                viewModel.getTrending(PATH_TRENDING_TV, PATH_TRENDING_DAY).collectLatest { pagingData ->
+                    adapterTTDay.submitData(pagingData)
+                }
+            }
+
+            lifecycleScope.launch {
+                viewModel.getTrending(PATH_TRENDING_TV, PATH_TRENDING_WEEK).collectLatest { pagingData ->
+                    adapterTTWeek.submitData(pagingData)
+                }
+            }
+
             ConstantsApp.Home.run {
-                viewModel.getTrendingMovies(PATH_TRENDING_MOVIE, PATH_TRENDING_DAY)
-                viewModel.getTrendingMovies(PATH_TRENDING_MOVIE, PATH_TRENDING_WEEK)
-                viewModel.getTrendingMovies(PATH_TRENDING_TV, PATH_TRENDING_DAY)
-                viewModel.getTrendingMovies(PATH_TRENDING_TV, PATH_TRENDING_WEEK)
+//                viewModel.getTrendingMovies(PATH_TRENDING_MOVIE, PATH_TRENDING_DAY)
+//                viewModel.getTrendingMovies(PATH_TRENDING_MOVIE, PATH_TRENDING_WEEK)
+//                viewModel.getTrendingMovies(PATH_TRENDING_TV, PATH_TRENDING_DAY)
+//                viewModel.getTrendingMovies(PATH_TRENDING_TV, PATH_TRENDING_WEEK)
             }
 
             setupObservables()
@@ -141,17 +168,17 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setupObservables() {
-        viewModel.customCommand.observe(viewLifecycleOwner) { isLoading ->
-            binding?.run {
-                if (isLoading) {
-                    backgroundDialog.visibility = View.VISIBLE
-                    loadingCircularProgressBar.visibility = View.VISIBLE
-                } else {
-                    backgroundDialog.visibility = View.GONE
-                    loadingCircularProgressBar.visibility = View.GONE
-                }
-            }
-        }
+//        viewModel.customCommand.observe(viewLifecycleOwner) { isLoading ->
+//            binding?.run {
+//                if (isLoading) {
+//                    backgroundDialog.visibility = View.VISIBLE
+//                    loadingCircularProgressBar.visibility = View.VISIBLE
+//                } else {
+//                    backgroundDialog.visibility = View.GONE
+//                    loadingCircularProgressBar.visibility = View.GONE
+//                }
+//            }
+//        }
 
         viewModel.onSuccessNowPlaying.observe(viewLifecycleOwner, {
             it?.let { nowPlayingList ->
@@ -186,21 +213,21 @@ class HomeFragment : BaseFragment() {
 
         })
 
-        viewModel.onSuccessTMDay.observe(viewLifecycleOwner) { resultList ->
-            adapterTMDay.submitList(resultList)
-        }
-
-        viewModel.onSuccessTMWeek.observe(viewLifecycleOwner) { resultList ->
-            adapterTMWeek.submitList(resultList)
-        }
-
-        viewModel.onSuccessTTDay.observe(viewLifecycleOwner) { resultList ->
-            adapterTTDay.submitList(resultList)
-        }
-
-        viewModel.onSuccessTTWeek.observe(viewLifecycleOwner) { resultList ->
-            adapterTTWeek.submitList(resultList)
-        }
+//        viewModel.onSuccessTMDay.observe(viewLifecycleOwner) { resultList ->
+//            adapterTMDay.submitList(resultList)
+//        }
+//
+//        viewModel.onSuccessTMWeek.observe(viewLifecycleOwner) { resultList ->
+//            adapterTMWeek.submitList(resultList)
+//        }
+//
+//        viewModel.onSuccessTTDay.observe(viewLifecycleOwner) { resultList ->
+//            adapterTTDay.submitList(resultList)
+//        }
+//
+//        viewModel.onSuccessTTWeek.observe(viewLifecycleOwner) { resultList ->
+//            adapterTTWeek.submitList(resultList)
+//        }
 
     }
 

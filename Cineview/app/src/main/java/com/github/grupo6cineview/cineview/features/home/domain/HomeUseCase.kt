@@ -28,22 +28,22 @@ class HomeUseCase {
         }
     }
 
-    suspend fun getTrendingMovies(mediaType: String, timeWindow: String): ResponseApi =
-        homeRepository.getTrendingMovies(mediaType, timeWindow).let { response ->
-            when (response) {
-                is ResponseApi.Success -> {
-                    val data = response.data as? Trending
-                    val result = data?.results?.map { trendingResult ->
-                        trendingResult.apply {
-                            posterPath = posterPath?.getFullImageUrl(200)
-                        }
-                    }
-
-                    ResponseApi.Success(result)
-                }
-
-                is ResponseApi.Error -> { response }
-            }
-        }
+//    suspend fun getTrendingMovies(mediaType: String, timeWindow: String): ResponseApi =
+//        homeRepository.getTrendingMovies(mediaType, timeWindow).let { response ->
+//            when (response) {
+//                is ResponseApi.Success -> {
+//                    val data = response.data as? Trending
+//                    val result = data?.results?.map { trendingResult ->
+//                        trendingResult.apply {
+//                            posterPath = posterPath?.getFullImageUrl(200)
+//                        }
+//                    }
+//
+//                    ResponseApi.Success(result)
+//                }
+//
+//                is ResponseApi.Error -> { response }
+//            }
+//        }
 
 }

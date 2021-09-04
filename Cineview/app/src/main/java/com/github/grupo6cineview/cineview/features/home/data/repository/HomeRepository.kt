@@ -13,9 +13,9 @@ class HomeRepository : BaseRepository() {
         }
     }
 
-    suspend fun getTrendingMovies(mediaType: String, timeWindow: String): ResponseApi =
+    suspend fun getTrendingMovies(mediaType: String, timeWindow: String, page: Int): ResponseApi =
         safeApiCall {
-            ApiService.tmdbApi.getTrendingMoviesDay(mediaType, timeWindow)
+            ApiService.tmdbApi.getTrending(mediaType, timeWindow, page)
         }
 
 }

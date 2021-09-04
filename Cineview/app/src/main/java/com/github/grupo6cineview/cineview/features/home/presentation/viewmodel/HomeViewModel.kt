@@ -3,14 +3,22 @@ package com.github.grupo6cineview.cineview.features.home.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.github.grupo6cineview.cineview.features.home.data.model.TrendingResult
 import com.github.grupo6cineview.cineview.extensions.BaseViewModel
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_DAY
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_MOVIE
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_TV
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_WEEK
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.PAGE_SIZE
 import com.github.grupo6cineview.cineview.features.home.data.model.NowPlayngResult
+import com.github.grupo6cineview.cineview.features.home.data.paging.HomePagingSource
+import com.github.grupo6cineview.cineview.features.home.data.repository.HomeRepository
 import com.github.grupo6cineview.cineview.features.home.domain.HomeUseCase
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class HomeViewModel : BaseViewModel() {
@@ -63,41 +71,55 @@ class HomeViewModel : BaseViewModel() {
         }
     }
 
-    fun getTrendingMovies(mediaType: String, timeWindow: String) {
-        viewModelScope.launch {
-            callApi(
-                call = { homeUseCase.getTrendingMovies(mediaType, timeWindow) },
-                onSuccess = { data ->
-                    _customCommand.postValue(false)
-
-                    val resultList = data as List<*>
-
-                    when (mediaType) {
-                        PATH_TRENDING_MOVIE -> {
-                            when (timeWindow) {
-                                PATH_TRENDING_DAY -> _onSuccessTMDay.postValue(resultList.filterIsInstance(
-                                    TrendingResult::class.java))
-                                PATH_TRENDING_WEEK -> _onSuccessTMWeek.postValue(resultList.filterIsInstance(
-                                    TrendingResult::class.java))
-                            }
-                        }
-
-                        PATH_TRENDING_TV -> {
-                            when (timeWindow) {
-                                PATH_TRENDING_DAY -> _onSuccessTTDay.postValue(resultList.filterIsInstance(
-                                    TrendingResult::class.java))
-                                PATH_TRENDING_WEEK -> {
-                                    _onSuccessTTWeek.postValue(resultList.filterIsInstance(
-                                        TrendingResult::class.java))
-
-                                    _customCommand.postValue(false)
-                                }
-                            }
-                        }
-                    }
-                }
+    fun getTrending(mediaType: String, timeWindow: String) : Flow<PagingData<TrendingResult>> =
+        Pager(
+            PagingConfig(
+                pageSize = PAGE_SIZE,
+                enablePlaceholders = false
             )
-        }
-    }
+        ) {
+            HomePagingSource(
+                HomeRepository(),
+                mediaType,
+                timeWindow
+            )
+        }.flow.cachedIn(viewModelScope)
+
+//    fun getTrendingMovies(mediaType: String, timeWindow: String) {
+//        viewModelScope.launch {
+//            callApi(
+//                call = { homeUseCase.getTrendingMovies(mediaType, timeWindow) },
+//                onSuccess = { data ->
+//                    _customCommand.postValue(false)
+//
+//                    val resultList = data as List<*>
+//
+//                    when (mediaType) {
+//                        PATH_TRENDING_MOVIE -> {
+//                            when (timeWindow) {
+//                                PATH_TRENDING_DAY -> _onSuccessTMDay.postValue(resultList.filterIsInstance(
+//                                    TrendingResult::class.java))
+//                                PATH_TRENDING_WEEK -> _onSuccessTMWeek.postValue(resultList.filterIsInstance(
+//                                    TrendingResult::class.java))
+//                            }
+//                        }
+//
+//                        PATH_TRENDING_TV -> {
+//                            when (timeWindow) {
+//                                PATH_TRENDING_DAY -> _onSuccessTTDay.postValue(resultList.filterIsInstance(
+//                                    TrendingResult::class.java))
+//                                PATH_TRENDING_WEEK -> {
+//                                    _onSuccessTTWeek.postValue(resultList.filterIsInstance(
+//                                        TrendingResult::class.java))
+//
+//                                    _customCommand.postValue(false)
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            )
+//        }
+//    }
 
 }
