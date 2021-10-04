@@ -19,16 +19,8 @@ class SearchViewHolder(val binding: MovieItemBinding) : RecyclerView.ViewHolder(
 
             ivMovieItemPoster.clipToOutline = true
 
-            if (movie.mediaType == "tv") {
-                tvMovieItemTitle.text = movie.name
-            } else {
-                tvMovieItemTitle.text = movie.title
-            }
-
-            cvMovieItemMovie.setOnClickListener {
+            ivMovieItemPoster.setOnClickListener {
                 onClick(movie.id, movie.mediaType)
-
-                cvMovieItemMovie.requestFocusFromTouch()
             }
         }
     }

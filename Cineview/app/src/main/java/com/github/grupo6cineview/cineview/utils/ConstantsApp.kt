@@ -9,6 +9,8 @@ class ConstantsApp {
         const val QUERY_PARAM_LANGUAGE_KEY = "language"
         const val QUERY_PARAM_LANGUAGE_VALUE = "pt-BR"
 
+        const val QUERY_PARAM_REGION_VALUE = "BR"
+
         const val PATH_TRENDING_DAY = "day"
         const val PATH_TRENDING_WEEK = "week"
 

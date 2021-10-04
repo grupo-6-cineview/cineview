@@ -3,68 +3,51 @@ package com.github.grupo6cineview.cineview.features.home.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.FIRST_PAGE
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.PAGE_SIZE
-import com.github.grupo6cineview.cineview.extensions.ResponseApi
-import com.github.grupo6cineview.cineview.extensions.getFullImageUrl
-import com.github.grupo6cineview.cineview.features.home.data.model.Trending
-import com.github.grupo6cineview.cineview.features.home.data.model.TrendingResult
-import com.github.grupo6cineview.cineview.features.home.data.repository.HomeRepository
-import okio.IOException
-import retrofit2.HttpException
+import com.github.grupo6cineview.cineview.features.home.data.model.HomeResult
+import com.github.grupo6cineview.cineview.features.home.domain.HomeIntent
+import com.github.grupo6cineview.cineview.features.home.domain.HomeUseCase
 
 class HomePagingSource(
-    private val homeRepository: HomeRepository,
-    private val mediaType: String,
-    private val timeWindow: String
-) : PagingSource<Int, TrendingResult>() {
+    private val homeUseCase: HomeUseCase,
+    private val intent: HomeIntent
+) : PagingSource<Int, HomeResult>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TrendingResult> =
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, HomeResult> =
         try {
-            val page = params.key ?: FIRST_PAGE
+            val page = params.key ?: if (intent == HomeIntent.NowPlaying) FIRST_PAGE + 1 else FIRST_PAGE
 
-            callTrending(mediaType, timeWindow, page).let { trendingResults ->
-                val prevKey =
-                    if (page == FIRST_PAGE)
+            callMovies(intent, page)?.let { listResults ->
+                val prevPage =
+                    if (intent == HomeIntent.NowPlaying && page == FIRST_PAGE + 1)
+                        null
+                    else if (page == FIRST_PAGE)
                         null
                     else
                         page - 1
 
-                val nextKey =
-                    if (trendingResults.isEmpty())
+                val nextPage =
+                    if (listResults.isEmpty())
                         null
                     else
                         page + 1
 
                 LoadResult.Page(
-                    trendingResults,
-                    prevKey,
-                    nextKey
+                    listResults,
+                    prevPage,
+                    nextPage
                 )
-            }
+            } ?: throw Exception("HomeUseCase - Response Api Error")
 
-        } catch (e: IOException) {
-            LoadResult.Error(e)
-        } catch (e: HttpException) {
+        } catch (e: Exception) {
             LoadResult.Error(e)
         }
 
-
-    override fun getRefreshKey(state: PagingState<Int, TrendingResult>): Int? =
+    override fun getRefreshKey(state: PagingState<Int, HomeResult>): Int? =
         state.anchorPosition?.let { position ->
             state.closestPageToPosition(position).let { page ->
                 page?.prevKey?.plus(1) ?: page?.nextKey?.minus(1)
             }
         }
 
-    private suspend fun callTrending(mediaType: String, timeWindow: String, page:Int) : List<TrendingResult> =
-        homeRepository.getTrendingMovies(mediaType, timeWindow, page).let { response ->
-            when (response) {
-                is ResponseApi.Success -> {
-                    (response.data as Trending).results.map { it.apply { posterPath = posterPath?.getFullImageUrl(200) } }
-                }
-
-                is ResponseApi.Error -> listOf()
-            }
-        }
-
+    private suspend fun callMovies(intent: HomeIntent, page:Int) : List<HomeResult>? = homeUseCase.getMovies(intent, page)
 }

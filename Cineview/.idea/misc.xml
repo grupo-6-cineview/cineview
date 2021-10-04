@@ -21,6 +21,7 @@
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/drawable/card_view_background.xml" value="0.3828125" />
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/drawable/cast_image_background.xml" value="0.3828125" />
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/drawable/divider.xml" value="0.3828125" />
+        <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/drawable/gradient_shape.xml" value="0.3828125" />
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/drawable/material_card_view_background.xml" value="0.3828125" />
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/activity_login.xml" value="0.33061594202898553" />
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
@@ -32,7 +33,8 @@
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/fragment_home.xml" value="0.2441123188405797" />
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/fragment_movie.xml" value="0.33" />
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/fragment_search.xml" value="0.33" />
-        <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/movie_item.xml" value="0.75" />
+        <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/movie_item.xml" value="0.33" />
+        <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/movie_item_carousel.xml" value="0.36666666666666664" />
         <entry key="..\:/Workspace/my_repos/cineview/Cineview/app/src/main/res/layout/progress_bar_indeterminate_dialog.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/layout/fragment_login_tela.xml" value="0.25" />
       </map>

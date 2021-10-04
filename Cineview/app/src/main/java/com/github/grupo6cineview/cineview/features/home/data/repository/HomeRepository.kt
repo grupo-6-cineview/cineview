@@ -7,15 +7,27 @@ import com.github.grupo6cineview.cineview.extensions.ResponseApi
 
 class HomeRepository : BaseRepository() {
 
-    suspend fun getNowPlayingMovies(): ResponseApi {
+    suspend fun getNowPlayingMovies(page: Int): ResponseApi {
         return safeApiCall {
-            ApiService.tmdbApi.getNowPlayingMovies()
+            ApiService.tmdbApi.getNowPlayingMovies(page)
         }
     }
 
-    suspend fun getTrendingMovies(mediaType: String, timeWindow: String, page: Int): ResponseApi =
-        safeApiCall {
-            ApiService.tmdbApi.getTrending(mediaType, timeWindow, page)
+    suspend fun getPopularMovies(page: Int): ResponseApi {
+        return safeApiCall {
+            ApiService.tmdbApi.getPopularMovies(page)
         }
+    }
 
+    suspend fun getTopRatedMovies(page: Int): ResponseApi {
+        return safeApiCall {
+            ApiService.tmdbApi.getTopRatedMovies(page)
+        }
+    }
+
+    suspend fun getTrendingMovies(page: Int): ResponseApi {
+        return safeApiCall {
+            ApiService.tmdbApi.getTrendingMovies(page = page)
+        }
+    }
 }

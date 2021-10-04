@@ -32,9 +32,9 @@
     <string name="bottom_nav_item_search">Buscar</string>
     <string name="bottom_nav_item_favorite">Favoritos</string>
     <string name="bottom_nav_item_account">Conta</string>
-    <string name="home_frag_trend_movie_day">Top Filmes do Dia</string>
-    <string name="home_frag_trend_movie_week">Top Filmes da Semana</string>
-    <string name="home_frag_trend_tv_day">Top Séries do Dia</string>
-    <string name="home_frag_trend_tv_week">Top Séries da Semana</string>
+    <string name="home_frag_now_playing">Em cartaz</string>
+    <string name="home_frag_top_rated">Melhores Avaliados</string>
+    <string name="home_frag_popular">Populares</string>
+    <string name="home_frag_trending">Tendências da Semana</string>
 
 </resources>

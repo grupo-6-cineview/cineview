@@ -35,13 +35,12 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="visible">
+            android:layout_height="wrap_content">
 
             <com.synnapps.carouselview.CarouselView
                 android:id="@+id/carousel_view"
@@ -51,6 +50,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:indicatorVisibility="gone"
                 app:pageColor="#00000000"
                 app:radius="6dp"
                 app:slideInterval="3000"
@@ -58,24 +58,24 @@
                 app:strokeWidth="1dp" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvHomeFragTMDay"
+                android:id="@+id/tvHomeFragNowPlaying"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
                 app:layout_constraintTop_toBottomOf="@id/carousel_view"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="@string/home_frag_trend_movie_day"
+                android:text="@string/home_frag_now_playing"
                 android:textSize="@dimen/title_1_size"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvHomeFragTMDay"
+                android:id="@+id/rvHomeFragNowPlaying"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_low"
-                app:layout_constraintTop_toBottomOf="@id/tvHomeFragTMDay"
+                app:layout_constraintTop_toBottomOf="@id/tvHomeFragNowPlaying"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:listitem="@layout/movie_item"
@@ -84,24 +84,24 @@
                 />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvHomeFragTMWeek"
+                android:id="@+id/tvHomeFragTopRated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_default"
-                app:layout_constraintTop_toBottomOf="@id/rvHomeFragTMDay"
-                app:layout_constraintStart_toStartOf="@id/tvHomeFragTMDay"
-                android:text="@string/home_frag_trend_movie_week"
+                app:layout_constraintTop_toBottomOf="@id/rvHomeFragNowPlaying"
+                app:layout_constraintStart_toStartOf="@id/tvHomeFragNowPlaying"
+                android:text="@string/home_frag_top_rated"
                 android:textSize="@dimen/title_1_size"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvHomeFragTMWeek"
+                android:id="@+id/rvHomeFragTopRated"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_low"
-                app:layout_constraintTop_toBottomOf="@id/tvHomeFragTMWeek"
+                app:layout_constraintTop_toBottomOf="@id/tvHomeFragTopRated"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:listitem="@layout/movie_item"
@@ -110,24 +110,24 @@
                 />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvHomeFragTTDay"
+                android:id="@+id/tvHomeFragPopular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_default"
-                app:layout_constraintTop_toBottomOf="@id/rvHomeFragTMWeek"
-                app:layout_constraintStart_toStartOf="@id/tvHomeFragTMDay"
-                android:text="@string/home_frag_trend_tv_day"
+                app:layout_constraintTop_toBottomOf="@id/rvHomeFragTopRated"
+                app:layout_constraintStart_toStartOf="@id/tvHomeFragNowPlaying"
+                android:text="@string/home_frag_popular"
                 android:textSize="@dimen/title_1_size"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvHomeFragTTDay"
+                android:id="@+id/rvHomeFragPopular"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_low"
-                app:layout_constraintTop_toBottomOf="@id/tvHomeFragTTDay"
+                app:layout_constraintTop_toBottomOf="@id/tvHomeFragPopular"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:listitem="@layout/movie_item"
@@ -136,24 +136,24 @@
                 />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvHomeFragTTWeek"
+                android:id="@+id/tvHomeFragTrending"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_default"
-                app:layout_constraintTop_toBottomOf="@id/rvHomeFragTTDay"
-                app:layout_constraintStart_toStartOf="@id/tvHomeFragTMDay"
-                android:text="@string/home_frag_trend_tv_week"
+                app:layout_constraintTop_toBottomOf="@id/rvHomeFragPopular"
+                app:layout_constraintStart_toStartOf="@id/tvHomeFragNowPlaying"
+                android:text="@string/home_frag_trending"
                 android:textSize="@dimen/title_1_size"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvHomeFragTTWeek"
+                android:id="@+id/rvHomeFragTrending"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_low"
-                app:layout_constraintTop_toBottomOf="@id/tvHomeFragTTWeek"
+                app:layout_constraintTop_toBottomOf="@id/tvHomeFragTrending"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:listitem="@layout/movie_item"
@@ -161,30 +161,30 @@
                 tools:orientation="horizontal"
                 />
 
-<!--            <View-->
-<!--                android:id="@+id/backgroundDialog"-->
-<!--                android:visibility="gone"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="1000dp"-->
-<!--                android:background="@color/black"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                />-->
+            <View
+                android:id="@+id/backgroundDialog"
+                android:visibility="visible"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/loadingCircularProgressBar"-->
-<!--                android:visibility="gone"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:indeterminate="true"-->
-<!--                android:indeterminateTint="@color/red_dark"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintBottom_toBottomOf="@id/backgroundDialog"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintVertical_bias="0.3"-->
-<!--                />-->
+            <ProgressBar
+                android:id="@+id/loadingCircularProgressBar"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/red_dark"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
