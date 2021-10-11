@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".features.movie.presentation.ui.CastFragment"
+    tools:context=".features.movie.cast.presentation.ui.CastFragment"
     tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
     tools:orientation="vertical"
     tools:spanCount="3"

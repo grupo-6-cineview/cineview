@@ -4,6 +4,7 @@
 
     <string name="app_name">Cineview</string>
 
+    <string name="content_description_app_logo">Cineview Logo</string>
     <string name="content_description_movie_backdrop">Movie Backdrop</string>
     <string name="content_description_movie_poster">Movie Poster</string>
     <string name="content_description_favorite_button">Favorite Button</string>
@@ -32,5 +33,10 @@
     <string name="bottom_nav_item_search">Buscar</string>
     <string name="bottom_nav_item_favorite">Favoritos</string>
     <string name="bottom_nav_item_account">Conta</string>
+
+    <string name="home_frag_now_playing">Em cartaz</string>
+    <string name="home_frag_top_rated">Melhores Avaliados</string>
+    <string name="home_frag_popular">Mais Votados</string>
+    <string name="home_frag_trending">Tendências da Semana</string>
 
 </resources>

@@ -15,6 +15,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.bnMainActFlow.setOnItemReselectedListener { item ->
+            when (item.itemId) {
+                R.id.homeFragment -> {  }
+                R.id.searchFragment -> {  }
+                R.id.favoriteFragment -> {  }
+                R.id.accountScreenFragment -> {  }
+            }
+        }
+
         Navigation.findNavController(this, R.id.nav_host_fragment).let { navController ->
             setupWithNavController(binding.bnMainActFlow, navController)
         }

@@ -4,9 +4,9 @@ import androidx.recyclerview.widget.DiffUtil
 import com.google.gson.annotations.SerializedName
 
 data class SearchResult(
-    val id: Int?,
+    val id: Int,
     @SerializedName("media_type")
-    val mediaType: String?,
+    val mediaType: String,
     val name: String?,
     @SerializedName("original_name")
     val originalName: String?,
@@ -20,7 +20,7 @@ data class SearchResult(
 ) {
 
     companion object {
-        var DIFF_CALBACK: DiffUtil.ItemCallback<SearchResult> =
+        var DIFF_CALBACK_SEARCH: DiffUtil.ItemCallback<SearchResult> =
             object : DiffUtil.ItemCallback<SearchResult>() {
                 override fun areItemsTheSame(oldItem: SearchResult, newItem: SearchResult): Boolean {
                     return oldItem.id == newItem.id
