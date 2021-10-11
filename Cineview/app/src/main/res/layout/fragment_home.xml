@@ -24,6 +24,7 @@
 
             <ImageView
                 android:id="@+id/imageLogo"
+                android:contentDescription="@string/content_description_app_logo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -35,7 +36,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -161,30 +163,27 @@
                 tools:orientation="horizontal"
                 />
 
-            <View
-                android:id="@+id/backgroundDialog"
-                android:visibility="visible"
+            <include
+                android:id="@+id/loadingLayout"
+                android:visibility="gone"
+                layout="@layout/loading_layout"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@color/black"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintEnd_toEndOf="parent" />
 
-            <ProgressBar
-                android:id="@+id/loadingCircularProgressBar"
-                android:visibility="visible"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminate="true"
-                android:indeterminateTint="@color/red_dark"
+            <include
+                android:id="@+id/errorLayout"
+                android:visibility="gone"
+                layout="@layout/error_layout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

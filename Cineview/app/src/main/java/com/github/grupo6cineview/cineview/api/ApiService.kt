@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 object ApiService {
 
-    val tmdbApi:TMDBApi = getTMDBApiClient().create(TMDBApi::class.java)
+    val tmdbApi: TMDBApi = getTMDBApiClient().create(TMDBApi::class.java)
 
     fun getTMDBApiClient() : Retrofit {
         return Retrofit.Builder()

@@ -59,19 +59,9 @@ class MovieFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.run {
-            getString(BUNDLE_KEY_MEDIA_TYPE, "").let { mediaType ->
-                if (mediaType != "") {
-                    getInt(BUNDLE_KEY_ID, 0).let { id ->
-                        if (id != 0) {
-                            when (mediaType) {
-                                PATH_TRENDING_MOVIE -> viewModel.getMovieDetails(id)
-
-                                PATH_TRENDING_TV -> viewModel.getTvDetails(id)
-
-                                else -> { Log.d("api", "Else - MovieFrag Line 70") }
-                            }
-                        }
-                    }
+            getInt("MOVIE_ID", 0).let { id ->
+                if (id != 0) {
+                    viewModel.getMovieDetails(id)
                 }
             }
         }

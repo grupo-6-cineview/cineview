@@ -2,7 +2,6 @@ package com.github.grupo6cineview.cineview.api
 
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_MOVIE
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_WEEK
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.FIRST_PAGE
 import com.github.grupo6cineview.cineview.features.home.data.model.HomeResponse
 import com.github.grupo6cineview.cineview.features.movie.movie.data.model.movie.MovieDetails
 import com.github.grupo6cineview.cineview.features.movie.movie.data.model.tv.TvDetails
@@ -19,9 +18,11 @@ interface TMDBApi {
         @Query("page") page: Int
     ) : Response<HomeResponse>
 
-    @GET("movie/popular")
+    @GET("discover/movie")
     suspend fun getPopularMovies(
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("vote_count.gte") baseVoteCount: Int = DISCOVER_BASE_VOTE_COUNT,
+        @Query("sort_by") sortBy: String = DISCOVER_SORT_BY
     ) : Response<HomeResponse>
 
     @GET("movie/top_rated")
@@ -51,4 +52,9 @@ interface TMDBApi {
     suspend fun getMovieDetails(
         @Path("movie_id") id: Int
     ) : Response<MovieDetails>
+
+    companion object {
+        private const val DISCOVER_BASE_VOTE_COUNT = 1000
+        private const val DISCOVER_SORT_BY = "vote_count.desc"
+    }
 }
