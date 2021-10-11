@@ -9,6 +9,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.github.grupo6cineview.cineview.extensions.BaseViewModel
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.FIRST_PAGE
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.MAX_SIZE
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.PAGE_SIZE
 import com.github.grupo6cineview.cineview.features.home.data.model.HomeResult
 import com.github.grupo6cineview.cineview.features.home.data.paging.HomePagingSource
@@ -40,7 +41,8 @@ class HomeViewModel : BaseViewModel() {
         Pager(
             PagingConfig(
                 pageSize = PAGE_SIZE,
-                enablePlaceholders = false
+                enablePlaceholders = false,
+                maxSize = MAX_SIZE
             )
         ) {
             HomePagingSource(

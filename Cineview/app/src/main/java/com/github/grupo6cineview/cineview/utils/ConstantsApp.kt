@@ -19,11 +19,11 @@ class ConstantsApp {
     object Paging {
         const val FIRST_PAGE = 1
         const val PAGE_SIZE = 20
+        const val MAX_SIZE = 100
     }
 
-    object Home {
+    object Detail {
         const val BUNDLE_KEY_ID = "MOVIE_ID"
         const val TAG_SHOW_DETAIL_FRAGMENT = "DETAIL_FRAGMENT"
     }
-
 }

@@ -1,26 +1,26 @@
-package com.github.grupo6cineview.cineview.features.home.data.mapper
+package com.github.grupo6cineview.cineview.features.search.data.mapper
 
 import com.github.grupo6cineview.cineview.extensions.ResponseApi
 import com.github.grupo6cineview.cineview.extensions.getFullImageUrl
-import com.github.grupo6cineview.cineview.features.home.data.model.HomeResponse
-import com.github.grupo6cineview.cineview.features.home.data.model.HomeResult
+import com.github.grupo6cineview.cineview.features.search.data.model.SearchResponse
+import com.github.grupo6cineview.cineview.features.search.data.model.SearchResult
 
-class HomeMapper {
+class SearchMapper {
 
-    fun filterMoviesToHome(response: ResponseApi): List<HomeResult>? =
+    fun filterMoviesToSearch(response: ResponseApi): List<SearchResult>? =
         when (response) {
             is ResponseApi.Success -> {
-                (response.data as HomeResponse).let { homeResponse ->
-                    homeResponse.results
-                        .filter { homeResult ->
-                            with(homeResult) {
+                (response.data as SearchResponse).let { searchResponse ->
+                    searchResponse.results
+                        .filter { searchResult ->
+                            with(searchResult) {
                                 posterPath != null &&
                                         backdropPath != null &&
                                         overview != ""
                             }
                         }
-                        .map { homeResult ->
-                            homeResult.apply {
+                        .map { searchResult ->
+                            searchResult.apply {
                                 posterPath = posterPath?.getFullImageUrl(200)
                                 backdropPath = backdropPath?.getFullImageUrl(500)
                             }

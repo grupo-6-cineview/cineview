@@ -80,7 +80,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvHomeFragNowPlaying"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:listitem="@layout/movie_item"
+                tools:listitem="@layout/movie_item_home"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:orientation="horizontal"
                 />
@@ -106,7 +106,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvHomeFragTopRated"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:listitem="@layout/movie_item"
+                tools:listitem="@layout/movie_item_home"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:orientation="horizontal"
                 />
@@ -132,7 +132,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvHomeFragPopular"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:listitem="@layout/movie_item"
+                tools:listitem="@layout/movie_item_home"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:orientation="horizontal"
                 />
@@ -158,7 +158,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvHomeFragTrending"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:listitem="@layout/movie_item"
+                tools:listitem="@layout/movie_item_home"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:orientation="horizontal"
                 />

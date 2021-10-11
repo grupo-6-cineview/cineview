@@ -4,37 +4,45 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.doOnTextChanged
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentSearchBinding
 import com.github.grupo6cineview.cineview.extension.asDp
 import com.github.grupo6cineview.cineview.extension.getDrawable2
 import com.github.grupo6cineview.cineview.extension.hideKeyboard
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.BUNDLE_KEY_ID
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.BUNDLE_KEY_ID
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.TAG_SHOW_DETAIL_FRAGMENT
 import com.github.grupo6cineview.cineview.features.movie.movie.presentation.ui.MovieFragment
 import com.github.grupo6cineview.cineview.features.search.presentation.adapter.SearchAdapter
 import com.github.grupo6cineview.cineview.features.search.presentation.viewmodel.SearchViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
 
     private var binding: FragmentSearchBinding? = null
     private lateinit var viewModel: SearchViewModel
     private val movieFragment: MovieFragment get() = MovieFragment()
+    private var job: Job? = null
 
     private val searchAdapter by lazy {
-        SearchAdapter { id, mediaType ->
-            with(movieFragment) {
-                Bundle().run {
-                    putInt(BUNDLE_KEY_ID, id)
+        SearchAdapter { id -> onClickMovie(id) }
+    }
 
-                    arguments = this
-                }
+    private fun onClickMovie(id: Int) {
+        with(movieFragment) {
+            Bundle().run {
+                putInt(BUNDLE_KEY_ID, id)
 
-                show(this@SearchFragment.parentFragmentManager, "BOTTOM_SHEET_FRAG")
+                arguments = this
             }
+
+            show(this@SearchFragment.parentFragmentManager, TAG_SHOW_DETAIL_FRAGMENT)
         }
     }
 
@@ -47,8 +55,14 @@ class SearchFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
 
-        binding?.run {
+        setupInputLayout()
+        setupRecycler()
 
+        return binding?.root
+    }
+
+    private fun setupInputLayout() =
+        binding?.run {
             ilSearchFragSearchField.editText?.setOnFocusChangeListener { _, hasFocus ->
                 with(ilSearchFragSearchField) {
                     if (hasFocus) {
@@ -73,30 +87,34 @@ class SearchFragment : Fragment() {
                 ilSearchFragSearchField.clearFocus()
                 context?.hideKeyboard(ilSearchFragSearchField)
             }
-
-            rvSearchFragRecycler.layoutManager = GridLayoutManager(requireContext(), 3, GridLayoutManager.VERTICAL, false)
-            rvSearchFragRecycler.adapter = searchAdapter
-
         }
 
-        return binding?.root
-    }
+    private fun setupRecycler() =
+        binding?.run {
+            rvSearchFragRecycler.layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+            rvSearchFragRecycler.adapter = searchAdapter
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        getMoviesBySearch()
+    }
+
+    private fun getMoviesBySearch() =
         binding?.run {
-            tietSearchFragSearchField.doOnTextChanged { _, _, _, _ ->
-                viewModel.getSearchResult(tietSearchFragSearchField.text?.toString() ?: "")
+            tietSearchFragSearchField.doAfterTextChanged { search ->
+                callMoviesBySearch(search.toString())
             }
         }
 
-        setupObservables()
-    }
+    private fun callMoviesBySearch(search: String) {
+        job?.cancel()
 
-    private fun setupObservables() {
-        viewModel.onSuccessSearch.observe(viewLifecycleOwner) { listResult ->
-            searchAdapter.submitList(listResult)
+        job = lifecycleScope.launch {
+            viewModel.getMovieBySearch(search).collectLatest { pagingData ->
+                searchAdapter.submitData(pagingData)
+            }
         }
     }
 
@@ -105,5 +123,4 @@ class SearchFragment : Fragment() {
 
         binding = null
     }
-
 }

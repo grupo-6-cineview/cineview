@@ -6,9 +6,8 @@ import com.github.grupo6cineview.cineview.extensions.ResponseApi
 
 class SearchRepositoy : BaseRepository() {
 
-    suspend fun getSearchResult(search: String) : ResponseApi =
+    suspend fun getSearchResult(search: String, page: Int) : ResponseApi =
         safeApiCall {
-            ApiService.tmdbApi.getSearchResult(search, 1)
+            ApiService.tmdbApi.getSearchResult(search, page)
         }
-
 }
