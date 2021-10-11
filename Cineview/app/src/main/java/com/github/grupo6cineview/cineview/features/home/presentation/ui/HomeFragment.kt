@@ -6,7 +6,6 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +18,8 @@ import com.bumptech.glide.Glide
 import com.github.grupo6cineview.cineview.databinding.FragmentHomeBinding
 import com.github.grupo6cineview.cineview.databinding.MovieItemCarouselBinding
 import com.github.grupo6cineview.cineview.extensions.Command
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.BUNDLE_KEY_ID
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.TAG_SHOW_DETAIL_FRAGMENT
 import com.github.grupo6cineview.cineview.features.home.domain.HomeIntent
 import com.github.grupo6cineview.cineview.features.home.presentation.adapter.HomeAdapter
 import com.github.grupo6cineview.cineview.features.home.presentation.viewmodel.HomeViewModel
@@ -36,11 +37,11 @@ class HomeFragment : Fragment() {
     private val movieFragment: MovieFragment get() = MovieFragment()
     private fun onCLickMovie(id: Int) {
         Bundle().let { bundle ->
-            bundle.putInt("MOVIE_ID", id)
+            bundle.putInt(BUNDLE_KEY_ID, id)
 
             movieFragment.apply {
                 arguments = bundle
-                show(this@HomeFragment.parentFragmentManager, "DETAIL_FRAGMENT")
+                show(this@HomeFragment.parentFragmentManager, TAG_SHOW_DETAIL_FRAGMENT)
             }
         }
     }

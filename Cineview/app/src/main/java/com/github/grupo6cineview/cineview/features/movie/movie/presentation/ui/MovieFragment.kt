@@ -1,7 +1,6 @@
 package com.github.grupo6cineview.cineview.features.movie.movie.presentation.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentMovieBinding
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_MOVIE
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_TV
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.BUNDLE_KEY_ID
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.BUNDLE_KEY_MEDIA_TYPE
 import com.github.grupo6cineview.cineview.features.movie.cast.presentation.ui.CastFragment
 import com.github.grupo6cineview.cineview.features.movie.details.presentation.ui.DetailsFragment
 import com.github.grupo6cineview.cineview.features.movie.movie.presentation.adapter.MoreContentAdapter

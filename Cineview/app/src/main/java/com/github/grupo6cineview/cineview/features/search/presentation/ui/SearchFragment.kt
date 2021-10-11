@@ -14,7 +14,6 @@ import com.github.grupo6cineview.cineview.extension.asDp
 import com.github.grupo6cineview.cineview.extension.getDrawable2
 import com.github.grupo6cineview.cineview.extension.hideKeyboard
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.BUNDLE_KEY_ID
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.BUNDLE_KEY_MEDIA_TYPE
 import com.github.grupo6cineview.cineview.features.movie.movie.presentation.ui.MovieFragment
 import com.github.grupo6cineview.cineview.features.search.presentation.adapter.SearchAdapter
 import com.github.grupo6cineview.cineview.features.search.presentation.viewmodel.SearchViewModel
@@ -30,7 +29,6 @@ class SearchFragment : Fragment() {
             with(movieFragment) {
                 Bundle().run {
                     putInt(BUNDLE_KEY_ID, id)
-                    putString(BUNDLE_KEY_MEDIA_TYPE, mediaType)
 
                     arguments = this
                 }
