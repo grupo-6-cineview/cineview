@@ -10,16 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.CombinedLoadStates
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.github.grupo6cineview.cineview.databinding.FragmentHomeBinding
 import com.github.grupo6cineview.cineview.databinding.MovieItemCarouselBinding
+import com.github.grupo6cineview.cineview.extension.isError
+import com.github.grupo6cineview.cineview.extension.isLoading
 import com.github.grupo6cineview.cineview.extensions.Command
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.BUNDLE_KEY_ID
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Home.TAG_SHOW_DETAIL_FRAGMENT
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.BUNDLE_KEY_ID
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.TAG_SHOW_DETAIL_FRAGMENT
 import com.github.grupo6cineview.cineview.features.home.domain.HomeIntent
 import com.github.grupo6cineview.cineview.features.home.presentation.adapter.HomeAdapter
 import com.github.grupo6cineview.cineview.features.home.presentation.viewmodel.HomeViewModel
@@ -161,16 +161,12 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             recycler.adapter?.let { adapter ->
                 (adapter as? HomeAdapter)?.loadStateFlow?.collect { loadState ->
-                    binding?.loadingLayout?.root?.visibility = if (isLoading(loadState)) VISIBLE else GONE
-                    binding?.errorLayout?.root?.visibility = if (isError(loadState)) VISIBLE else GONE
+                    binding?.loadingLayout?.root?.visibility = if (loadState.isLoading()) VISIBLE else GONE
+                    binding?.errorLayout?.root?.visibility = if (loadState.isError()) VISIBLE else GONE
                 }
             }
         }
     }
-
-    private fun isLoading(loadState: CombinedLoadStates) = loadState.source.refresh is LoadState.Loading
-
-    private fun isError(loadState: CombinedLoadStates) = loadState.refresh is LoadState.Error
 
     private fun setupObservables() {
         viewModel.command.observe(viewLifecycleOwner) { command ->

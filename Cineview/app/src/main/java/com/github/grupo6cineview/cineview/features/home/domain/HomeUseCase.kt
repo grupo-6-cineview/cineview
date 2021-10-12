@@ -14,7 +14,7 @@ class HomeUseCase {
         homeRepository.getNowPlayingMovies(page).let { respone ->
             when (respone) {
                 is ResponseApi.Success -> {
-                    homeMapper.filterMovies(respone).let { listFiltered ->
+                    homeMapper.filterMoviesToHome(respone).let { listFiltered ->
                         ResponseApi.Success(listFiltered)
                     }
                 }
@@ -27,25 +27,25 @@ class HomeUseCase {
         when (intent) {
             HomeIntent.NowPlaying -> {
                 homeRepository.getNowPlayingMovies(page).let { response ->
-                    homeMapper.filterMovies(response)
+                    homeMapper.filterMoviesToHome(response)
                 }
             }
 
             HomeIntent.Popular -> {
                 homeRepository.getPopularMovies(page).let { response ->
-                    homeMapper.filterMovies(response)
+                    homeMapper.filterMoviesToHome(response)
                 }
             }
 
             HomeIntent.TopRated -> {
                 homeRepository.getTopRatedMovies(page).let { response ->
-                    homeMapper.filterMovies(response)
+                    homeMapper.filterMoviesToHome(response)
                 }
             }
 
             HomeIntent.Trending -> {
                 homeRepository.getTrendingMovies(page).let { response ->
-                    homeMapper.filterMovies(response)
+                    homeMapper.filterMoviesToHome(response)
                 }
             }
         }

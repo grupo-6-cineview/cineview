@@ -1,37 +1,33 @@
 package com.github.grupo6cineview.cineview.features.search.presentation.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.github.grupo6cineview.cineview.extensions.BaseViewModel
-import com.github.grupo6cineview.cineview.extensions.ResponseApi
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.MAX_SIZE
+import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.PAGE_SIZE
 import com.github.grupo6cineview.cineview.features.search.data.model.SearchResult
+import com.github.grupo6cineview.cineview.features.search.data.paging.SearchPagingSource
 import com.github.grupo6cineview.cineview.features.search.domain.SearchUseCase
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
 
 class SearchViewModel : BaseViewModel() {
 
-    private val _onSuccessSearch = MutableLiveData<List<SearchResult>>()
-    val onSuccessSearch: LiveData<List<SearchResult>> get() = _onSuccessSearch
-
     private val searchUseCase = SearchUseCase()
 
-    fun getSearchResult(search: String) {
-        viewModelScope.launch {
-            searchUseCase.getSearchResult(search).let { response ->
-                when (response) {
-                    is ResponseApi.Success -> {
-                        (response.data as List<*>).let { listResult ->
-                            _onSuccessSearch.postValue(listResult.filterIsInstance(SearchResult::class.java))
-                        }
-                    }
-
-                    is ResponseApi.Error -> {
-                        _onSuccessSearch.postValue(listOf())
-                    }
-                }
-            }
-        }
-    }
-
+    fun getMovieBySearch(search: String): Flow<PagingData<SearchResult>> =
+        Pager(
+            PagingConfig(
+                pageSize = PAGE_SIZE,
+                enablePlaceholders = false,
+                maxSize = MAX_SIZE
+            )
+        ) {
+            SearchPagingSource(
+                searchUseCase,
+                search
+            )
+        }.flow.cachedIn(viewModelScope)
 }

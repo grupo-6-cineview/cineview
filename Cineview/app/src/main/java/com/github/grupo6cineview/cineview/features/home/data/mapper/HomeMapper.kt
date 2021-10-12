@@ -7,7 +7,7 @@ import com.github.grupo6cineview.cineview.features.home.data.model.HomeResult
 
 class HomeMapper {
 
-    fun filterMovies(response: ResponseApi): List<HomeResult>? =
+    fun filterMoviesToHome(response: ResponseApi): List<HomeResult>? =
         when (response) {
             is ResponseApi.Success -> {
                 (response.data as HomeResponse).let { homeResponse ->

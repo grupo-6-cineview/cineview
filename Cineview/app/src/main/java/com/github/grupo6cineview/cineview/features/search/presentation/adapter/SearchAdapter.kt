@@ -2,19 +2,23 @@ package com.github.grupo6cineview.cineview.features.search.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
-import com.github.grupo6cineview.cineview.databinding.MovieItemBinding
+import androidx.paging.PagingDataAdapter
+import com.github.grupo6cineview.cineview.databinding.MovieItemSearchBinding
 import com.github.grupo6cineview.cineview.features.search.data.model.SearchResult
+import com.github.grupo6cineview.cineview.features.search.data.model.SearchResult.Companion.DIFF_SEARCH
 
 class SearchAdapter(
-    private val onClick: (id: Int, mediaType: String) -> Unit
-) : ListAdapter<SearchResult, SearchViewHolder>(SearchResult.DIFF_CALBACK_SEARCH) {
+    private val onClick: (id: Int) -> Unit
+) : PagingDataAdapter<SearchResult, SearchViewHolder>(DIFF_SEARCH) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder =
-        MovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false).let { binding ->
+        MovieItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false).let { binding ->
             SearchViewHolder(binding)
         }
 
-    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) = holder.bind(getItem(position), onClick)
-
+    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
+        getItem(position)?.let { result ->
+            holder.bind(result, onClick)
+        }
+    }
 }

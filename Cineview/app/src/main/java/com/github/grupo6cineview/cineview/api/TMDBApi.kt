@@ -5,7 +5,7 @@ import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TREND
 import com.github.grupo6cineview.cineview.features.home.data.model.HomeResponse
 import com.github.grupo6cineview.cineview.features.movie.movie.data.model.movie.MovieDetails
 import com.github.grupo6cineview.cineview.features.movie.movie.data.model.tv.TvDetails
-import com.github.grupo6cineview.cineview.features.search.data.model.Search
+import com.github.grupo6cineview.cineview.features.search.data.model.SearchResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -13,6 +13,7 @@ import retrofit2.http.Query
 
 interface TMDBApi {
 
+    // Home
     @GET("movie/now_playing")
     suspend fun getNowPlayingMovies(
         @Query("page") page: Int
@@ -37,11 +38,12 @@ interface TMDBApi {
         @Query("page") page: Int
     ) : Response<HomeResponse>
 
-    @GET("search/multi")
+    // Search
+    @GET("search/movie")
     suspend fun getSearchResult(
         @Query("query") search: String,
         @Query("page") page: Int
-    ) : Response<Search>
+    ) : Response<SearchResponse>
 
     @GET("tv/{tv_id}")
     suspend fun getTvDetails(

@@ -3,7 +3,7 @@ package com.github.grupo6cineview.cineview.features.home.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import com.github.grupo6cineview.cineview.databinding.MovieItemBinding
+import com.github.grupo6cineview.cineview.databinding.MovieItemHomeBinding
 import com.github.grupo6cineview.cineview.features.home.data.model.HomeResult
 import com.github.grupo6cineview.cineview.features.home.data.model.HomeResult.Companion.HOME_RESULT_DIFF
 
@@ -13,7 +13,7 @@ class HomeAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder =
         LayoutInflater.from(parent.context).let { inflater ->
-            MovieItemBinding.inflate(inflater, parent, false).let { binding ->
+            MovieItemHomeBinding.inflate(inflater, parent, false).let { binding ->
                 HomeViewHolder(binding)
             }
         }
