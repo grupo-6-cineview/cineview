@@ -11,9 +11,11 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentSearchBinding
+import com.github.grupo6cineview.cineview.databinding.LoadingLayoutBinding
 import com.github.grupo6cineview.cineview.extension.*
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.BUNDLE_KEY_ID
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.TAG_SHOW_DETAIL_FRAGMENT
@@ -31,7 +33,7 @@ class SearchFragment : Fragment() {
     private lateinit var viewModel: SearchViewModel
     private val movieFragment: MovieFragment get() = MovieFragment()
     private var job: Job? = null
-    private var lastSearch = ""
+    private var lastSearch: String? = null
 
     private val searchAdapter by lazy {
         SearchAdapter { id -> onClickMovie(id) }
@@ -116,24 +118,24 @@ class SearchFragment : Fragment() {
     private fun getMoviesBySearch(retry: Boolean = false) =
         binding?.run {
             if (retry) {
-                setupLayoutBySearch(lastSearch)
-                callMoviesBySearch(lastSearch)
+                setupLayoutBySearch(lastSearch == "")
+                callMoviesBySearch(lastSearch ?: "")
             } else {
                 tietSearchFragSearchField.doAfterTextChanged { search ->
                     lastSearch = search.toString()
 
-                    setupLayoutBySearch(lastSearch)
-                    callMoviesBySearch(lastSearch)
+                    setupLayoutBySearch(lastSearch == "")
+                    callMoviesBySearch(lastSearch ?: "")
                 }
             }
         }
 
-    private fun setupLayoutBySearch(search: String) {
+    private fun setupLayoutBySearch(emptySearch: Boolean) {
         binding?.run {
             if (searchAnimation.isVisible)
                 searchAnimation.visibility = GONE
 
-            if (search == "") {
+            if (emptySearch) {
                 emptyAnimation.visibility = VISIBLE
                 emptyAnimation.playAnimation()
                 rvSearchFragRecycler.visibility = GONE
@@ -160,6 +162,11 @@ class SearchFragment : Fragment() {
                 searchAdapter.loadStateFlow.collect { loadState ->
                     loadingLayout.root.visibility = if (loadState.isLoading()) VISIBLE else GONE
                     errorLayout.root.visibility = if (loadState.isError()) VISIBLE else GONE
+
+                    lastSearch?.let {
+                        if (loadState.isNotLoading() && searchAdapter.itemCount == 0)
+                            setupLayoutBySearch(true)
+                    }
                 }
             }
         }
