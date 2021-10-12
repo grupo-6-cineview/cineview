@@ -60,17 +60,68 @@
         android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvSearchFragRecycler"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:layout_marginBottom="@dimen/margin_medium"
-            tools:listitem="@layout/movie_item_search"
-            tools:orientation="vertical"
-            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:spanCount="2"
-            />
+            android:layout_height="wrap_content">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/searchAnimation"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:lottie_rawRes="@raw/search"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_speed="0.5"
+                app:lottie_colorFilter="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/emptyAnimation"
+                android:visibility="gone"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:lottie_rawRes="@raw/empty"
+                app:lottie_autoPlay="false"
+                app:lottie_loop="false"
+                app:lottie_speed="0.5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSearchFragRecycler"
+                android:visibility="gone"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium"
+                tools:listitem="@layout/movie_item_search"
+                tools:orientation="vertical"
+                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:spanCount="2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <include
+                android:id="@+id/errorLayout"
+                layout="@layout/error_layout"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/loadingLayout"
+                layout="@layout/loading_layout"
+                android:visibility="gone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 

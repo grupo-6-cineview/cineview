@@ -11,6 +11,6 @@ class SearchUseCase {
 
     suspend fun getMovieBySearch(search: String, page: Int): List<SearchResult>? =
         searchRepository.getSearchResult(search, page).let { response ->
-            searchMapper.filterMoviesToSearch(response)
+            searchMapper.filterMoviesToSearch(response, search == "")
         }
 }

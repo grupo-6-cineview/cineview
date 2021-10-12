@@ -7,7 +7,7 @@ import com.github.grupo6cineview.cineview.features.search.data.model.SearchResul
 
 class SearchMapper {
 
-    fun filterMoviesToSearch(response: ResponseApi): List<SearchResult>? =
+    fun filterMoviesToSearch(response: ResponseApi, isEmptySearch: Boolean): List<SearchResult>? =
         when (response) {
             is ResponseApi.Success -> {
                 (response.data as SearchResponse).let { searchResponse ->
@@ -28,6 +28,6 @@ class SearchMapper {
                 }
             }
 
-            is ResponseApi.Error -> null
+            is ResponseApi.Error -> if (isEmptySearch) listOf() else null
         }
 }

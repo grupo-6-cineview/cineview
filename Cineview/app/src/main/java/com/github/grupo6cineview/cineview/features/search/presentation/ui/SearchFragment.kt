@@ -3,7 +3,10 @@ package com.github.grupo6cineview.cineview.features.search.presentation.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -11,15 +14,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentSearchBinding
-import com.github.grupo6cineview.cineview.extension.asDp
-import com.github.grupo6cineview.cineview.extension.getDrawable2
-import com.github.grupo6cineview.cineview.extension.hideKeyboard
+import com.github.grupo6cineview.cineview.extension.*
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.BUNDLE_KEY_ID
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.TAG_SHOW_DETAIL_FRAGMENT
 import com.github.grupo6cineview.cineview.features.movie.movie.presentation.ui.MovieFragment
 import com.github.grupo6cineview.cineview.features.search.presentation.adapter.SearchAdapter
 import com.github.grupo6cineview.cineview.features.search.presentation.viewmodel.SearchViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -29,6 +31,7 @@ class SearchFragment : Fragment() {
     private lateinit var viewModel: SearchViewModel
     private val movieFragment: MovieFragment get() = MovieFragment()
     private var job: Job? = null
+    private var lastSearch = ""
 
     private val searchAdapter by lazy {
         SearchAdapter { id -> onClickMovie(id) }
@@ -57,6 +60,7 @@ class SearchFragment : Fragment() {
 
         setupInputLayout()
         setupRecycler()
+        setupSearchAnimation()
 
         return binding?.root
     }
@@ -95,18 +99,50 @@ class SearchFragment : Fragment() {
             rvSearchFragRecycler.adapter = searchAdapter
         }
 
+    private fun setupSearchAnimation() {
+        binding?.run {
+            searchAnimation.setMaxFrame(60)
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         getMoviesBySearch()
+        setupState()
+        setupListeners()
     }
 
-    private fun getMoviesBySearch() =
+    private fun getMoviesBySearch(retry: Boolean = false) =
         binding?.run {
-            tietSearchFragSearchField.doAfterTextChanged { search ->
-                callMoviesBySearch(search.toString())
+            if (retry) {
+                setupLayoutBySearch(lastSearch)
+                callMoviesBySearch(lastSearch)
+            } else {
+                tietSearchFragSearchField.doAfterTextChanged { search ->
+                    lastSearch = search.toString()
+
+                    setupLayoutBySearch(lastSearch)
+                    callMoviesBySearch(lastSearch)
+                }
             }
         }
+
+    private fun setupLayoutBySearch(search: String) {
+        binding?.run {
+            if (searchAnimation.isVisible)
+                searchAnimation.visibility = GONE
+
+            if (search == "") {
+                emptyAnimation.visibility = VISIBLE
+                emptyAnimation.playAnimation()
+                rvSearchFragRecycler.visibility = GONE
+            } else {
+                emptyAnimation.visibility = GONE
+                rvSearchFragRecycler.visibility = VISIBLE
+            }
+        }
+    }
 
     private fun callMoviesBySearch(search: String) {
         job?.cancel()
@@ -114,6 +150,25 @@ class SearchFragment : Fragment() {
         job = lifecycleScope.launch {
             viewModel.getMovieBySearch(search).collectLatest { pagingData ->
                 searchAdapter.submitData(pagingData)
+            }
+        }
+    }
+
+    private fun setupState() {
+        binding?.run {
+            lifecycleScope.launch {
+                searchAdapter.loadStateFlow.collect { loadState ->
+                    loadingLayout.root.visibility = if (loadState.isLoading()) VISIBLE else GONE
+                    errorLayout.root.visibility = if (loadState.isError()) VISIBLE else GONE
+                }
+            }
+        }
+    }
+
+    private fun setupListeners() {
+        binding?.run {
+            errorLayout.btRefresh.setOnClickListener {
+                getMoviesBySearch(retry = true)
             }
         }
     }
