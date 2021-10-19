@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/margin_medium"
+    android:paddingHorizontal="@dimen/margin_medium"
+    android:layout_marginVertical="@dimen/margin_medium"
     android:layout_gravity="center_horizontal"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -13,31 +14,32 @@
     <ImageView
         android:id="@+id/ivCastItemImage"
         android:contentDescription="@string/content_description_cast_member_image"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/bg_rounded"
+        android:scaleType="centerCrop"
         tools:src="@drawable/actor_example"
         />
 
     <TextView
         android:id="@+id/tvCastItemName"
-        android:layout_width="100dp"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
-        tools:text="Lewis Tan"
+        tools:text="Ryan Reynolds"
         android:textColor="@color/white"
         android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/tvCastItemCharacter"
-        android:layout_width="100dp"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
-        tools:text="(Cole Young)"
+        tools:text="Wade Wilson / Deadpool"
         android:textColor="@color/white"
         />
 

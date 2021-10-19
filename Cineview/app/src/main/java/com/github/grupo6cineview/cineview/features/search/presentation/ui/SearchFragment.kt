@@ -11,15 +11,13 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentSearchBinding
-import com.github.grupo6cineview.cineview.databinding.LoadingLayoutBinding
 import com.github.grupo6cineview.cineview.extension.*
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.BUNDLE_KEY_ID
 import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.TAG_SHOW_DETAIL_FRAGMENT
-import com.github.grupo6cineview.cineview.features.movie.movie.presentation.ui.MovieFragment
+import com.github.grupo6cineview.cineview.features.movie.presentation.ui.MovieFragment
 import com.github.grupo6cineview.cineview.features.search.presentation.adapter.SearchAdapter
 import com.github.grupo6cineview.cineview.features.search.presentation.viewmodel.SearchViewModel
 import kotlinx.coroutines.Job
