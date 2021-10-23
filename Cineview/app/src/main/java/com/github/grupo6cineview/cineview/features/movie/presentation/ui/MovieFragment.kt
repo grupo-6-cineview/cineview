@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
+import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentMovieBinding
 import com.github.grupo6cineview.cineview.extension.rateFormat
+import com.github.grupo6cineview.cineview.extension.setVisible
 import com.github.grupo6cineview.cineview.extension.viewsFormat
+import com.github.grupo6cineview.cineview.extensions.Command
 import com.github.grupo6cineview.cineview.features.movie.data.model.PagerModel
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.CastAdapter
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.DetailsAdapter
@@ -19,6 +24,7 @@ import com.github.grupo6cineview.cineview.features.movie.presentation.viewmodel.
 import com.github.grupo6cineview.cineview.utils.GenresCache
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.fragment_movie.*
 
 class MovieFragment : BottomSheetDialogFragment() {
 
@@ -51,20 +57,58 @@ class MovieFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel = ViewModelProvider(this)[MovieViewModel::class.java]
         viewModel.command = MutableLiveData()
+        setViews()
+        setListeners()
         setupViewPager()
-
         if (GenresCache.genresIsNull) {
             viewModel.getAllGenres()
         }
-        viewModel.getMovieDetails(movieId)
-        viewModel.getMovieCast(movieId)
-        viewModel.getSimilarMovies(movieId)
-
+        getAllDetails()
         setupObservables()
     }
+
+    private fun setViews() =
+        binding?.run {
+            errorLayoutDatabase.background.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.black_light
+                )
+            )
+            btMovieFragFavorite.setMaxFrame(MAX_FRAME_LIKE_ANIM)
+        }
+
+    private fun setListeners() = binding?.run {
+        errorLayout.btRefresh.setOnClickListener { getAllDetails() }
+
+        errorLayoutDatabase.btRefresh.setOnClickListener { getAllDetails() }
+
+        btMovieFragFavorite.setOnClickListener { view ->
+            (view as? LottieAnimationView)?.apply {
+                if (frame == MAX_FRAME_LIKE_ANIM) {
+                    speed = -3f
+                    playAnimation()
+                } else {
+                    speed = 3f
+                    playAnimation()
+                }
+            }
+        }
+    }
+
+    private fun getAllDetails() {
+        callDetails()
+        callCast()
+        callSimilar()
+    }
+
+    private fun callDetails() = viewModel.getMovieDetails(movieId)
+
+    private fun callCast() = viewModel.getMovieCast(movieId)
+
+    private fun callSimilar() = viewModel.getSimilarMovies(movieId)
 
     private fun setupViewPager() {
         binding?.run {
@@ -81,6 +125,19 @@ class MovieFragment : BottomSheetDialogFragment() {
 
     private fun setupObservables() {
         with(viewModel) {
+            command.observe(viewLifecycleOwner) { command ->
+                when (command) {
+                    is Command.Loading -> binding?.run {
+                        errorLayout.root.setVisible(visible = false)
+                        loadingLayout.root.setVisible(visible = command.value)
+                    }
+
+                    is Command.Error -> binding?.run {
+                        errorLayout.root.setVisible(visible = true)
+                    }
+                }
+            }
+
             onSuccessGenres.observe(viewLifecycleOwner) { genresResponse ->
                 with(GenresCache) {
                     if (genresIsNull) {
@@ -142,5 +199,9 @@ class MovieFragment : BottomSheetDialogFragment() {
         super.onDestroyView()
 
         binding = null
+    }
+
+    companion object {
+        private const val MAX_FRAME_LIKE_ANIM = 25
     }
 }
