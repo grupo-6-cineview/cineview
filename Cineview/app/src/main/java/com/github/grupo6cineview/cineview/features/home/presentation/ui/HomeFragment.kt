@@ -23,7 +23,7 @@ import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.TAG_SHO
 import com.github.grupo6cineview.cineview.features.home.domain.HomeIntent
 import com.github.grupo6cineview.cineview.features.home.presentation.adapter.HomeAdapter
 import com.github.grupo6cineview.cineview.features.home.presentation.viewmodel.HomeViewModel
-import com.github.grupo6cineview.cineview.features.movie.movie.presentation.ui.MovieFragment
+import com.github.grupo6cineview.cineview.features.movie.presentation.ui.MovieFragment
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

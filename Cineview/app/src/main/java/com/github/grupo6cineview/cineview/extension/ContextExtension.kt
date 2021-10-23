@@ -6,8 +6,6 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.getSystemService
-import java.lang.RuntimeException
 
 fun Context.getDrawable2(id: Int) : Drawable? = AppCompatResources.getDrawable(this, id)
 
