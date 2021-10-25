@@ -40,7 +40,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="@dimen/margin_default"
             android:layout_marginEnd="@dimen/margin_default"
-            app:lottie_colorFilter="@color/white"
+            app:lottie_colorFilter="@color/red"
             app:lottie_rawRes="@raw/like_anim"
             app:lottie_loop="false"
             app:lottie_autoPlay="false"

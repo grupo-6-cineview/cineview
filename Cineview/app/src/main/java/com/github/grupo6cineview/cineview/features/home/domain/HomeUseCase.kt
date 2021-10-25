@@ -3,6 +3,7 @@ package com.github.grupo6cineview.cineview.features.home.domain
 import com.github.grupo6cineview.cineview.extensions.ResponseApi
 import com.github.grupo6cineview.cineview.features.home.data.mapper.HomeMapper
 import com.github.grupo6cineview.cineview.features.home.data.model.HomeResult
+import com.github.grupo6cineview.cineview.features.home.data.model.HomeViewParams
 import com.github.grupo6cineview.cineview.features.home.data.repository.HomeRepository
 
 class HomeUseCase {
@@ -23,7 +24,7 @@ class HomeUseCase {
             }
         }
 
-    suspend fun getMovies(intent: HomeIntent, page: Int): List<HomeResult>? =
+    suspend fun getMovies(intent: HomeIntent, page: Int): List<HomeViewParams>? =
         when (intent) {
             HomeIntent.NowPlaying -> {
                 homeRepository.getNowPlayingMovies(page).let { response ->
