@@ -1,6 +1,6 @@
 package com.github.grupo6cineview.cineview.features.movie.domain
 
-import com.github.grupo6cineview.cineview.extensions.ResponseApi
+import com.github.grupo6cineview.cineview.utils.ResponseApi
 import com.github.grupo6cineview.cineview.features.movie.data.mapper.MovieMapper
 import com.github.grupo6cineview.cineview.features.movie.data.repository.MovieRepository
 

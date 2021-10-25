@@ -7,10 +7,10 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.github.grupo6cineview.cineview.extensions.BaseViewModel
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.FIRST_PAGE
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.MAX_SIZE
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.PAGE_SIZE
+import com.github.grupo6cineview.cineview.base.BaseViewModel
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Paging.FIRST_PAGE
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Paging.MAX_SIZE
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Paging.PAGE_SIZE
 import com.github.grupo6cineview.cineview.features.home.data.model.HomeViewParams
 import com.github.grupo6cineview.cineview.features.home.data.paging.HomePagingSource
 import com.github.grupo6cineview.cineview.features.home.domain.HomeIntent

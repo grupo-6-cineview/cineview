@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.extensions
+package com.github.grupo6cineview.cineview.utils
 
 class ConstantsApp {
 

@@ -1,7 +1,7 @@
 package com.github.grupo6cineview.cineview.features.search.data.mapper
 
-import com.github.grupo6cineview.cineview.extensions.ResponseApi
-import com.github.grupo6cineview.cineview.extensions.getFullImageUrl
+import com.github.grupo6cineview.cineview.utils.ResponseApi
+import com.github.grupo6cineview.cineview.extension.getFullImageUrl
 import com.github.grupo6cineview.cineview.features.search.data.model.SearchResponse
 import com.github.grupo6cineview.cineview.features.search.data.model.SearchResult
 

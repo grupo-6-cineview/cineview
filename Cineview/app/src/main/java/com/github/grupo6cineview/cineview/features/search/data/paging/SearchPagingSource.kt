@@ -2,9 +2,7 @@ package com.github.grupo6cineview.cineview.features.search.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.FIRST_PAGE
-import com.github.grupo6cineview.cineview.features.home.domain.HomeIntent
-import com.github.grupo6cineview.cineview.features.home.domain.HomeUseCase
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Paging.FIRST_PAGE
 import com.github.grupo6cineview.cineview.features.search.data.model.SearchResult
 import com.github.grupo6cineview.cineview.features.search.domain.SearchUseCase
 import java.lang.Exception

@@ -2,8 +2,8 @@ package com.github.grupo6cineview.cineview.features.home.data.mapper
 
 import com.github.grupo6cineview.cineview.extension.rateFormat
 import com.github.grupo6cineview.cineview.extension.viewsFormat
-import com.github.grupo6cineview.cineview.extensions.ResponseApi
-import com.github.grupo6cineview.cineview.extensions.getFullImageUrl
+import com.github.grupo6cineview.cineview.utils.ResponseApi
+import com.github.grupo6cineview.cineview.extension.getFullImageUrl
 import com.github.grupo6cineview.cineview.features.home.data.model.HomeResponse
 import com.github.grupo6cineview.cineview.features.home.data.model.HomeViewParams
 

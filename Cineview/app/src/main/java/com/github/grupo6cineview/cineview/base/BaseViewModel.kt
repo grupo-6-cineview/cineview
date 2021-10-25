@@ -1,7 +1,9 @@
-package com.github.grupo6cineview.cineview.extensions
+package com.github.grupo6cineview.cineview.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.github.grupo6cineview.cineview.utils.Command
+import com.github.grupo6cineview.cineview.utils.ResponseApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

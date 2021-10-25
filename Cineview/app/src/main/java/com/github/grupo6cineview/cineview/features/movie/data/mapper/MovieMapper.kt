@@ -3,10 +3,10 @@ package com.github.grupo6cineview.cineview.features.movie.data.mapper
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.extension.moneyFormat
 import com.github.grupo6cineview.cineview.extension.runtimeFormat
-import com.github.grupo6cineview.cineview.extensions.ResponseApi
-import com.github.grupo6cineview.cineview.extensions.getFullImageUrl
-import com.github.grupo6cineview.cineview.extensions.getYearFromDate
-import com.github.grupo6cineview.cineview.extensions.toDateBr
+import com.github.grupo6cineview.cineview.utils.ResponseApi
+import com.github.grupo6cineview.cineview.extension.getFullImageUrl
+import com.github.grupo6cineview.cineview.extension.getYearFromDate
+import com.github.grupo6cineview.cineview.extension.toDateBr
 import com.github.grupo6cineview.cineview.features.movie.data.model.cast.CastItem
 import com.github.grupo6cineview.cineview.features.movie.data.model.cast.CastResponse
 import com.github.grupo6cineview.cineview.features.movie.data.model.details.DetailsItem

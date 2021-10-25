@@ -14,7 +14,7 @@ import com.github.grupo6cineview.cineview.databinding.FragmentMovieBinding
 import com.github.grupo6cineview.cineview.extension.rateFormat
 import com.github.grupo6cineview.cineview.extension.setVisible
 import com.github.grupo6cineview.cineview.extension.viewsFormat
-import com.github.grupo6cineview.cineview.extensions.Command
+import com.github.grupo6cineview.cineview.utils.Command
 import com.github.grupo6cineview.cineview.features.movie.data.model.PagerModel
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.CastAdapter
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.DetailsAdapter

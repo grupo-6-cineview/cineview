@@ -17,9 +17,9 @@ import com.github.grupo6cineview.cineview.databinding.FragmentHomeBinding
 import com.github.grupo6cineview.cineview.databinding.MovieItemCarouselBinding
 import com.github.grupo6cineview.cineview.extension.isError
 import com.github.grupo6cineview.cineview.extension.isLoading
-import com.github.grupo6cineview.cineview.extensions.Command
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.BUNDLE_KEY_ID
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Detail.TAG_SHOW_DETAIL_FRAGMENT
+import com.github.grupo6cineview.cineview.utils.Command
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_ID
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.TAG_SHOW_DETAIL_FRAGMENT
 import com.github.grupo6cineview.cineview.features.home.domain.HomeIntent
 import com.github.grupo6cineview.cineview.features.home.presentation.adapter.HomeAdapter
 import com.github.grupo6cineview.cineview.features.home.presentation.viewmodel.HomeViewModel

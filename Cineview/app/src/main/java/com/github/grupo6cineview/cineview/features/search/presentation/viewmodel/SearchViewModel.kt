@@ -5,9 +5,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.github.grupo6cineview.cineview.extensions.BaseViewModel
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.MAX_SIZE
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Paging.PAGE_SIZE
+import com.github.grupo6cineview.cineview.base.BaseViewModel
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Paging.MAX_SIZE
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Paging.PAGE_SIZE
 import com.github.grupo6cineview.cineview.features.search.data.model.SearchResult
 import com.github.grupo6cineview.cineview.features.search.data.paging.SearchPagingSource
 import com.github.grupo6cineview.cineview.features.search.domain.SearchUseCase

@@ -1,8 +1,8 @@
 package com.github.grupo6cineview.cineview.features.movie.data.repository
 
 import com.github.grupo6cineview.cineview.api.ApiService
-import com.github.grupo6cineview.cineview.extensions.BaseRepository
-import com.github.grupo6cineview.cineview.extensions.ResponseApi
+import com.github.grupo6cineview.cineview.base.BaseRepository
+import com.github.grupo6cineview.cineview.utils.ResponseApi
 
 class MovieRepository : BaseRepository() {
 

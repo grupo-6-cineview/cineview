@@ -2,8 +2,8 @@ package com.github.grupo6cineview.cineview.api
 
 
 import com.github.grupo6cineview.cineview.BuildConfig
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.BASE_URL
+import com.github.grupo6cineview.cineview.utils.ConstantsApp
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Api.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

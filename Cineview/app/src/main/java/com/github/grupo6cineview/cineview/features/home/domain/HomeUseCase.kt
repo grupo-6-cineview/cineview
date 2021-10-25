@@ -1,8 +1,7 @@
 package com.github.grupo6cineview.cineview.features.home.domain
 
-import com.github.grupo6cineview.cineview.extensions.ResponseApi
+import com.github.grupo6cineview.cineview.utils.ResponseApi
 import com.github.grupo6cineview.cineview.features.home.data.mapper.HomeMapper
-import com.github.grupo6cineview.cineview.features.home.data.model.HomeResult
 import com.github.grupo6cineview.cineview.features.home.data.model.HomeViewParams
 import com.github.grupo6cineview.cineview.features.home.data.repository.HomeRepository
 

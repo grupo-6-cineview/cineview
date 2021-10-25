@@ -2,7 +2,7 @@ package com.github.grupo6cineview.cineview.base
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
-import com.github.grupo6cineview.cineview.extensions.Command
+import com.github.grupo6cineview.cineview.utils.Command
 
 
 abstract class BaseFragment: Fragment() {

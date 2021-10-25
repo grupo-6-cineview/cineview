@@ -3,13 +3,11 @@ package com.github.grupo6cineview.cineview.features.movie.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.github.grupo6cineview.cineview.extensions.BaseViewModel
-import com.github.grupo6cineview.cineview.features.movie.data.model.cast.CastDetails
+import com.github.grupo6cineview.cineview.base.BaseViewModel
 import com.github.grupo6cineview.cineview.features.movie.data.model.cast.CastItem
 import com.github.grupo6cineview.cineview.features.movie.data.model.details.DetailsResponse
 import com.github.grupo6cineview.cineview.features.movie.data.model.genre.GenresResponse
 import com.github.grupo6cineview.cineview.features.movie.data.model.similar.SimilarItem
-import com.github.grupo6cineview.cineview.features.movie.data.model.similar.SimilarResult
 import kotlinx.coroutines.launch
 
 class MovieViewModel : BaseViewModel() {
