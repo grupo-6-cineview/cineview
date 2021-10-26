@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProvider
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.github.grupo6cineview.cineview.R
@@ -24,12 +23,12 @@ import com.github.grupo6cineview.cineview.features.movie.presentation.viewmodel.
 import com.github.grupo6cineview.cineview.utils.GenresCache
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.fragment_movie.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieFragment : BottomSheetDialogFragment() {
 
     private var binding: FragmentMovieBinding? = null
-    private lateinit var viewModel: MovieViewModel
+    private val viewModel: MovieViewModel by viewModel()
     private val pagerAdapter by lazy { PagerAdapter() }
     private val movieId by lazy {
         arguments?.getInt("MOVIE_ID", 0) ?: 0
@@ -57,7 +56,6 @@ class MovieFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[MovieViewModel::class.java]
         viewModel.command = MutableLiveData()
         setViews()
         setListeners()

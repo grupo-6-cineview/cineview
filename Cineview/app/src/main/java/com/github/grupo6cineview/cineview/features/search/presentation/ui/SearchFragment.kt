@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.grupo6cineview.cineview.R
@@ -24,11 +24,12 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
 
     private var binding: FragmentSearchBinding? = null
-    private lateinit var viewModel: SearchViewModel
+    private val viewModel: SearchViewModel by viewModel()
     private val movieFragment: MovieFragment get() = MovieFragment()
     private var job: Job? = null
     private var lastSearch: String? = null
@@ -55,8 +56,6 @@ class SearchFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSearchBinding.inflate(inflater, container, false)
-
-        viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
 
         setupInputLayout()
         setupRecycler()
@@ -107,7 +106,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.command = MutableLiveData()
         getMoviesBySearch()
         setupState()
         setupListeners()

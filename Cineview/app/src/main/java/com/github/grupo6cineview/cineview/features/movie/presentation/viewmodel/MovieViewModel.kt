@@ -8,12 +8,12 @@ import com.github.grupo6cineview.cineview.features.movie.data.model.cast.CastIte
 import com.github.grupo6cineview.cineview.features.movie.data.model.details.DetailsResponse
 import com.github.grupo6cineview.cineview.features.movie.data.model.genre.GenresResponse
 import com.github.grupo6cineview.cineview.features.movie.data.model.similar.SimilarItem
+import com.github.grupo6cineview.cineview.features.movie.domain.MovieUseCase
 import kotlinx.coroutines.launch
 
-class MovieViewModel : BaseViewModel() {
-
-    private val movieUseCase =
-        com.github.grupo6cineview.cineview.features.movie.domain.MovieUseCase()
+class MovieViewModel(
+    private val movieUseCase: MovieUseCase
+) : BaseViewModel() {
 
     private val _onSuccessGenres: MutableLiveData<GenresResponse> = MutableLiveData()
     val onSuccessGenres: LiveData<GenresResponse> get() = _onSuccessGenres

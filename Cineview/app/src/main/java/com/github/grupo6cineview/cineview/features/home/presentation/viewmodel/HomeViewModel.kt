@@ -18,9 +18,9 @@ import com.github.grupo6cineview.cineview.features.home.domain.HomeUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class HomeViewModel : BaseViewModel() {
-
-    private val homeUseCase = HomeUseCase()
+class HomeViewModel(
+    private val homeUseCase: HomeUseCase
+) : BaseViewModel() {
 
     private val _onSuccessNowPlaying: MutableLiveData<List<HomeViewParams>> = MutableLiveData()
     val onSuccessNowPlaying: LiveData<List<HomeViewParams>> = _onSuccessNowPlaying

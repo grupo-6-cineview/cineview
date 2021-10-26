@@ -8,7 +8,6 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,11 +26,12 @@ import com.github.grupo6cineview.cineview.features.movie.presentation.ui.MovieFr
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModel()
     private val linearLayout: LinearLayoutManager get() = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
     private val adapter: HomeAdapter get() = HomeAdapter { id -> onCLickMovie(id) }
     private val movieFragment: MovieFragment get() = MovieFragment()
@@ -76,12 +76,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        activity?.let {
-            viewModel = ViewModelProvider(it)[HomeViewModel::class.java]
-            viewModel.command = MutableLiveData()
-        }
-
+        viewModel.command = MutableLiveData()
         callMovies()
         setupAllStates()
         setupObservables()

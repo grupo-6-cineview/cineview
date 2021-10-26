@@ -5,10 +5,10 @@ import com.github.grupo6cineview.cineview.features.home.data.mapper.HomeMapper
 import com.github.grupo6cineview.cineview.features.home.data.model.HomeViewParams
 import com.github.grupo6cineview.cineview.features.home.data.repository.HomeRepository
 
-class HomeUseCase {
-
-    private val homeRepository = HomeRepository()
-    private val homeMapper = HomeMapper()
+class HomeUseCase(
+    private val homeRepository: HomeRepository,
+    private val homeMapper: HomeMapper
+) {
 
     suspend fun getNowPlayingMovies(page: Int): ResponseApi =
         homeRepository.getNowPlayingMovies(page).let { respone ->

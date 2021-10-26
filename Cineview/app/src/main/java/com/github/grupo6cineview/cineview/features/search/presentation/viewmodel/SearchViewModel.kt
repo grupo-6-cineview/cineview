@@ -13,9 +13,9 @@ import com.github.grupo6cineview.cineview.features.search.data.paging.SearchPagi
 import com.github.grupo6cineview.cineview.features.search.domain.SearchUseCase
 import kotlinx.coroutines.flow.Flow
 
-class SearchViewModel : BaseViewModel() {
-
-    private val searchUseCase = SearchUseCase()
+class SearchViewModel(
+    private val searchUseCase: SearchUseCase
+) : BaseViewModel() {
 
     fun getMovieBySearch(search: String): Flow<PagingData<SearchResult>> =
         Pager(
