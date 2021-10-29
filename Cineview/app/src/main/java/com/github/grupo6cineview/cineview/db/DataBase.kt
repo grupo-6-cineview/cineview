@@ -4,8 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.github.grupo6cineview.cineview.db.dao.FavoriteDao
 import com.github.grupo6cineview.cineview.db.dao.HomeDao
 import com.github.grupo6cineview.cineview.db.entity.*
+import com.github.grupo6cineview.cineview.db.entity.favorite.CastEntity
+import com.github.grupo6cineview.cineview.db.entity.favorite.FavoriteEntity
+import com.github.grupo6cineview.cineview.db.entity.favorite.SimilarEntity
 
 @Database(
     entities = [
@@ -13,13 +17,17 @@ import com.github.grupo6cineview.cineview.db.entity.*
         NowPlayingEntity::class,
         TopRatedEntity::class,
         PopularEntity::class,
-        TrendingEntity::class
+        TrendingEntity::class,
+        FavoriteEntity::class,
+        CastEntity::class,
+        SimilarEntity::class
    ],
     version = 1
 )
 abstract class DataBase : RoomDatabase() {
 
     abstract fun homeDao(): HomeDao
+    abstract fun favoriteDao(): FavoriteDao
 
     companion object {
         @Volatile

@@ -2,10 +2,13 @@ package com.github.grupo6cineview.cineview.features.home.data.repository
 
 import com.github.grupo6cineview.cineview.api.ApiService
 import com.github.grupo6cineview.cineview.base.BaseRepository
+import com.github.grupo6cineview.cineview.db.dao.HomeDao
 import com.github.grupo6cineview.cineview.utils.ResponseApi
 
 
-class HomeRepository : BaseRepository() {
+class HomeRepository(
+    private val homeDao: HomeDao
+) : BaseRepository() {
 
     suspend fun getNowPlayingMovies(page: Int): ResponseApi {
         return safeApiCall {

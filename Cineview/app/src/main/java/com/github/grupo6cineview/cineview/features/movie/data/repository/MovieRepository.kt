@@ -2,9 +2,14 @@ package com.github.grupo6cineview.cineview.features.movie.data.repository
 
 import com.github.grupo6cineview.cineview.api.ApiService
 import com.github.grupo6cineview.cineview.base.BaseRepository
+import com.github.grupo6cineview.cineview.db.dao.FavoriteDao
+import com.github.grupo6cineview.cineview.db.dao.HomeDao
 import com.github.grupo6cineview.cineview.utils.ResponseApi
 
-class MovieRepository : BaseRepository() {
+class MovieRepository(
+    private val favoriteDao: FavoriteDao,
+    private val homeDao: HomeDao
+) : BaseRepository() {
 
     suspend fun getAllGenres(): ResponseApi =
         safeApiCall {
