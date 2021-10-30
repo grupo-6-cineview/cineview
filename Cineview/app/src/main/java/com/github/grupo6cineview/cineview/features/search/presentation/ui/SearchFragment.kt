@@ -30,7 +30,7 @@ class SearchFragment : Fragment() {
 
     private var binding: FragmentSearchBinding? = null
     private val viewModel: SearchViewModel by viewModel()
-    private val movieFragment: MovieFragment get() = MovieFragment()
+    private val movieFragment: MovieFragment get() = MovieFragment { id -> onClickMovie(id) }
     private var job: Job? = null
     private var lastSearch: String? = null
 

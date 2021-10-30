@@ -3,6 +3,7 @@ package com.github.grupo6cineview.cineview.features.movie.data.model.similar
 import androidx.recyclerview.widget.DiffUtil
 
 data class SimilarItem(
+    val similarId: Int,
     val poster: String?,
     val title: String,
     val releaseYear: String,
@@ -14,12 +15,12 @@ data class SimilarItem(
             override fun areItemsTheSame(
                 oldItem: SimilarItem,
                 newItem: SimilarItem
-            ): Boolean = oldItem.title == newItem.title
+            ): Boolean = oldItem.similarId == newItem.similarId
 
             override fun areContentsTheSame(
                 oldItem: SimilarItem,
                 newItem: SimilarItem
-            ): Boolean = oldItem.releaseYear == newItem.releaseYear
+            ): Boolean = oldItem.title == newItem.title
         }
     }
 }

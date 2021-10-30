@@ -34,7 +34,8 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModel()
     private val linearLayout: LinearLayoutManager get() = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
     private val adapter: HomeAdapter get() = HomeAdapter { id -> onCLickMovie(id) }
-    private val movieFragment: MovieFragment get() = MovieFragment()
+    private val movieFragment: MovieFragment get() = MovieFragment { id -> onCLickMovie(id) }
+
     private fun onCLickMovie(id: Int) {
         Bundle().let { bundle ->
             bundle.putInt(BUNDLE_KEY_ID, id)

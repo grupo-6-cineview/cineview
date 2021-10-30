@@ -13,26 +13,30 @@ import com.github.grupo6cineview.cineview.databinding.FragmentMovieBinding
 import com.github.grupo6cineview.cineview.extension.rateFormat
 import com.github.grupo6cineview.cineview.extension.setVisible
 import com.github.grupo6cineview.cineview.extension.viewsFormat
-import com.github.grupo6cineview.cineview.utils.Command
 import com.github.grupo6cineview.cineview.features.movie.data.model.PagerModel
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.CastAdapter
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.DetailsAdapter
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.PagerAdapter
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.SimilarAdapter
 import com.github.grupo6cineview.cineview.features.movie.presentation.viewmodel.MovieViewModel
+import com.github.grupo6cineview.cineview.utils.Command
 import com.github.grupo6cineview.cineview.utils.GenresCache
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MovieFragment : BottomSheetDialogFragment() {
+class MovieFragment(
+    onClick: (id: Int) -> Unit
+) : BottomSheetDialogFragment() {
 
     private var binding: FragmentMovieBinding? = null
     private val viewModel: MovieViewModel by viewModel()
     private val pagerAdapter by lazy { PagerAdapter() }
+
     private val movieId by lazy {
         arguments?.getInt("MOVIE_ID", 0) ?: 0
     }
+
     private val pagerModelList: List<PagerModel> = listOf(
         PagerModel(
             id = 0,
@@ -41,7 +45,7 @@ class MovieFragment : BottomSheetDialogFragment() {
         ),
         PagerModel(
             id = 1,
-            similarAdapter = SimilarAdapter()
+            similarAdapter = SimilarAdapter(onClick)
         )
     )
 

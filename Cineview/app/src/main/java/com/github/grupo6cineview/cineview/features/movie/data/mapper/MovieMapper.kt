@@ -149,6 +149,7 @@ class MovieMapper {
                             with(similarResult) {
                                 similarList.add(
                                     SimilarItem(
+                                        similarId = id,
                                         poster = posterPath?.getFullImageUrl(200),
                                         title = title,
                                         releaseYear = releaseDate.getYearFromDate(),
