@@ -21,6 +21,7 @@ import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.Pa
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.SimilarAdapter
 import com.github.grupo6cineview.cineview.features.movie.presentation.viewmodel.MovieViewModel
 import com.github.grupo6cineview.cineview.utils.Command
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_HOME_INTENT
 import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_LOAD_DATABASE
 import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_MOVIE_ID
 import com.github.grupo6cineview.cineview.utils.GenresCache
@@ -45,6 +46,10 @@ class MovieFragment(
 
     private val loadFromDatabase by lazy {
         arguments?.getBoolean(BUNDLE_KEY_LOAD_DATABASE, false) ?: false
+    }
+
+    private val homeIntent by lazy {
+        arguments?.getString(BUNDLE_KEY_HOME_INTENT, "NowPlaying") ?: "NowPlaying"
     }
 
     private val pagerModelList: List<PagerModel> = listOf(
@@ -91,10 +96,8 @@ class MovieFragment(
 
     private fun setListeners() = binding?.run {
         errorLayout.btRefresh.setOnClickListener {
-            errorLayout.root.setVisible(visible = false)
-            vpMovieFragMoreInfo.setVisible(visible = true, useInvisible = true)
-            btMovieFragFavorite.setVisible(visible = true, useInvisible = true)
-            getAllDetails()
+            setError(visible = false)
+            verifyFavorite()
         }
 
         errorLayoutDatabase.btRefresh.setOnClickListener { getAllDetails() }
@@ -136,6 +139,12 @@ class MovieFragment(
         viewModel.getFavoriteWithSimilars(movieId)
     }
 
+    private fun loadMovieFromDatabase() =
+        viewModel.getMovieFromDatabase(
+            movieId = movieId,
+            intent = homeIntent
+        )
+
     private fun getAllDetails() {
         callDetails()
         callCast()
@@ -170,9 +179,7 @@ class MovieFragment(
                     }
 
                     is Command.Error -> binding?.run {
-                        errorLayout.root.setVisible(visible = true)
-                        vpMovieFragMoreInfo.setVisible(visible = false, useInvisible = true)
-                        btMovieFragFavorite.setVisible(visible = false, useInvisible = true)
+                        setError(visible = true)
                     }
                 }
             }
@@ -185,9 +192,10 @@ class MovieFragment(
                         MIN_FRAME_LIKE_ANIM
 
                 if (loadFromDatabase) {
-                    if (isFavorite) {
+                    if (isFavorite)
                         getFavoriteFromDb()
-                    }
+                    else
+                        loadMovieFromDatabase()
                 } else {
                     if (GenresCache.genresIsNull) {
                         viewModel.getAllGenres()
@@ -237,7 +245,31 @@ class MovieFragment(
                 pagerModelList[1].similarList = similarViewParams.similarMovies
                 submitListAdapter()
             }
+
+            onSuccedLoadFromDatabase.observe(viewLifecycleOwner) { homeViewParams ->
+                binding?.run {
+                    homeViewParams?.run {
+                        Glide.with(this@MovieFragment)
+                            .load(backdropPath)
+                            .placeholder(R.drawable.no_backdrop_path)
+                            .into(ivMovieFragBackdrop)
+
+                        tvMovieFragTitle.text = title
+                        tvMovieFragOverview.text = overview
+                        tvMovieFragStars.text = voteAverage
+                        tvMovieFragViews.text = voteCount
+                    } ?: kotlin.run {
+                        setError(visible = true)
+                    }
+                }
+            }
         }
+    }
+
+    private fun setError(visible: Boolean) = binding?.run {
+        errorLayout.root.setVisible(visible = visible)
+        vpMovieFragMoreInfo.setVisible(visible = !visible, useInvisible = true)
+        btMovieFragFavorite.setVisible(visible = !visible, useInvisible = true)
     }
 
     private fun submitListAdapter() {

@@ -48,5 +48,7 @@ class HomeUseCase(
                     homeMapper.filterMoviesToHome(response)
                 }
             }
+
+            else -> null
         }
 }

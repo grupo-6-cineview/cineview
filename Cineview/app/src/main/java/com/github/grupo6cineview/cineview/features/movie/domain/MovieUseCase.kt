@@ -1,5 +1,7 @@
 package com.github.grupo6cineview.cineview.features.movie.domain
 
+import com.github.grupo6cineview.cineview.features.home.data.model.HomeViewParams
+import com.github.grupo6cineview.cineview.features.home.domain.HomeIntent
 import com.github.grupo6cineview.cineview.features.movie.data.mapper.MovieMapper
 import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.CastViewParams
 import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.DetailsViewParams
@@ -38,4 +40,22 @@ class MovieUseCase(
     suspend fun deleteFavoriteCasts(casts: CastViewParams) = movieRepositoy.deleteFavoriteCasts(casts.toCastEntityList())
 
     suspend fun deleteFavoriteSimilars(similars: SimilarViewParams) = movieRepositoy.deleteFavoriteSimilars(similars.toSimilarEntityList())
+
+    suspend fun getMovieFromDatabase(
+        movieId: Int,
+        intent: String
+    ): HomeViewParams? =
+        when (intent) {
+            HomeIntent.Carousel.name -> movieRepositoy.getCarouselMovie(movieId)?.toHomeViewParams()
+
+            HomeIntent.NowPlaying.name -> movieRepositoy.getNowPlayingMovie(movieId)?.toHomeViewParams()
+
+            HomeIntent.Popular.name -> movieRepositoy.getPopularMovie(movieId)?.toHomeViewParams()
+
+            HomeIntent.TopRated.name -> movieRepositoy.getTopRatedMovie(movieId)?.toHomeViewParams()
+
+            HomeIntent.Trending.name -> movieRepositoy.getTrendingMovie(movieId)?.toHomeViewParams()
+
+            else -> null
+        }
 }

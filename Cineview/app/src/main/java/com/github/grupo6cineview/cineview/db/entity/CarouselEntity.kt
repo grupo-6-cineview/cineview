@@ -3,6 +3,7 @@ package com.github.grupo6cineview.cineview.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.github.grupo6cineview.cineview.features.home.data.model.HomeViewParams
 
 @Entity(tableName = "carousel_movies")
 data class CarouselEntity(
@@ -15,7 +16,19 @@ data class CarouselEntity(
     val overview: String,
     val title: String,
     @ColumnInfo(name = "vote_count")
-    val voteCount: Int,
+    val voteCount: String,
     @ColumnInfo(name = "vote_average")
-    val voteAverage: Double
-)
+    val voteAverage: String
+) {
+
+    fun toHomeViewParams() =
+        HomeViewParams(
+            id = id,
+            posterPath = posterPath,
+            backdropPath = backdropPath,
+            overview = overview,
+            title = title,
+            voteCount = voteCount,
+            voteAverage = voteAverage
+        )
+}

@@ -6,7 +6,6 @@ import com.github.grupo6cineview.cineview.db.dao.FavoriteDao
 import com.github.grupo6cineview.cineview.db.dao.HomeDao
 import com.github.grupo6cineview.cineview.db.entity.favorite.CastEntity
 import com.github.grupo6cineview.cineview.db.entity.favorite.FavoriteEntity
-import com.github.grupo6cineview.cineview.db.entity.favorite.FavoriteWithSimilar
 import com.github.grupo6cineview.cineview.db.entity.favorite.SimilarEntity
 import com.github.grupo6cineview.cineview.utils.ResponseApi
 
@@ -56,4 +55,17 @@ class MovieRepository(
     suspend fun deleteFavoriteCasts(casts: List<CastEntity>) = favoriteDao.deleteCasts(casts)
 
     suspend fun deleteFavoriteSimilars(similars: List<SimilarEntity>) = favoriteDao.deleteSimilars(similars)
+
+    /**
+     * Room - Home
+     */
+    suspend fun getCarouselMovie(movieId: Int) = homeDao.getCarouselMovie(movieId)
+
+    suspend fun getNowPlayingMovie(movieId: Int) = homeDao.getNowPlayingMovie(movieId)
+
+    suspend fun getTopRatedMovie(movieId: Int) = homeDao.getTopRatedMovie(movieId)
+
+    suspend fun getPopularMovie(movieId: Int) = homeDao.getPopularMovie(movieId)
+
+    suspend fun getTrendingMovie(movieId: Int) = homeDao.getTrendingMovie(movieId)
 }

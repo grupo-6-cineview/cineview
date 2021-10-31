@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.github.grupo6cineview.cineview.base.BaseViewModel
+import com.github.grupo6cineview.cineview.features.home.data.model.HomeViewParams
 import com.github.grupo6cineview.cineview.features.movie.data.model.genre.GenresResponse
 import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.CastViewParams
 import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.DetailsViewParams
@@ -29,6 +30,9 @@ class MovieViewModel(
 
     private val _onVerifyFavorite: MutableLiveData<Boolean> = MutableLiveData()
     val onVerifyFavorite: LiveData<Boolean> get() = _onVerifyFavorite
+
+    private val _onSuccedLoadFromDatabase: MutableLiveData<HomeViewParams?> = MutableLiveData()
+    val onSuccedLoadFromDatabase: LiveData<HomeViewParams?> get() = _onSuccedLoadFromDatabase
 
     fun getAllGenres() {
         viewModelScope.launch {
@@ -118,6 +122,20 @@ class MovieViewModel(
             movieUseCase.deleteFavoriteDetails(movieDetails)
             movieUseCase.deleteFavoriteCasts(movieCast)
             movieUseCase.deleteFavoriteSimilars(movieSimilar)
+        }
+    }
+
+    fun getMovieFromDatabase(
+        movieId: Int,
+        intent: String
+    ) {
+        viewModelScope.launch {
+            movieUseCase.getMovieFromDatabase(
+                movieId = movieId,
+                intent = intent
+            ).let { homeViewParams ->
+                _onSuccedLoadFromDatabase.postValue(homeViewParams)
+            }
         }
     }
 }
