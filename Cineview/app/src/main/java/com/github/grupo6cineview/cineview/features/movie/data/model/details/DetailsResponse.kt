@@ -22,6 +22,5 @@ data class DetailsResponse(
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("vote_count")
-    val voteCount: Int,
-    var detailsList: List<DetailsItem> = listOf()
+    val voteCount: Int
 )

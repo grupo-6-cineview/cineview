@@ -28,7 +28,7 @@ open class BaseViewModel : ViewModel() {
                 onError?.let {
                     withContext(Dispatchers.Main) { onError.invoke() }
                 } ?: run {
-                    command.postValue(Command.Error(response.message))
+                    command.value = Command.Error(response.message)
                 }
             }
         }

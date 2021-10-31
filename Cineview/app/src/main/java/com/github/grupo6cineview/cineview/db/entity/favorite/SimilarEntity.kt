@@ -3,6 +3,7 @@ package com.github.grupo6cineview.cineview.db.entity.favorite
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.github.grupo6cineview.cineview.features.movie.data.model.similar.SimilarItem
 
 @Entity(tableName = "similar_movies")
 data class SimilarEntity(
@@ -16,4 +17,15 @@ data class SimilarEntity(
     val genres: String,
     @ColumnInfo(name = "movie_related_id")
     val movieRelatedId: Int
-)
+) {
+
+    fun toSimilarItem() =
+        SimilarItem(
+            similarId = similarId,
+            poster = poster,
+            title = title,
+            releaseYear = releaseYear,
+            genres = genres,
+            movieRelatedId = movieRelatedId
+        )
+}

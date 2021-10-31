@@ -8,13 +8,13 @@ import com.github.grupo6cineview.cineview.db.entity.favorite.*
 interface FavoriteDao {
 
     @Insert(onConflict = REPLACE)
-    suspend fun insertFavorites(vararg favorites: FavoriteEntity)
+    suspend fun insertFavorite(favorites: FavoriteEntity)
 
     @Insert(onConflict = REPLACE)
-    suspend fun insertCasts(vararg casts: CastEntity)
+    suspend fun insertCasts(casts: List<CastEntity>)
 
     @Insert(onConflict = REPLACE)
-    suspend fun insertSimilars(vararg similars: SimilarEntity)
+    suspend fun insertSimilars(similars: List<SimilarEntity>)
 
     @Transaction
     @Query(value = "SELECT * FROM favorite_movies WHERE movie_id = :movieId")
@@ -25,11 +25,11 @@ interface FavoriteDao {
     suspend fun getFavoriteWithSimilars(movieId: Int) : FavoriteWithSimilar?
 
     @Delete
-    suspend fun deleteFavorites(vararg favorites: FavoriteEntity)
+    suspend fun deleteFavorites(favorites: FavoriteEntity)
 
     @Delete
-    suspend fun deleteCasts(vararg casts: CastEntity)
+    suspend fun deleteCasts(casts: List<CastEntity>)
 
     @Delete
-    suspend fun deleteSimilars(vararg similars: SimilarEntity)
+    suspend fun deleteSimilars(similars: List<SimilarEntity>)
 }

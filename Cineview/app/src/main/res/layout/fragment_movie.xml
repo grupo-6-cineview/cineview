@@ -139,13 +139,11 @@
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mais Informações" />
+                android:layout_height="wrap_content" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Filmes Relacionados" />
+                android:layout_height="wrap_content" />
 
         </com.google.android.material.tabs.TabLayout>
 

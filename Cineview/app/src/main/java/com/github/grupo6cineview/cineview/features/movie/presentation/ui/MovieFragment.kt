@@ -10,16 +10,19 @@ import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentMovieBinding
-import com.github.grupo6cineview.cineview.extension.rateFormat
 import com.github.grupo6cineview.cineview.extension.setVisible
-import com.github.grupo6cineview.cineview.extension.viewsFormat
 import com.github.grupo6cineview.cineview.features.movie.data.model.PagerModel
+import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.CastViewParams
+import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.DetailsViewParams
+import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.SimilarViewParams
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.CastAdapter
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.DetailsAdapter
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.PagerAdapter
 import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.SimilarAdapter
 import com.github.grupo6cineview.cineview.features.movie.presentation.viewmodel.MovieViewModel
 import com.github.grupo6cineview.cineview.utils.Command
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_LOAD_DATABASE
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_MOVIE_ID
 import com.github.grupo6cineview.cineview.utils.GenresCache
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
@@ -32,9 +35,16 @@ class MovieFragment(
     private var binding: FragmentMovieBinding? = null
     private val viewModel: MovieViewModel by viewModel()
     private val pagerAdapter by lazy { PagerAdapter() }
+    private lateinit var movieDetails: DetailsViewParams
+    private lateinit var movieCast: CastViewParams
+    private lateinit var movieSimilar: SimilarViewParams
 
     private val movieId by lazy {
-        arguments?.getInt("MOVIE_ID", 0) ?: 0
+        arguments?.getInt(BUNDLE_KEY_MOVIE_ID, 0) ?: 0
+    }
+
+    private val loadFromDatabase by lazy {
+        arguments?.getBoolean(BUNDLE_KEY_LOAD_DATABASE, false) ?: false
     }
 
     private val pagerModelList: List<PagerModel> = listOf(
@@ -64,11 +74,8 @@ class MovieFragment(
         setViews()
         setListeners()
         setupViewPager()
-        if (GenresCache.genresIsNull) {
-            viewModel.getAllGenres()
-        }
-        getAllDetails()
         setupObservables()
+        verifyFavorite()
     }
 
     private fun setViews() =
@@ -83,7 +90,12 @@ class MovieFragment(
         }
 
     private fun setListeners() = binding?.run {
-        errorLayout.btRefresh.setOnClickListener { getAllDetails() }
+        errorLayout.btRefresh.setOnClickListener {
+            errorLayout.root.setVisible(visible = false)
+            vpMovieFragMoreInfo.setVisible(visible = true, useInvisible = true)
+            btMovieFragFavorite.setVisible(visible = true, useInvisible = true)
+            getAllDetails()
+        }
 
         errorLayoutDatabase.btRefresh.setOnClickListener { getAllDetails() }
 
@@ -92,12 +104,36 @@ class MovieFragment(
                 if (frame == MAX_FRAME_LIKE_ANIM) {
                     speed = -3f
                     playAnimation()
+
+                    if (verifyInit())
+                        viewModel.deleteFavorite(
+                            movieDetails,
+                            movieCast,
+                            movieSimilar
+                        )
                 } else {
                     speed = 3f
                     playAnimation()
+
+                    if (verifyInit())
+                        viewModel.saveFavorite(
+                            movieDetails,
+                            movieCast,
+                            movieSimilar
+                        )
                 }
             }
         }
+    }
+
+    private fun verifyInit() =
+        ::movieDetails.isInitialized && ::movieCast.isInitialized && ::movieSimilar.isInitialized
+
+    private fun verifyFavorite() = viewModel.verifyFavorite(movieId)
+
+    private fun getFavoriteFromDb() {
+        viewModel.getFavoriteWithCasts(movieId)
+        viewModel.getFavoriteWithSimilars(movieId)
     }
 
     private fun getAllDetails() {
@@ -130,13 +166,33 @@ class MovieFragment(
             command.observe(viewLifecycleOwner) { command ->
                 when (command) {
                     is Command.Loading -> binding?.run {
-                        errorLayout.root.setVisible(visible = false)
                         loadingLayout.root.setVisible(visible = command.value)
                     }
 
                     is Command.Error -> binding?.run {
                         errorLayout.root.setVisible(visible = true)
+                        vpMovieFragMoreInfo.setVisible(visible = false, useInvisible = true)
+                        btMovieFragFavorite.setVisible(visible = false, useInvisible = true)
                     }
+                }
+            }
+
+            onVerifyFavorite.observe(viewLifecycleOwner) { isFavorite ->
+                binding?.btMovieFragFavorite?.frame =
+                    if (isFavorite)
+                        MAX_FRAME_LIKE_ANIM
+                    else
+                        MIN_FRAME_LIKE_ANIM
+
+                if (loadFromDatabase) {
+                    if (isFavorite) {
+                        getFavoriteFromDb()
+                    }
+                } else {
+                    if (GenresCache.genresIsNull) {
+                        viewModel.getAllGenres()
+                    }
+                    getAllDetails()
                 }
             }
 
@@ -148,30 +204,37 @@ class MovieFragment(
                 }
             }
 
-            onSuccessDetails.observe(viewLifecycleOwner) { detailResponse ->
+            onSuccessDetails.observe(viewLifecycleOwner) { detailsViewParams ->
                 binding?.run {
-                    with(detailResponse) {
+                    movieDetails = detailsViewParams
+
+                    with(detailsViewParams) {
                         Glide.with(this@MovieFragment)
-                            .load(backdropPath)
+                            .load(backdrop)
+                            .placeholder(R.drawable.no_backdrop_path)
                             .into(ivMovieFragBackdrop)
 
                         tvMovieFragTitle.text = title
                         tvMovieFragOverview.text = overview
-                        tvMovieFragStars.text = voteAverage.rateFormat()
-                        tvMovieFragViews.text = voteCount.viewsFormat()
+                        tvMovieFragStars.text = voteAverage
+                        tvMovieFragViews.text = voteCount
 
-                        pagerModelList[0].detailsList = detailResponse.detailsList
+                        pagerModelList[0].detailsList = detailsList
                     }
                 }
             }
 
-            onSuccessCast.observe(viewLifecycleOwner) { castList ->
-                pagerModelList[0].castList = castList
+            onSuccessCast.observe(viewLifecycleOwner) { castViewParams ->
+                movieCast = castViewParams
+
+                pagerModelList[0].castList = castViewParams.castItems
                 submitListAdapter()
             }
 
-            onSuccessSimilar.observe(viewLifecycleOwner) { similarList ->
-                pagerModelList[1].similarList = similarList
+            onSuccessSimilar.observe(viewLifecycleOwner) { similarViewParams ->
+                movieSimilar = similarViewParams
+
+                pagerModelList[1].similarList = similarViewParams.similarMovies
                 submitListAdapter()
             }
         }
@@ -205,5 +268,6 @@ class MovieFragment(
 
     companion object {
         private const val MAX_FRAME_LIKE_ANIM = 25
+        private const val MIN_FRAME_LIKE_ANIM = 0
     }
 }

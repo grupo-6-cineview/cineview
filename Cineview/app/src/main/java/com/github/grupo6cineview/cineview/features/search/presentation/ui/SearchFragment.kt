@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentSearchBinding
 import com.github.grupo6cineview.cineview.extension.*
-import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_ID
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_MOVIE_ID
 import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.TAG_SHOW_DETAIL_FRAGMENT
 import com.github.grupo6cineview.cineview.features.movie.presentation.ui.MovieFragment
 import com.github.grupo6cineview.cineview.features.search.presentation.adapter.SearchAdapter
@@ -41,7 +41,7 @@ class SearchFragment : Fragment() {
     private fun onClickMovie(id: Int) {
         with(movieFragment) {
             Bundle().run {
-                putInt(BUNDLE_KEY_ID, id)
+                putInt(BUNDLE_KEY_MOVIE_ID, id)
 
                 arguments = this
             }

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.SimilarMovieItemBinding
 import com.github.grupo6cineview.cineview.features.movie.data.model.similar.SimilarItem
 import com.github.grupo6cineview.cineview.features.movie.data.model.similar.SimilarItem.Companion.DIFF_SIMILAR
@@ -43,6 +44,7 @@ class SimilarAdapter(
                     Glide.with(itemView.context)
                         .load(poster)
                         .centerCrop()
+                        .placeholder(R.drawable.no_poster_path)
                         .into(ivSimilarItemPoster)
 
                     tvSimilarItemTitle.text = title

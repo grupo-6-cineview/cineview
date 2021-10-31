@@ -15,7 +15,7 @@ object GenresCache {
             if (i < 3) {
                 genresCached?.find { it.id == id }?.let { genre ->
                     genres += genre.name
-                    if (i != 2) genres += ", "
+                    if (i < 2 && id != ids.last()) genres += ", "
                 } ?: kotlin.run { genres = "Não Informado" }
             }
         }

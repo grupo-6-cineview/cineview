@@ -23,7 +23,8 @@ class ConstantsApp {
     }
 
     object Detail {
-        const val BUNDLE_KEY_ID = "MOVIE_ID"
+        const val BUNDLE_KEY_MOVIE_ID = "MOVIE_ID"
+        const val BUNDLE_KEY_LOAD_DATABASE = "LOAD_FROM_DATABASE"
         const val TAG_SHOW_DETAIL_FRAGMENT = "DETAIL_FRAGMENT"
     }
 }

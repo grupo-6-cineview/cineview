@@ -1,102 +1,109 @@
 package com.github.grupo6cineview.cineview.features.movie.data.mapper
 
 import com.github.grupo6cineview.cineview.R
-import com.github.grupo6cineview.cineview.extension.moneyFormat
-import com.github.grupo6cineview.cineview.extension.runtimeFormat
+import com.github.grupo6cineview.cineview.db.entity.favorite.FavoriteEntity
+import com.github.grupo6cineview.cineview.extension.*
 import com.github.grupo6cineview.cineview.utils.ResponseApi
-import com.github.grupo6cineview.cineview.extension.getFullImageUrl
-import com.github.grupo6cineview.cineview.extension.getYearFromDate
-import com.github.grupo6cineview.cineview.extension.toDateBr
 import com.github.grupo6cineview.cineview.features.movie.data.model.cast.CastItem
 import com.github.grupo6cineview.cineview.features.movie.data.model.cast.CastResponse
 import com.github.grupo6cineview.cineview.features.movie.data.model.details.DetailsItem
 import com.github.grupo6cineview.cineview.features.movie.data.model.details.DetailsResponse
 import com.github.grupo6cineview.cineview.features.movie.data.model.similar.SimilarItem
 import com.github.grupo6cineview.cineview.features.movie.data.model.similar.SimilarResponse
+import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.CastViewParams
+import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.DetailsViewParams
+import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.SimilarViewParams
 import com.github.grupo6cineview.cineview.utils.GenresCache
 
 class MovieMapper {
 
-    private val moreInfoList = listOf(
-        "Título Original",
-        "Data de Lançamento",
-        "Gêneros",
-        "Duração",
-        "Despesas",
-        "Receita",
-        "Produtoras"
-    )
+    companion object {
+        val moreInfoList = listOf(
+            "Título Original",
+            "Data de Lançamento",
+            "Gêneros",
+            "Duração",
+            "Despesas",
+            "Receita",
+            "Produtoras"
+        )
+    }
 
     fun filterMovieDetails(response: ResponseApi): ResponseApi =
         when (response) {
             is ResponseApi.Success -> {
-                (response.data as? DetailsResponse)?.apply {
-                    backdropPath = backdropPath?.getFullImageUrl(500)
-                    releaseDate = releaseDate.toDateBr()
-
-                    var title = ""
-                    var subtitle = ""
+                (response.data as? DetailsResponse)?.run {
+                    var titleItem = ""
+                    var subtitleItem = ""
                     val list = mutableListOf<DetailsItem>()
 
                     moreInfoList.forEachIndexed { index, string ->
                         when (index) {
                             0 -> {
-                                title = string
-                                subtitle = originalTitle
+                                titleItem = string
+                                subtitleItem = originalTitle
                             }
 
                             1 -> {
-                                title = string
-                                subtitle = releaseDate.toDateBr()
+                                titleItem = string
+                                subtitleItem = releaseDate.toDateBr()
                             }
 
                             2 -> {
-                                title = string
-                                subtitle = ""
+                                titleItem = string
+                                subtitleItem = ""
 
                                 genres.forEach { genre ->
-                                    subtitle += genre.name
-                                    if (genre != genres.last()) subtitle += ", "
+                                    subtitleItem += genre.name
+                                    if (genre != genres.last()) subtitleItem += ", "
                                 }
                             }
 
                             3 -> {
-                                title = string
-                                subtitle = runtime?.runtimeFormat() ?: "-"
+                                titleItem = string
+                                subtitleItem = runtime?.runtimeFormat() ?: "-"
                             }
 
                             4 -> {
-                                title = string
-                                subtitle = budget.moneyFormat()
+                                titleItem = string
+                                subtitleItem = budget.moneyFormat()
                             }
 
                             5 -> {
-                                title = string
-                                subtitle = revenue.moneyFormat()
+                                titleItem = string
+                                subtitleItem = revenue.moneyFormat()
                             }
 
                             6 -> {
-                                title = string
-                                subtitle = ""
+                                titleItem = string
+                                subtitleItem = ""
 
                                 productionCompanies.forEach { company ->
-                                    subtitle += company.name
-                                    if (company != productionCompanies.last()) subtitle += ", "
+                                    subtitleItem += company.name
+                                    if (company != productionCompanies.last()) subtitleItem += ", "
                                 }
                             }
                         }
 
                         list.add(
                             DetailsItem(
-                                title,
-                                subtitle
+                                titleItem,
+                                subtitleItem
                             )
                         )
                     }
 
-                    detailsList = list
-                }?.let {  detailsResponse ->
-                    ResponseApi.Success(detailsResponse)
+                    DetailsViewParams(
+                        movieId = id,
+                        backdrop = backdropPath?.getFullImageUrl(500) ?: "",
+                        title = title,
+                        overview = overview ?: "",
+                        voteAverage = voteAverage.rateFormat(),
+                        voteCount = voteCount.viewsFormat(),
+                        detailsList = list
+                    )
+                }?.let {  detailsViewParams ->
+                    ResponseApi.Success(detailsViewParams)
                 } ?: ResponseApi.Error(R.string.error_default)
             }
 
@@ -106,25 +113,31 @@ class MovieMapper {
     fun filterCastList(response: ResponseApi): ResponseApi =
         when (response) {
             is ResponseApi.Success -> {
-                (response.data as? CastResponse)?.cast?.let { castList ->
-                    castList.filter { cast ->
-                        cast.profilePath != null
-                    }.let { filteredList ->
-                        val newList = mutableListOf<CastItem>()
+                (response.data as? CastResponse)?.let { castResponse ->
+                    castResponse.cast.let { castList ->
+                        castList.filter { cast ->
+                            cast.profilePath != null
+                        }.let { filteredList ->
+                            val newList = mutableListOf<CastItem>()
 
-                        filteredList.forEach { castDetails ->
-                            with(castDetails) {
-                                newList.add(
-                                    CastItem(
-                                        poster = profilePath?.getFullImageUrl(200),
-                                        name = originalName,
-                                        character = character
+                            filteredList.forEach { castDetails ->
+                                with(castDetails) {
+                                    newList.add(
+                                        CastItem(
+                                            castId = id,
+                                            poster = profilePath?.getFullImageUrl(200),
+                                            name = originalName,
+                                            character = character,
+                                            movieRelatedId = castResponse.movieId
+                                        )
                                     )
-                                )
+                                }
                             }
-                        }
 
-                        ResponseApi.Success(newList)
+                            ResponseApi.Success(
+                                CastViewParams(castItems = newList)
+                            )
+                        }
                     }
                 } ?: ResponseApi.Error(R.string.error_default)
             }
@@ -132,7 +145,10 @@ class MovieMapper {
             is ResponseApi.Error -> response
         }
 
-    fun filterSimilarMovies(response: ResponseApi): ResponseApi =
+    fun filterSimilarMovies(
+        response: ResponseApi,
+        movieId: Int
+    ): ResponseApi =
         when (response) {
             is ResponseApi.Success -> {
                 (response.data as? SimilarResponse)?.results?.let { results ->
@@ -153,13 +169,16 @@ class MovieMapper {
                                         poster = posterPath?.getFullImageUrl(200),
                                         title = title,
                                         releaseYear = releaseDate.getYearFromDate(),
-                                        genres = GenresCache.getGenresByMovie(genreIds)
+                                        genres = GenresCache.getGenresByMovie(genreIds),
+                                        movieRelatedId = movieId
                                     )
                                 )
                             }
                         }
 
-                        ResponseApi.Success(similarList)
+                        ResponseApi.Success(
+                            SimilarViewParams(similarMovies = similarList)
+                        )
                     }
                 } ?: ResponseApi.Error(R.string.error_default)
             }

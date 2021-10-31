@@ -56,7 +56,6 @@
         android:layout_marginStart="@dimen/margin_default"
         android:textColor="@android:color/darker_gray"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/tvSimilarItemReleaseYear"
         app:layout_constraintEnd_toEndOf="@id/tvSimilarItemTitle"
         app:layout_constraintStart_toEndOf="@id/tvSimilarItemReleaseYear"
         app:layout_constraintTop_toTopOf="@id/tvSimilarItemReleaseYear"
