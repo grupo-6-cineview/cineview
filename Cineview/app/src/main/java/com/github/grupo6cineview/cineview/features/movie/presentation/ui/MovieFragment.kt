@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import com.airbnb.lottie.LottieAnimationView
@@ -26,11 +27,13 @@ import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_H
 import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_MOVIE_ID
 import com.github.grupo6cineview.cineview.utils.GenresCache
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieFragment(
-    onClick: (id: Int) -> Unit
+    onClick: (id: Int) -> Unit,
+    private val notifyFavoriteDelete: (() -> Unit)? = null
 ) : BottomSheetDialogFragment() {
 
     private var binding: FragmentMovieBinding? = null
@@ -124,13 +127,14 @@ class MovieFragment(
                     speed = -3f
                     playAnimation()
 
-                    context?.run {
-                        if (verifyInit() && appIsConnected())
-                            viewModel.deleteFavorite(
-                                movieDetails,
-                                movieCast,
-                                movieSimilar
-                            )
+                    if (verifyInit()) {
+                        viewModel.deleteFavorite(
+                            movieDetails,
+                            movieCast,
+                            movieSimilar
+                        )
+
+                        notifyFavoriteDelete?.invoke()
                     }
                 } else {
                     speed = 3f
@@ -143,6 +147,17 @@ class MovieFragment(
                                 movieCast,
                                 movieSimilar
                             )
+                        else {
+                            // todo extrair string para resources
+                            Toast.makeText(
+                                context,
+                                "Não é possivel favoritar esse filme no momento...",
+                                Toast.LENGTH_LONG
+                            ).show()
+
+                            speed = -3f
+                            playAnimation()
+                        }
                     }
                 }
             }

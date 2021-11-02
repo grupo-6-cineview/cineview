@@ -7,7 +7,9 @@ import com.github.grupo6cineview.cineview.features.movie.data.model.similar.Simi
 
 @Entity(tableName = "similar_movies")
 data class SimilarEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "room_id")
+    val roomId: Long = 0,
     @ColumnInfo(name = "similar_id")
     val similarId: Int,
     val poster: String,

@@ -96,6 +96,7 @@ class MovieMapper {
                     DetailsViewParams(
                         movieId = id,
                         backdrop = backdropPath?.getFullImageUrl(500) ?: "",
+                        poster = posterPath?.getFullImageUrl(200) ?: "",
                         title = title,
                         overview = overview ?: "",
                         voteAverage = voteAverage.rateFormat(),

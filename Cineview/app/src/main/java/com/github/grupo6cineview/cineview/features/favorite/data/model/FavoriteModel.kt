@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.features.favorite.data.model.recyclerview
+package com.github.grupo6cineview.cineview.features.favorite.data.model
 
 data class FavoriteModel(
     val posteId: Int,

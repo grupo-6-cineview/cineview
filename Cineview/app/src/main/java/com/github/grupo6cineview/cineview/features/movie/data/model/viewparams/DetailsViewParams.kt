@@ -6,6 +6,7 @@ import com.github.grupo6cineview.cineview.features.movie.data.model.details.Deta
 data class DetailsViewParams(
     val movieId: Int,
     val backdrop: String,
+    val poster: String,
     val title: String,
     val overview: String,
     val voteAverage: String,
@@ -15,6 +16,7 @@ data class DetailsViewParams(
     fun toFavoriteEntity() =
         FavoriteEntity(
             backdropPath = backdrop,
+            posterPath = poster,
             budget = detailsList[4].subtitle,
             genres = detailsList[2].subtitle,
             movieId = movieId,

@@ -35,11 +35,17 @@ class MovieUseCase(
 
     suspend fun getFavoriteWithSimilars(movieId: Int) = movieRepositoy.getFavoriteWithSimilars(movieId)?.getSimilarViewParams()
 
-    suspend fun deleteFavoriteDetails(favorite: DetailsViewParams) = movieRepositoy.deleteFavoriteDetails(favorite.toFavoriteEntity())
+    suspend fun deleteFavoriteDetails(favoriteId: Int) = movieRepositoy.deleteFavoriteDetails(favoriteId)
 
-    suspend fun deleteFavoriteCasts(casts: CastViewParams) = movieRepositoy.deleteFavoriteCasts(casts.toCastEntityList())
+    suspend fun deleteFavoriteCasts(casts: CastViewParams) =
+        casts.castItems.forEach { item ->
+            movieRepositoy.deleteFavoriteCasts(item.castId)
+        }
 
-    suspend fun deleteFavoriteSimilars(similars: SimilarViewParams) = movieRepositoy.deleteFavoriteSimilars(similars.toSimilarEntityList())
+    suspend fun deleteFavoriteSimilars(similars: SimilarViewParams) =
+        similars.similarMovies.forEach { item ->
+            movieRepositoy.deleteFavoriteSimilars(item.similarId)
+        }
 
     suspend fun getMovieFromDatabase(
         movieId: Int,

@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
     private var binding: FragmentHomeBinding? = null
     private val viewModel: HomeViewModel by viewModel()
     private val linearLayout: LinearLayoutManager get() = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-    private val movieFragment: MovieFragment get() = MovieFragment { id -> onCLickMovie(id) }
+    private val movieFragment: MovieFragment get() = MovieFragment(onClick = { id -> onCLickMovie(id) })
     private fun getAdapter(intent: HomeIntent) = HomeAdapter(intent) { id, homeIntent -> onCLickMovie(id, homeIntent) }
     private fun getAdapterDatabase(intent: HomeIntent) = HomeAdapterDatabase(intent) { id, homeIntent -> onCLickMovie(id, homeIntent) }
 

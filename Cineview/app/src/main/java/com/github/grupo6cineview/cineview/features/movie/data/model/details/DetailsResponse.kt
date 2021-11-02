@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName
 data class DetailsResponse(
     @SerializedName("backdrop_path")
     var backdropPath: String?,
+    @SerializedName("poster_path")
+    var posterPath: String?,
     val budget: Int,
     val genres: List<Genre>,
     val id: Int,

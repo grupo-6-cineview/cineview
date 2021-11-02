@@ -8,7 +8,9 @@ import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.C
 
 @Entity(tableName = "cast_table")
 data class CastEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "room_id")
+    val roomId: Long = 0,
     @ColumnInfo(name = "cast_id")
     val castId: Int,
     @ColumnInfo(name = "original_name")

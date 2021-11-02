@@ -50,11 +50,11 @@ class MovieRepository(
 
     suspend fun getFavoriteWithSimilars(movieId: Int) = favoriteDao.getFavoriteWithSimilars(movieId)
 
-    suspend fun deleteFavoriteDetails(favorite: FavoriteEntity) = favoriteDao.deleteFavorites(favorite)
+    suspend fun deleteFavoriteDetails(favoriteId: Int) = favoriteDao.deleteFavorites(favoriteId)
 
-    suspend fun deleteFavoriteCasts(casts: List<CastEntity>) = favoriteDao.deleteCasts(casts)
+    suspend fun deleteFavoriteCasts(castId: Int) = favoriteDao.deleteCasts(castId)
 
-    suspend fun deleteFavoriteSimilars(similars: List<SimilarEntity>) = favoriteDao.deleteSimilars(similars)
+    suspend fun deleteFavoriteSimilars(similarId: Int) = favoriteDao.deleteSimilars(similarId)
 
     /**
      * Room - Home

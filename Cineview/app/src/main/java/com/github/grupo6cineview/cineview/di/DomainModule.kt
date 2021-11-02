@@ -1,5 +1,6 @@
 package com.github.grupo6cineview.cineview.di
 
+import com.github.grupo6cineview.cineview.features.favorite.domain.FavoriteUseCase
 import com.github.grupo6cineview.cineview.features.home.domain.HomeUseCase
 import com.github.grupo6cineview.cineview.features.movie.domain.MovieUseCase
 import com.github.grupo6cineview.cineview.features.search.domain.SearchUseCase
@@ -26,5 +27,6 @@ object DomainModule {
                 movieMapper = get()
             )
         }
+        single { FavoriteUseCase(favoriteRepository = get()) }
     }
 }

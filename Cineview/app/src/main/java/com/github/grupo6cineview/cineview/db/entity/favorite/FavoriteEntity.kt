@@ -3,17 +3,22 @@ package com.github.grupo6cineview.cineview.db.entity.favorite
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.github.grupo6cineview.cineview.features.favorite.data.model.FavoriteViewParams
 import com.github.grupo6cineview.cineview.features.movie.data.mapper.MovieMapper
 import com.github.grupo6cineview.cineview.features.movie.data.model.details.DetailsItem
 import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.DetailsViewParams
 
 @Entity(tableName = "favorite_movies")
 data class FavoriteEntity(
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "room_id")
+    val roomId: Long = 0,
     @ColumnInfo(name = "backdrop_path")
     var backdropPath: String,
+    @ColumnInfo(name = "poster_path")
+    var posterPath: String,
     val budget: String,
     val genres: String,
-    @PrimaryKey
     @ColumnInfo(name = "movie_id")
     val movieId: Int,
     @ColumnInfo(name = "original_title")
@@ -36,6 +41,7 @@ data class FavoriteEntity(
         DetailsViewParams(
             movieId = movieId,
             backdrop = backdropPath,
+            poster = posterPath,
             title = title,
             overview = overview,
             voteAverage = voteAverage,
@@ -96,4 +102,25 @@ data class FavoriteEntity(
 
         return list
     }
+
+    fun toFavoriteViewParams() =
+        FavoriteViewParams(
+            movieId = movieId,
+            title = title,
+            overview = overview,
+            posterPath = posterPath,
+            voteAverage = voteAverage.split(' ')[0]
+        )
+}
+
+fun List<FavoriteEntity>.toFavoriteViewParamsList(): List<FavoriteViewParams> {
+    val newList = mutableListOf<FavoriteViewParams>()
+
+    this.forEach { item ->
+        newList.add(
+            item.toFavoriteViewParams()
+        )
+    }
+
+    return newList
 }

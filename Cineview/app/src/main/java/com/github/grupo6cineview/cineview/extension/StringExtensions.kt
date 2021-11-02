@@ -19,3 +19,10 @@ fun String.getYearFromDate(): String =
     split('-').let { list ->
         list[0]
     }
+
+fun String.getOverviewFavoriteFormat() =
+    if (this.length > 80) {
+        "${this.take(80)}..."
+    } else {
+        this
+    }

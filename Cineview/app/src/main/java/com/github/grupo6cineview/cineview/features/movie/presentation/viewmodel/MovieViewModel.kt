@@ -119,7 +119,7 @@ class MovieViewModel(
         movieSimilar: SimilarViewParams
     ) {
         viewModelScope.launch {
-            movieUseCase.deleteFavoriteDetails(movieDetails)
+            movieUseCase.deleteFavoriteDetails(movieDetails.movieId)
             movieUseCase.deleteFavoriteCasts(movieCast)
             movieUseCase.deleteFavoriteSimilars(movieSimilar)
         }

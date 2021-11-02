@@ -2,20 +2,30 @@ package com.github.grupo6cineview.cineview.features.favorite.presentation.adapte
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.github.grupo6cineview.cineview.databinding.FavoriteItemBinding
-import com.github.grupo6cineview.cineview.features.favorite.data.model.recyclerview.FavoriteModel
+import com.github.grupo6cineview.cineview.features.favorite.data.model.FavoriteViewParams
+import com.github.grupo6cineview.cineview.features.favorite.data.model.FavoriteViewParams.Companion.FAVORITE_DIFF
 
 class FavoriteAdapter(
-    private val favList: List<FavoriteModel>
-) : RecyclerView.Adapter<FavoriteViewHolder>() {
+    private val onClickFavorite: (id: Int) -> Unit,
+    private val onClickMovie: (id: Int) -> Unit
+) : ListAdapter<FavoriteViewParams, FavoriteViewHolder>(FAVORITE_DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder =
-        FavoriteItemBinding.inflate(LayoutInflater.from(parent.context), parent, false).let { binding ->
-            FavoriteViewHolder(binding)
+        LayoutInflater.from(parent.context).let { inflater ->
+            FavoriteItemBinding.inflate(inflater, parent, false).let { binding ->
+                FavoriteViewHolder(binding)
+            }
         }
 
-    override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) = holder.bind(favList[position])
-
-    override fun getItemCount(): Int = favList.size
+    override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
+        getItem(position)?.let { item ->
+            holder.bind(
+                favorite = item,
+                onClickFavorite = onClickFavorite,
+                onClickMovie = onClickMovie
+            )
+        }
+    }
 }
