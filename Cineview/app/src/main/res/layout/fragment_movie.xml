@@ -34,6 +34,17 @@
             app:layout_constraintEnd_toEndOf="@id/ivMovieFragBackdrop"
             />
 
+        <ImageButton
+            android:id="@+id/btMovieFragClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_close"
+            app:tint="@color/white"
+            android:background="@drawable/bg_circle" />
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/btMovieFragFavorite"
             android:layout_width="40dp"

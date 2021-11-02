@@ -27,7 +27,6 @@ import com.github.grupo6cineview.cineview.features.home.presentation.viewmodel.H
 import com.github.grupo6cineview.cineview.features.movie.presentation.ui.MovieFragment
 import com.github.grupo6cineview.cineview.utils.Command
 import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_HOME_INTENT
-import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_LOAD_DATABASE
 import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_MOVIE_ID
 import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.TAG_SHOW_DETAIL_FRAGMENT
 import kotlinx.coroutines.flow.collect
@@ -50,7 +49,6 @@ class HomeFragment : Fragment() {
     ) {
         Bundle().let { bundle ->
             bundle.putInt(BUNDLE_KEY_MOVIE_ID, id)
-            bundle.putBoolean(BUNDLE_KEY_LOAD_DATABASE, !requireContext().appIsConnected())
             intent?.let { bundle.putString(BUNDLE_KEY_HOME_INTENT, it.name) }
 
             movieFragment.apply {

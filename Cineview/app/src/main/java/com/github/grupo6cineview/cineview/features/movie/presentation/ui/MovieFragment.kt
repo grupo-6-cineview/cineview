@@ -10,6 +10,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentMovieBinding
+import com.github.grupo6cineview.cineview.extension.appIsConnected
 import com.github.grupo6cineview.cineview.extension.setVisible
 import com.github.grupo6cineview.cineview.features.movie.data.model.PagerModel
 import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.CastViewParams
@@ -22,7 +23,6 @@ import com.github.grupo6cineview.cineview.features.movie.presentation.adapter.Si
 import com.github.grupo6cineview.cineview.features.movie.presentation.viewmodel.MovieViewModel
 import com.github.grupo6cineview.cineview.utils.Command
 import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_HOME_INTENT
-import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_LOAD_DATABASE
 import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_MOVIE_ID
 import com.github.grupo6cineview.cineview.utils.GenresCache
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -42,10 +42,6 @@ class MovieFragment(
 
     private val movieId by lazy {
         arguments?.getInt(BUNDLE_KEY_MOVIE_ID, 0) ?: 0
-    }
-
-    private val loadFromDatabase by lazy {
-        arguments?.getBoolean(BUNDLE_KEY_LOAD_DATABASE, false) ?: false
     }
 
     private val homeIntent by lazy {
@@ -107,11 +103,6 @@ class MovieFragment(
             )
 
             btMovieFragFavorite.setMaxFrame(MAX_FRAME_LIKE_ANIM)
-            if (loadFromDatabase)
-                btMovieFragFavorite.setVisible(
-                    visible = false,
-                    useInvisible = true
-                )
         }
 
     private fun setListeners() = binding?.run {
@@ -125,28 +116,34 @@ class MovieFragment(
             getAllDetails()
         }
 
+        btMovieFragClose.setOnClickListener { dismiss() }
+
         btMovieFragFavorite.setOnClickListener { view ->
             (view as? LottieAnimationView)?.apply {
                 if (frame == MAX_FRAME_LIKE_ANIM) {
                     speed = -3f
                     playAnimation()
 
-                    if (verifyInit())
-                        viewModel.deleteFavorite(
-                            movieDetails,
-                            movieCast,
-                            movieSimilar
-                        )
+                    context?.run {
+                        if (verifyInit() && appIsConnected())
+                            viewModel.deleteFavorite(
+                                movieDetails,
+                                movieCast,
+                                movieSimilar
+                            )
+                    }
                 } else {
                     speed = 3f
                     playAnimation()
 
-                    if (verifyInit())
-                        viewModel.saveFavorite(
-                            movieDetails,
-                            movieCast,
-                            movieSimilar
-                        )
+                    context?.run {
+                        if (verifyInit() && appIsConnected())
+                            viewModel.saveFavorite(
+                                movieDetails,
+                                movieCast,
+                                movieSimilar
+                            )
+                    }
                 }
             }
         }
@@ -201,8 +198,8 @@ class MovieFragment(
                         setLoading(visible = command.value)
                     }
 
-                    is Command.Error -> binding?.run {
-                        if (loadFromDatabase) {
+                    is Command.Error -> context?.run {
+                        if (!appIsConnected()) {
                             verifyFavorite()
                         } else {
                             setError(visible = true)
@@ -218,16 +215,18 @@ class MovieFragment(
                     else
                         MIN_FRAME_LIKE_ANIM
 
-                if (loadFromDatabase) {
-                    if (isFavorite)
-                        getFavoriteFromDb()
-                    else
-                        loadMovieFromDatabase()
-                } else {
-                    if (GenresCache.genresIsNull) {
-                        viewModel.getAllGenres()
+                context?.run {
+                    if (appIsConnected()) {
+                        if (GenresCache.genresIsNull) {
+                            viewModel.getAllGenres()
+                        }
+                        getAllDetails()
+                    } else {
+                        if (isFavorite)
+                            getFavoriteFromDb()
+                        else
+                            loadMovieFromDatabase()
                     }
-                    getAllDetails()
                 }
             }
 
@@ -303,8 +302,8 @@ class MovieFragment(
 
     private fun setError(visible: Boolean) = binding?.run {
         errorLayout.root.setVisible(visible = visible)
-        vpMovieFragMoreInfo.setVisible(visible = !visible, useInvisible = true)
-        btMovieFragFavorite.setVisible(visible = !visible, useInvisible = true)
+        tlMovieFragMoreInfo.setVisible(visible = !visible)
+        vpMovieFragMoreInfo.setVisible(visible = !visible)
     }
 
     private fun submitListAdapter() {
@@ -325,10 +324,6 @@ class MovieFragment(
         if (canSubmit) {
             binding?.run {
                 errorLayoutDatabase.root.setVisible(visible = false)
-                btMovieFragFavorite.setVisible(
-                    visible = true,
-                    useInvisible = true
-                )
             }
             pagerAdapter.submitList(pagerModelList)
         }

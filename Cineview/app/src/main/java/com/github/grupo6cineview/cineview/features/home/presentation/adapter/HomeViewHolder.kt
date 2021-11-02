@@ -23,8 +23,9 @@ class HomeViewHolder(private val binding: MovieItemHomeBinding) : RecyclerView.V
                     .into(ivMovieItemPoster)
 
                 ivMovieItemPoster.clipToOutline = true
+                tvMovieItemTitle.text = title
 
-                ivMovieItemPoster.setOnClickListener {
+                movieContainer.setOnClickListener {
                     onClick(
                         id,
                         intent
