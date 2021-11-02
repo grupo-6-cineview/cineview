@@ -85,13 +85,33 @@ class MovieFragment(
 
     private fun setViews() =
         binding?.run {
+            loadingLayout.background.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.black_light
+                )
+            )
+
+            errorLayout.background.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.black_light
+                )
+            )
+
             errorLayoutDatabase.background.setBackgroundColor(
                 ContextCompat.getColor(
                     requireContext(),
                     R.color.black_light
                 )
             )
+
             btMovieFragFavorite.setMaxFrame(MAX_FRAME_LIKE_ANIM)
+            if (loadFromDatabase)
+                btMovieFragFavorite.setVisible(
+                    visible = false,
+                    useInvisible = true
+                )
         }
 
     private fun setListeners() = binding?.run {
@@ -100,7 +120,10 @@ class MovieFragment(
             verifyFavorite()
         }
 
-        errorLayoutDatabase.btRefresh.setOnClickListener { getAllDetails() }
+        errorLayoutDatabase.btRefresh.setOnClickListener {
+            errorLayoutDatabase.root.setVisible(visible = false)
+            getAllDetails()
+        }
 
         btMovieFragFavorite.setOnClickListener { view ->
             (view as? LottieAnimationView)?.apply {
@@ -175,11 +198,15 @@ class MovieFragment(
             command.observe(viewLifecycleOwner) { command ->
                 when (command) {
                     is Command.Loading -> binding?.run {
-                        loadingLayout.root.setVisible(visible = command.value)
+                        setLoading(visible = command.value)
                     }
 
                     is Command.Error -> binding?.run {
-                        setError(visible = true)
+                        if (loadFromDatabase) {
+                            verifyFavorite()
+                        } else {
+                            setError(visible = true)
+                        }
                     }
                 }
             }
@@ -258,12 +285,20 @@ class MovieFragment(
                         tvMovieFragOverview.text = overview
                         tvMovieFragStars.text = voteAverage
                         tvMovieFragViews.text = voteCount
+
+                        errorLayoutDatabase.root.setVisible(visible = true)
                     } ?: kotlin.run {
                         setError(visible = true)
                     }
                 }
             }
         }
+    }
+
+    private fun setLoading(visible: Boolean) = binding?.run {
+        loadingLayout.root.setVisible(visible = visible)
+        tlMovieFragMoreInfo.setVisible(visible = !visible)
+        vpMovieFragMoreInfo.setVisible(visible = !visible)
     }
 
     private fun setError(visible: Boolean) = binding?.run {
@@ -288,6 +323,13 @@ class MovieFragment(
         }
 
         if (canSubmit) {
+            binding?.run {
+                errorLayoutDatabase.root.setVisible(visible = false)
+                btMovieFragFavorite.setVisible(
+                    visible = true,
+                    useInvisible = true
+                )
+            }
             pagerAdapter.submitList(pagerModelList)
         }
     }

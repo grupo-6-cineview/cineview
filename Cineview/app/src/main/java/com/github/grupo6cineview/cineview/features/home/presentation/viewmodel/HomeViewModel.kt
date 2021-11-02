@@ -22,8 +22,20 @@ class HomeViewModel(
     private val homeUseCase: HomeUseCase
 ) : BaseViewModel() {
 
+    private val _onSuccessCarousel: MutableLiveData<List<HomeViewParams>> = MutableLiveData()
+    val onSuccessCarousel: LiveData<List<HomeViewParams>> = _onSuccessCarousel
+
     private val _onSuccessNowPlaying: MutableLiveData<List<HomeViewParams>> = MutableLiveData()
     val onSuccessNowPlaying: LiveData<List<HomeViewParams>> = _onSuccessNowPlaying
+
+    private val _onSuccessTopRated: MutableLiveData<List<HomeViewParams>> = MutableLiveData()
+    val onSuccessTopRated: LiveData<List<HomeViewParams>> = _onSuccessTopRated
+
+    private val _onSuccessPopular: MutableLiveData<List<HomeViewParams>> = MutableLiveData()
+    val onSuccessPopular: LiveData<List<HomeViewParams>> = _onSuccessPopular
+
+    private val _onSuccessTrending: MutableLiveData<List<HomeViewParams>> = MutableLiveData()
+    val onSuccessTrending: LiveData<List<HomeViewParams>> = _onSuccessTrending
 
     fun getNowPlayingMovies() =
         viewModelScope.launch {
@@ -31,7 +43,7 @@ class HomeViewModel(
                 call = { homeUseCase.getNowPlayingMovies(FIRST_PAGE) },
                 onSuccess = { data ->
                     (data as List<*>).filterIsInstance(HomeViewParams::class.java).let { listResult ->
-                        _onSuccessNowPlaying.postValue(listResult)
+                        _onSuccessCarousel.postValue(listResult)
                     }
                 }
             )
@@ -50,4 +62,26 @@ class HomeViewModel(
                 intent
             )
         }.flow.cachedIn(viewModelScope)
+
+    fun getMoviesFromDatabase(intent: HomeIntent) =
+        viewModelScope.launch {
+            homeUseCase.getMoviesFromDatabase(intent).let { homeViewParams ->
+                when (intent) {
+                    HomeIntent.Carousel -> _onSuccessCarousel.postValue(homeViewParams)
+
+                    HomeIntent.NowPlaying -> _onSuccessNowPlaying.postValue(homeViewParams)
+
+                    HomeIntent.Popular -> _onSuccessPopular.postValue(homeViewParams)
+
+                    HomeIntent.TopRated -> _onSuccessTopRated.postValue(homeViewParams)
+
+                    HomeIntent.Trending -> _onSuccessTrending.postValue(homeViewParams)
+                }
+            }
+        }
+
+    fun resetDatabase() =
+        viewModelScope.launch {
+            homeUseCase.resetDatabase()
+        }
 }

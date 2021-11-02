@@ -7,8 +7,10 @@ import com.github.grupo6cineview.cineview.features.home.data.model.HomeViewParam
 
 @Entity(tableName = "trending_movies")
 data class TrendingEntity(
-    @PrimaryKey
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    @ColumnInfo(name = "movie_id")
+    val movieId: Int,
     @ColumnInfo(name = "porter_path")
     var posterPath: String,
     @ColumnInfo(name = "backdrop_path")
@@ -23,7 +25,7 @@ data class TrendingEntity(
 
     fun toHomeViewParams() =
         HomeViewParams(
-            id = id,
+            id = movieId,
             posterPath = posterPath,
             backdropPath = backdropPath,
             overview = overview,
@@ -31,4 +33,16 @@ data class TrendingEntity(
             voteCount = voteCount,
             voteAverage = voteAverage
         )
+}
+
+fun List<TrendingEntity>.toHomeVIewParamsList(): List<HomeViewParams> {
+    val list = mutableListOf<HomeViewParams>()
+
+    this.forEach { item ->
+        list.add(
+            item.toHomeViewParams()
+        )
+    }
+
+    return list
 }
