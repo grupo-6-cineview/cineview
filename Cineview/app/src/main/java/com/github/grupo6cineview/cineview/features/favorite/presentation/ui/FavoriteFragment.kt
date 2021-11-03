@@ -34,6 +34,9 @@ class FavoriteFragment : Fragment() {
         },
         onClickMovie = { movieId ->
             onCLickMovie(id = movieId)
+        },
+        scrollAction = {
+            binding?.rvFavFragRecycler?.smoothScrollToPosition(0)
         }
     )
 

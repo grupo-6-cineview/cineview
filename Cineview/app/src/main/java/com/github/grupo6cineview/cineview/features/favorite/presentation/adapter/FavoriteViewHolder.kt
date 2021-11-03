@@ -6,6 +6,7 @@ import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FavoriteItemBinding
 import com.github.grupo6cineview.cineview.extension.getOverviewFavoriteFormat
 import com.github.grupo6cineview.cineview.features.favorite.data.model.FavoriteViewParams
+import com.github.grupo6cineview.cineview.utils.ShareHelper
 
 class FavoriteViewHolder(val binding: FavoriteItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -40,6 +41,14 @@ class FavoriteViewHolder(val binding: FavoriteItemBinding) : RecyclerView.ViewHo
                             playAnimation()
                         }
                     }
+                }
+
+                btFavItemShare.setOnClickListener {
+                    // todo estudar e desenvolver interpolação com strings.xml
+                    ShareHelper.onClickShare(
+                        context = itemView.context,
+                        msg = "testando o share"
+                    )
                 }
 
                 favoriteContainer.setOnClickListener {

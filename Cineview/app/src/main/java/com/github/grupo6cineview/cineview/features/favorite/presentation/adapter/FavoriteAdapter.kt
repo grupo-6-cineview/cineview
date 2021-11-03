@@ -9,8 +9,17 @@ import com.github.grupo6cineview.cineview.features.favorite.data.model.FavoriteV
 
 class FavoriteAdapter(
     private val onClickFavorite: (id: Int) -> Unit,
-    private val onClickMovie: (id: Int) -> Unit
+    private val onClickMovie: (id: Int) -> Unit,
+    private val scrollAction: () -> Unit
 ) : ListAdapter<FavoriteViewParams, FavoriteViewHolder>(FAVORITE_DIFF) {
+
+    override fun onCurrentListChanged(
+        previousList: MutableList<FavoriteViewParams>,
+        currentList: MutableList<FavoriteViewParams>
+    ) {
+        super.onCurrentListChanged(previousList, currentList)
+        scrollAction()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder =
         LayoutInflater.from(parent.context).let { inflater ->

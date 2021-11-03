@@ -27,7 +27,6 @@ import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_H
 import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_MOVIE_ID
 import com.github.grupo6cineview.cineview.utils.GenresCache
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -148,10 +147,9 @@ class MovieFragment(
                                 movieSimilar
                             )
                         else {
-                            // todo extrair string para resources
                             Toast.makeText(
                                 context,
-                                "Não é possivel favoritar esse filme no momento...",
+                                R.string.error_favorite,
                                 Toast.LENGTH_LONG
                             ).show()
 
@@ -269,6 +267,7 @@ class MovieFragment(
                         tvMovieFragViews.text = voteCount
 
                         pagerModelList[0].detailsList = detailsList
+                        submitListAdapter()
                     }
                 }
             }
@@ -322,11 +321,11 @@ class MovieFragment(
     }
 
     private fun submitListAdapter() {
-        var canSubmit = true
+        var canSubmit = false
 
         pagerModelList.forEachIndexed { i, pagerModel ->
             canSubmit = when (i) {
-                0 -> pagerModel.castList != null
+                0 -> pagerModel.castList != null && pagerModel.detailsList != null
                 1 -> {
                     if (canSubmit) {
                         pagerModel.similarList != null
