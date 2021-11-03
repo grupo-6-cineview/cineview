@@ -35,7 +35,7 @@ data class TopRatedEntity(
         )
 }
 
-fun List<TopRatedEntity>.toHomeVIewParamsList(): List<HomeViewParams> {
+fun List<TopRatedEntity>.toHomeViewParamsList(): List<HomeViewParams> {
     val list = mutableListOf<HomeViewParams>()
 
     this.forEach { item ->

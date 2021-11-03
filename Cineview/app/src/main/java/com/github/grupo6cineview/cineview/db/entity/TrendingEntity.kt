@@ -35,7 +35,7 @@ data class TrendingEntity(
         )
 }
 
-fun List<TrendingEntity>.toHomeVIewParamsList(): List<HomeViewParams> {
+fun List<TrendingEntity>.toHomeViewParamsList(): List<HomeViewParams> {
     val list = mutableListOf<HomeViewParams>()
 
     this.forEach { item ->

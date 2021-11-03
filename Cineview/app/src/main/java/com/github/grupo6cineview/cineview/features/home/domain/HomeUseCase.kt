@@ -1,6 +1,6 @@
 package com.github.grupo6cineview.cineview.features.home.domain
 
-import com.github.grupo6cineview.cineview.db.entity.toHomeVIewParamsList
+import com.github.grupo6cineview.cineview.db.entity.toHomeViewParamsList
 import com.github.grupo6cineview.cineview.utils.ResponseApi
 import com.github.grupo6cineview.cineview.features.home.data.mapper.HomeMapper
 import com.github.grupo6cineview.cineview.features.home.data.model.*
@@ -99,18 +99,23 @@ class HomeUseCase(
 
     suspend fun getMoviesFromDatabase(intent: HomeIntent): List<HomeViewParams> =
         when (intent) {
-            HomeIntent.Carousel -> homeRepository.getAllMoviesCarousel().toHomeVIewParamsList()
+            HomeIntent.Carousel -> homeRepository.getAllMoviesCarousel().toHomeViewParamsList()
 
-            HomeIntent.NowPlaying -> homeRepository.getAllMoviesNowPlaying().toHomeVIewParamsList()
+            HomeIntent.NowPlaying -> homeRepository.getAllMoviesNowPlaying().toHomeViewParamsList()
 
-            HomeIntent.Popular -> homeRepository.getAllMoviesPopular().toHomeVIewParamsList()
+            HomeIntent.Popular -> homeRepository.getAllMoviesPopular().toHomeViewParamsList()
 
-            HomeIntent.TopRated -> homeRepository.getAllMoviesTopRated().toHomeVIewParamsList()
+            HomeIntent.TopRated -> homeRepository.getAllMoviesTopRated().toHomeViewParamsList()
 
-            HomeIntent.Trending -> homeRepository.getAllMoviesTrending().toHomeVIewParamsList()
+            HomeIntent.Trending -> homeRepository.getAllMoviesTrending().toHomeViewParamsList()
         }
 
     suspend fun resetDatabase() = with(homeRepository) {
+        nowPlayingMoviesSize = 0
+        topRatedMoviesSize = 0
+        popularMoviesSize = 0
+        trendingMoviesSize = 0
+
         resetCarouselMovies()
         resetNowPlayingMovies()
         resetTopRatedMovies()

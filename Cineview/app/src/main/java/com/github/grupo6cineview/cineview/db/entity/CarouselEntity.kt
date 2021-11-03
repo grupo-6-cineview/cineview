@@ -35,7 +35,7 @@ data class CarouselEntity(
         )
 }
 
-fun List<CarouselEntity>.toHomeVIewParamsList(): List<HomeViewParams> {
+fun List<CarouselEntity>.toHomeViewParamsList(): List<HomeViewParams> {
     val list = mutableListOf<HomeViewParams>()
 
     this.forEach { item ->

@@ -35,7 +35,7 @@ data class NowPlayingEntity(
         )
 }
 
-fun List<NowPlayingEntity>.toHomeVIewParamsList(): List<HomeViewParams> {
+fun List<NowPlayingEntity>.toHomeViewParamsList(): List<HomeViewParams> {
     val list = mutableListOf<HomeViewParams>()
 
     this.forEach { item ->

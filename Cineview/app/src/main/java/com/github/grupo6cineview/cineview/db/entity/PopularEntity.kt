@@ -35,7 +35,7 @@ data class PopularEntity(
         )
 }
 
-fun List<PopularEntity>.toHomeVIewParamsList(): List<HomeViewParams> {
+fun List<PopularEntity>.toHomeViewParamsList(): List<HomeViewParams> {
     val list = mutableListOf<HomeViewParams>()
 
     this.forEach { item ->
