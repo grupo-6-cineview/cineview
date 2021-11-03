@@ -13,6 +13,7 @@ import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.FragmentMovieBinding
 import com.github.grupo6cineview.cineview.extension.appIsConnected
 import com.github.grupo6cineview.cineview.extension.setVisible
+import com.github.grupo6cineview.cineview.features.home.data.model.HomeViewParams
 import com.github.grupo6cineview.cineview.features.movie.data.model.PagerModel
 import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.CastViewParams
 import com.github.grupo6cineview.cineview.features.movie.data.model.viewparams.DetailsViewParams
@@ -42,6 +43,7 @@ class MovieFragment(
     private lateinit var movieDetails: DetailsViewParams
     private lateinit var movieCast: CastViewParams
     private lateinit var movieSimilar: SimilarViewParams
+    private lateinit var homeParams: HomeViewParams
 
     private val movieId by lazy {
         arguments?.getInt(BUNDLE_KEY_MOVIE_ID, 0) ?: 0
@@ -123,7 +125,7 @@ class MovieFragment(
         btMovieFragShare.setOnClickListener {
             ShareHelper.onClickShare(
                 context = context ?: requireContext(),
-                movie = movieDetails.title
+                movie = if (::movieDetails.isInitialized) movieDetails.title else homeParams.title
             )
         }
 
@@ -296,6 +298,8 @@ class MovieFragment(
             onSuccedLoadFromDatabase.observe(viewLifecycleOwner) { homeViewParams ->
                 binding?.run {
                     homeViewParams?.run {
+                        homeParams = this
+
                         Glide.with(this@MovieFragment)
                             .load(backdropPath)
                             .placeholder(R.drawable.no_backdrop_path)
