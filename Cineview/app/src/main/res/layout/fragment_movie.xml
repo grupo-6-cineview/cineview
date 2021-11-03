@@ -59,6 +59,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btMovieFragShare"
+            android:contentDescription="@string/content_description_favorite_button"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:background="@drawable/ic_baseline_share"
+            app:backgroundTint="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/btMovieFragFavorite"
+            app:layout_constraintEnd_toEndOf="@id/btMovieFragFavorite"
+            app:layout_constraintStart_toStartOf="@id/btMovieFragFavorite"
+            />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvMovieFragTitle"
             android:layout_width="0dp"

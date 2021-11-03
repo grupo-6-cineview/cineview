@@ -26,6 +26,7 @@ import com.github.grupo6cineview.cineview.utils.Command
 import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_HOME_INTENT
 import com.github.grupo6cineview.cineview.utils.ConstantsApp.Detail.BUNDLE_KEY_MOVIE_ID
 import com.github.grupo6cineview.cineview.utils.GenresCache
+import com.github.grupo6cineview.cineview.utils.ShareHelper
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -119,6 +120,12 @@ class MovieFragment(
         }
 
         btMovieFragClose.setOnClickListener { dismiss() }
+        btMovieFragShare.setOnClickListener {
+            ShareHelper.onClickShare(
+                context = context ?: requireContext(),
+                movie = movieDetails.title
+            )
+        }
 
         btMovieFragFavorite.setOnClickListener { view ->
             (view as? LottieAnimationView)?.apply {

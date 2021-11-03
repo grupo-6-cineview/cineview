@@ -47,7 +47,7 @@ class FavoriteViewHolder(val binding: FavoriteItemBinding) : RecyclerView.ViewHo
                     // todo estudar e desenvolver interpolação com strings.xml
                     ShareHelper.onClickShare(
                         context = itemView.context,
-                        msg = "testando o share"
+                        movie = title
                     )
                 }
 
