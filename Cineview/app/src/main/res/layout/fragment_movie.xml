@@ -34,13 +34,24 @@
             app:layout_constraintEnd_toEndOf="@id/ivMovieFragBackdrop"
             />
 
+        <ImageButton
+            android:id="@+id/btMovieFragClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_close"
+            app:tint="@color/white"
+            android:background="@drawable/bg_circle" />
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/btMovieFragFavorite"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="@dimen/margin_default"
             android:layout_marginEnd="@dimen/margin_default"
-            app:lottie_colorFilter="@color/white"
+            app:lottie_colorFilter="@color/red"
             app:lottie_rawRes="@raw/like_anim"
             app:lottie_loop="false"
             app:lottie_autoPlay="false"
@@ -139,13 +150,11 @@
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mais Informações" />
+                android:layout_height="wrap_content" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Filmes Relacionados" />
+                android:layout_height="wrap_content" />
 
         </com.google.android.material.tabs.TabLayout>
 

@@ -9,7 +9,9 @@
     <string name="content_description_movie_poster">Movie Poster</string>
     <string name="content_description_favorite_button">Favorite Button</string>
     <string name="content_description_share_button">Share Button</string>
+
     <string name="error_default">Erro desconhecido, tente novamente.</string>
+    <string name="error_favorite">Sem conexão no momoento…\nNão foi possível completar a ação!</string>
 
     <string name="tab_item_1_movie_frag">Elenco</string>
     <string name="tab_item_2_movie_frag">Mais Detalhes</string>

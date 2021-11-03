@@ -1,7 +1,7 @@
 package com.github.grupo6cineview.cineview.api
 
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_MOVIE
-import com.github.grupo6cineview.cineview.extensions.ConstantsApp.Api.PATH_TRENDING_WEEK
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Api.PATH_TRENDING_MOVIE
+import com.github.grupo6cineview.cineview.utils.ConstantsApp.Api.PATH_TRENDING_WEEK
 import com.github.grupo6cineview.cineview.features.home.data.model.HomeResponse
 import com.github.grupo6cineview.cineview.features.movie.data.model.cast.CastResponse
 import com.github.grupo6cineview.cineview.features.movie.data.model.details.DetailsResponse

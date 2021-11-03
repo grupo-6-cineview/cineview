@@ -11,7 +11,17 @@ fun Int.asDp() : Int =
 
 fun Int.viewsFormat() = "$this Views"
 
-fun Int.runtimeFormat() = "$this Minutos"
+fun Int.runtimeFormat(): String {
+    var hours = 0
+    var minutes = this
+
+    while (minutes - 60 > 0) {
+        minutes -= 60
+        hours++
+    }
+
+    return "${hours}h ${minutes}min"
+}
 
 fun Int.moneyFormat() =
     NumberFormat.getCurrencyInstance().let { format ->

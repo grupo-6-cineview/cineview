@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/favoriteContainer"
+    android:clickable="true"
+    android:focusable="true"
     android:layout_width="match_parent"
     android:layout_height="187.5dp"
     android:layout_marginStart="@dimen/margin_default"
@@ -31,28 +35,31 @@
 
         <TextView
             android:id="@+id/tvFavItemTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_medium"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivFavItemPoster"
+            app:layout_constraintEnd_toEndOf="parent"
             android:textColor="@color/title_color"
             android:textSize="@dimen/title_2_size"
             android:textStyle="bold"
             tools:text="Mortal Kombat"
             />
 
-        <com.codesgood.views.JustifiedTextView
+        <TextView
             android:id="@+id/tvFavItemOverview"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_height="0dp"
+            android:layout_marginVertical="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_low"
             app:layout_constraintStart_toStartOf="@id/tvFavItemTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvFavItemTitle"
             app:layout_constraintBottom_toTopOf="@id/btFavItemShare"
             android:textColor="@color/subtitle_1_color"
             android:textSize="@dimen/subtitle_3_size"
+            android:gravity="center_vertical"
             tools:text="O lutador de MMA Cole Young não conhece sua herança, nem sabe o motivo do Imperador da Exoterra ter enviado seu melhor guerreiro, Sub-Zero..."
             />
 

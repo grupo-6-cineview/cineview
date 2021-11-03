@@ -1,4 +1,4 @@
-package com.github.grupo6cineview.cineview.extensions
+package com.github.grupo6cineview.cineview.utils
 
 
 import com.github.grupo6cineview.cineview.api.ApiError

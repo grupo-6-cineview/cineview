@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.github.grupo6cineview.cineview.R
 import com.github.grupo6cineview.cineview.databinding.CastItemBinding
 import com.github.grupo6cineview.cineview.features.movie.data.model.cast.CastItem
 import com.github.grupo6cineview.cineview.features.movie.data.model.cast.CastItem.Companion.DIFF_CAST
@@ -31,6 +32,7 @@ class CastAdapter : ListAdapter<CastItem, CastAdapter.CastViewHolder>(DIFF_CAST)
                 with(castItem) {
                     Glide.with(itemView.context)
                         .load(poster)
+                        .placeholder(R.drawable.no_poster_path)
                         .into(ivCastItemImage)
 
                     ivCastItemImage.clipToOutline = true

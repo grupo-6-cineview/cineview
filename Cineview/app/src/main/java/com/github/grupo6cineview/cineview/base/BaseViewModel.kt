@@ -1,7 +1,9 @@
-package com.github.grupo6cineview.cineview.extensions
+package com.github.grupo6cineview.cineview.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.github.grupo6cineview.cineview.utils.Command
+import com.github.grupo6cineview.cineview.utils.ResponseApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -26,7 +28,7 @@ open class BaseViewModel : ViewModel() {
                 onError?.let {
                     withContext(Dispatchers.Main) { onError.invoke() }
                 } ?: run {
-                    command.postValue(Command.Error(response.message))
+                    command.value = Command.Error(response.message)
                 }
             }
         }

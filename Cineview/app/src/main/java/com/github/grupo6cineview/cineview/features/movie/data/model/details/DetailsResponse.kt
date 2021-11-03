@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName
 data class DetailsResponse(
     @SerializedName("backdrop_path")
     var backdropPath: String?,
+    @SerializedName("poster_path")
+    var posterPath: String?,
     val budget: Int,
     val genres: List<Genre>,
     val id: Int,
@@ -22,6 +24,5 @@ data class DetailsResponse(
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("vote_count")
-    val voteCount: Int,
-    var detailsList: List<DetailsItem> = listOf()
+    val voteCount: Int
 )

@@ -1,6 +1,8 @@
-package com.github.grupo6cineview.cineview.extensions
+package com.github.grupo6cineview.cineview.base
 
 import com.github.grupo6cineview.cineview.R
+import com.github.grupo6cineview.cineview.utils.ErrorUtils
+import com.github.grupo6cineview.cineview.utils.ResponseApi
 import retrofit2.Response
 
 open class BaseRepository {

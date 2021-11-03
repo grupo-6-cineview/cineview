@@ -4,12 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import com.github.grupo6cineview.cineview.databinding.MovieItemHomeBinding
-import com.github.grupo6cineview.cineview.features.home.data.model.HomeResult
-import com.github.grupo6cineview.cineview.features.home.data.model.HomeResult.Companion.HOME_RESULT_DIFF
+import com.github.grupo6cineview.cineview.features.home.data.model.HomeViewParams
+import com.github.grupo6cineview.cineview.features.home.data.model.HomeViewParams.Companion.HOME_DIFF
+import com.github.grupo6cineview.cineview.features.home.domain.HomeIntent
 
 class HomeAdapter(
-    private val onClick: (id: Int) -> Unit
-) : PagingDataAdapter<HomeResult, HomeViewHolder>(HOME_RESULT_DIFF) {
+    private val intent: HomeIntent,
+    private val onClick: (id: Int, intent: HomeIntent) -> Unit
+) : PagingDataAdapter<HomeViewParams, HomeViewHolder>(HOME_DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder =
         LayoutInflater.from(parent.context).let { inflater ->
@@ -19,8 +21,12 @@ class HomeAdapter(
         }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        getItem(position)?.let { homeResult ->
-            holder.bind(homeResult, onClick)
+        getItem(position)?.let { homeViewParams ->
+            holder.bind(
+                movie = homeViewParams,
+                onClick = onClick,
+                intent = intent
+            )
         }
     }
 }
