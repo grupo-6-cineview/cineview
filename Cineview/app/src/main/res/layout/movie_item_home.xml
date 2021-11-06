@@ -24,11 +24,11 @@
     <TextView
         android:id="@+id/tvMovieItemTitle"
         android:layout_width="140dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginVertical="4dp"
         android:gravity="center"
-        tools:text="Velozes e Furiosos 23: A Saga Continua"
+        tools:text="Velozes e Furiosos 23: A Saga Continua e Nunca Vai Acabar Agora"
         android:textColor="@color/white"
         android:textStyle="bold"
         />

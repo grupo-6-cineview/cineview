@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.MutableLiveData
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
@@ -117,8 +118,8 @@ class MovieFragment(
         }
 
         errorLayoutDatabase.btRefresh.setOnClickListener {
-            errorLayoutDatabase.root.setVisible(visible = false)
-            getAllDetails()
+            setErrorDatabase(visible = false)
+            verifyFavorite()
         }
 
         btMovieFragClose.setOnClickListener { dismiss() }
@@ -310,7 +311,7 @@ class MovieFragment(
                         tvMovieFragStars.text = voteAverage
                         tvMovieFragViews.text = voteCount
 
-                        errorLayoutDatabase.root.setVisible(visible = true)
+                        setErrorDatabase(visible = true)
                     } ?: kotlin.run {
                         setError(visible = true)
                     }
@@ -321,14 +322,30 @@ class MovieFragment(
 
     private fun setLoading(visible: Boolean) = binding?.run {
         loadingLayout.root.setVisible(visible = visible)
-        tlMovieFragMoreInfo.setVisible(visible = !visible)
-        vpMovieFragMoreInfo.setVisible(visible = !visible)
+        if (errorLayout.root.isVisible && !visible) {
+            return@run
+        } else {
+            tlMovieFragMoreInfo.setVisible(visible = !visible)
+            vpMovieFragMoreInfo.setVisible(visible = !visible)
+            btMovieFragFavorite.setVisible(visible = !visible, useInvisible = true)
+            btMovieFragShare.setVisible(visible = !visible, useInvisible = true)
+            btMovieFragClose.setVisible(visible = !visible, useInvisible = true)
+        }
     }
 
     private fun setError(visible: Boolean) = binding?.run {
         errorLayout.root.setVisible(visible = visible)
         tlMovieFragMoreInfo.setVisible(visible = !visible)
         vpMovieFragMoreInfo.setVisible(visible = !visible)
+        btMovieFragFavorite.setVisible(visible = !visible, useInvisible = true)
+        btMovieFragShare.setVisible(visible = !visible, useInvisible = true)
+        btMovieFragClose.setVisible(visible = !visible, useInvisible = true)
+    }
+
+    private fun setErrorDatabase(visible: Boolean) = binding?.run {
+        errorLayoutDatabase.root.setVisible(visible = visible)
+        tlMovieFragMoreInfo.setVisible(visible = !visible, useInvisible = true)
+        vpMovieFragMoreInfo.setVisible(visible = !visible, useInvisible = true)
     }
 
     private fun submitListAdapter() {
@@ -348,7 +365,7 @@ class MovieFragment(
 
         if (canSubmit) {
             binding?.run {
-                errorLayoutDatabase.root.setVisible(visible = false)
+                setErrorDatabase(visible = false)
             }
             pagerAdapter.submitList(pagerModelList)
         }
