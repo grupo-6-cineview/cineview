@@ -38,4 +38,15 @@
         app:labelVisibilityMode="unlabeled"
         />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/bnMainProfilePhoto"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:elevation="8dp"
+        app:layout_constraintTop_toTopOf="@id/bnMainActFlow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/bnMainActFlow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.905" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

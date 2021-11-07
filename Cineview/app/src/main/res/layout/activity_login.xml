@@ -96,16 +96,31 @@
         app:layout_constraintEnd_toEndOf="@id/buttonLoginAnonymous" />
 
     <Button
-        android:id="@+id/buttonLoginFacebook"
+        android:id="@+id/customButtonLoginFacebook"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/blue_facebook"
-        android:text="Login com Google"
+        android:text="Login com Facebook"
         android:textAllCaps="false"
         android:drawableLeft="@drawable/facebook_icon"
         app:layout_constraintTop_toBottomOf="@id/buttonLoginGoogle"
         app:layout_constraintStart_toStartOf="@id/buttonLoginGoogle"
         app:layout_constraintEnd_toEndOf="@id/buttonLoginGoogle" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/buttonLoginFacebook"
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/customButtonLoginFacebook"
+        app:layout_constraintBottom_toBottomOf="@id/customButtonLoginFacebook"
+        app:layout_constraintStart_toStartOf="@id/customButtonLoginFacebook"
+        app:layout_constraintEnd_toEndOf="@id/customButtonLoginFacebook" />
+
+    <include
+        android:id="@+id/loadingLayout"
+        android:visibility="gone"
+        layout="@layout/loading_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
