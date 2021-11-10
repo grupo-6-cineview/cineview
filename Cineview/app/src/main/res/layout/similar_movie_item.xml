@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clSimilarMovies"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black_light"
+    android:clickable="true"
+    android:focusable="true"
+    tools:ignore="TouchTargetSizeCheck">
+
+    <ImageView
+        android:id="@+id/ivSimilarItemPoster"
+        android:layout_width="75dp"
+        android:layout_height="110dp"
+        android:layout_margin="@dimen/margin_medium"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/poster_example" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSimilarItemTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:textColor="@color/white"
+        android:textSize="@dimen/subtitle_1_size"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivSimilarItemPoster"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        tools:text="Kung-Fu Panda 3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSimilarItemReleaseYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_low"
+        android:textColor="@android:color/darker_gray"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/tvSimilarItemTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvSimilarItemTitle"
+        tools:text="1990" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSimilarItemGenres"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:textColor="@android:color/darker_gray"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/tvSimilarItemTitle"
+        app:layout_constraintStart_toEndOf="@id/tvSimilarItemReleaseYear"
+        app:layout_constraintTop_toTopOf="@id/tvSimilarItemReleaseYear"
+        tools:text="Ação, Aventura, Ficção Científica" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:background="@color/grey_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivSimilarItemPoster" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
