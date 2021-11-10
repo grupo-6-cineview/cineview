@@ -42,7 +42,7 @@
     <string name="home_frag_popular">Mais Visualizados</string>
     <string name="home_frag_trending">Tendências da Semana</string>
 
-    <string name="share_message">Estava dando uma olhada nas informações do filme \"%s\" através do Cineview, o melhor app de informações sobre filmes do mundo \uD83D\uDE03 Nunca ouviu falar dele?? Tá perdendo tempo ein \uD83D\uDE43\nAcesse o link e baixe agora mesmo: https://play.google.com/store/apps/developer?id=Digital+House+Brasil</string>
+    <string name="share_message">Estava dando uma olhada nas informações do filme \"%s\" através do Cineview, o melhor app de informações sobre filmes do mundo \uD83D\uDE03\n\nNunca ouviu falar dele?? Tá perdendo tempo ein \uD83D\uDE43\n\nAcesse o link e baixe agora mesmo: https://play.google.com/store/apps/developer?id=Digital+House+Brasil</string>
 
     <string name="facebook_app_id">2075326055965433</string>
 
