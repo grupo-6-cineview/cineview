@@ -1,6 +1,7 @@
 package com.github.grupo6cineview.cineview.di
 
 import com.github.grupo6cineview.cineview.db.DataBase
+import com.github.grupo6cineview.cineview.features.account.data.AccountRepository
 import com.github.grupo6cineview.cineview.features.favorite.data.repository.FavoriteRepository
 import com.github.grupo6cineview.cineview.features.home.data.mapper.HomeMapper
 import com.github.grupo6cineview.cineview.features.home.data.repository.HomeRepository
@@ -23,6 +24,7 @@ object DataModule {
             )
         }
         single { FavoriteRepository(favoriteDao = get()) }
+        single { AccountRepository(favoriteDao = get()) }
     }
 
     val daoModules = module {

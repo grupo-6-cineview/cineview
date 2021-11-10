@@ -20,7 +20,7 @@
         android:icon="@drawable/ic_baseline_favorite_enable" />
 
     <item
-        android:id="@+id/accountScreenFragment"
+        android:id="@+id/accountFragment"
         android:enabled="true"
         android:title="@string/bottom_nav_item_account"
         android:icon="@drawable/ic_baseline_account" />

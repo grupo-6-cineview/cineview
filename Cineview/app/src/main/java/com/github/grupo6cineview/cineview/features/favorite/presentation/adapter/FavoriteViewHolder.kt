@@ -44,7 +44,6 @@ class FavoriteViewHolder(val binding: FavoriteItemBinding) : RecyclerView.ViewHo
                 }
 
                 btFavItemShare.setOnClickListener {
-                    // todo estudar e desenvolver interpolação com strings.xml
                     ShareHelper.onClickShare(
                         context = itemView.context,
                         movie = title
