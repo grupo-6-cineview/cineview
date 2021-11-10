@@ -1,5 +1,6 @@
 package com.github.grupo6cineview.cineview.di
 
+import com.github.grupo6cineview.cineview.features.account.domain.AccountUseCase
 import com.github.grupo6cineview.cineview.features.favorite.domain.FavoriteUseCase
 import com.github.grupo6cineview.cineview.features.home.domain.HomeUseCase
 import com.github.grupo6cineview.cineview.features.movie.domain.MovieUseCase
@@ -28,5 +29,6 @@ object DomainModule {
             )
         }
         single { FavoriteUseCase(favoriteRepository = get()) }
+        single { AccountUseCase(accountRepository = get()) }
     }
 }

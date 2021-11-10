@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.homeFragment -> {  }
                 R.id.searchFragment -> {  }
                 R.id.favoriteFragment -> {  }
-                R.id.accountScreenFragment -> {  }
+                R.id.accountFragment -> {  }
             }
         }
 

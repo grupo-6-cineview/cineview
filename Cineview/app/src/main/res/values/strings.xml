@@ -45,4 +45,14 @@
     <string name="share_message">Estava dando uma olhada nas informações do filme \"%s\" através do Cineview, o melhor app de informações sobre filmes do mundo \uD83D\uDE03 Nunca ouviu falar dele?? Tá perdendo tempo ein \uD83D\uDE43\nAcesse o link e baixe agora mesmo: https://play.google.com/store/apps/developer?id=Digital+House+Brasil</string>
 
     <string name="facebook_app_id">2075326055965433</string>
+
+    <string name="user_anonymous">Usuário Anônimo</string>
+    <string name="app_data_on_device">Dados do Aplicativo no Dispositivo</string>
+    <string name="account_data">Dados da Conta</string>
+    <string name="share_count">Compartilhamentos Realizados:</string>
+    <string name="favorite_count">Quant. de Filmes Favoritados:</string>
+    <string name="account_email">Email:</string>
+    <string name="account_phone">Celular:</string>
+    <string name="account_no_data">Não Informado</string>
+    <string name="logout">Sair do Aplicativo</string>
 </resources>
